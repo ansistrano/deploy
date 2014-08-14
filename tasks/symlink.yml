@@ -1,0 +1,4 @@
+---
+# Performs symlink exchange
+- name: Change softlink to new release
+  file: state=link path={{ deployTo }}/{{ currentDir }} src={{ release_path.stdout }}

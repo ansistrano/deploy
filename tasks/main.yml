@@ -1,0 +1,10 @@
+---
+- include: "{{ preAndPostTasksFolder }}/before-update-code.yml"
+- include: update-code.yml
+- include: "{{ preAndPostTasksFolder }}/after-update-code.yml"
+- include: "{{ preAndPostTasksFolder }}/before-symlink.yml"
+- include: symlink.yml
+- include: "{{ preAndPostTasksFolder }}/after-symlink.yml"
+- include: "{{ preAndPostTasksFolder }}/before-cleanup.yml"
+- include: cleanup.yml
+- include: "{{ preAndPostTasksFolder }}/after-cleanup.yml"

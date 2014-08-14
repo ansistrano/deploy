@@ -1,0 +1,23 @@
+---
+# Update code deployment step
+- name: Setup folders structure in remote servers
+  file: state=directory recurse=yes path={{ deployTo }}
+- name: Setup folders structure in remote servers
+  file: state=directory recurse=yes path={{ deployTo }}/{{ versionDir }}
+- name: Setup folders structure in remote servers
+  file: state=directory recurse=yes path={{ deployTo }}/shared
+- name: Get release timestamp
+  command: date +%Y%m%d%H%M%S
+  register: timestamp
+- name: Get release path
+  command: echo "{{ deployTo }}/{{ versionDir }}/{{ timestamp.stdout }}"
+  register: release_path
+- name: Get releases path
+  command: echo "{{ deployTo }}/{{ versionDir }}"
+  register: releases_path
+- name: Deploy existing code to servers
+  copy: src={{ deployFrom }} dest={{ release_path.stdout }}
+- name: Copy release version into REVISION file
+  shell: echo {{ timestamp.stdout }} > {{ release_path.stdout }}/REVISION
+- name: Touches up the release code
+  shell: chmod -R -- g+w {{ release_path.stdout }} && chmod -R g+w {{ release_path.stdout }}

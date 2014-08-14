@@ -1,0 +1,5 @@
+---
+# Clean up releases
+- name: Clean up releases
+  shell: ls -1dt {{ releases_path.stdout }}/* | tail -n +`echo "{{ maxNumberOfReleases }} + 1" | bc` | xargs rm -rf
+  when: cleanUpAfterDeploy

@@ -1,0 +1,8 @@
+---
+deployFrom: "/Users/buenosvinos/Development/ansible"
+deployTo: "/var/www/atrapalo.com"
+versionDir: "releases"
+currentDir: "current"
+cleanUpAfterDeploy: False
+maxNumberOfReleases: 10
+preAndPostTasksFolder: "./custom-tasks"
