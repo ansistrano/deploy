@@ -1,18 +1,45 @@
-Symfony2
-========
+Ansistrano: ansistrano.deploy and ansistrano.rollback roles
+===========================================================
 
-Ansible role to easily deploy Symfony2 applications. It will clone a git repository, download and run composer install, and run assetic:dump when finished. The resulting directory structure is similar to what capifony creates:
+**ansistrano.deploy** and **ansistrano.rollback** are Ansible roles to easily manage the deployment process for
+scripting applications such as PHP, Python and Ruby. It's an Ansible port for Capistrano.
 
 ```
-project
-    releases
-        release
-    shared
-        web/uploads
-        app/config
-        app/logs
-    current -> symlink to latest deployed release
+-- /var/www/my-app.com
+|-- current -> /var/www/my-app.com/releases/20100512131539
+|-- releases
+|   |-- 20100512131539
+|   |-- 20100509150741
+|   |-- 20100509145325
+|-- shared
 ```
+
+History
+-------
+
+[Capistrano](http://capistranorb.com/) is a remote server automation tool and it's currently in Version 3.
+[Version 2.0](https://github.com/capistrano/capistrano/tree/legacy-v2) was originally thought in order to deploy RoR
+applications. With additional plugins, you we're able to deploy non Rails applications such as PHP and Python, with
+different deployment strategies, stages and much more. I loved Capistrano v2. I have used it a lot. I developed
+a plugin for it.
+
+Capistrano 2 was a great tool and it works really well. However, right now is not maintained anymore because the
+original team is working in v3. This new version does not have the same features so is less powerful and flexible and
+other new tools are becoming easier to use in order to deploy applications, such as Ansible.
+
+So, I have decided to stop using Capistrano because v2 is not maintained, v3 does not have features enough, and I
+can do everything Capistrano was doing with Ansible.
+
+Features
+--------
+
+- Fast rollback
+- Custom path deployment
+- Keep releases deployed up to a custom limit
+- Pushing release strategy
+
+Enable `cleanUpAfterDeploy` parameter and set the `maxNumberOfReleases` to the total number of
+releases you want to keep. In continuous delivery environments, the number of
 
 Requirements
 ------------
@@ -23,24 +50,22 @@ Installation
 ------------
 
 ```
-    $ ansible-galaxy install servergrove.symfony2
+    $ ansible-galaxy install ansistrano.deploy ansistrano.rollback
 ```
-
 
 Role Variables
 --------------
 
 ```yaml
 - vars:
-    symfony2_project_root: Path where application will be deployed on server.
-    symfony2_project_name: Name of project.
-    symfony2_project_repo: URL of git repository.
-    symfony2_project_release: Release number, can be numeric, we recommend to set it to release date/time, 20140327100911
-    symfony2_project_branch: git branch to deploy.
-    symfony2_project_php_path: /usr/local/php54/bin/php
-    symfony2_project_env: prod
-    symfony2_project_console_opts: ''
-    symfony2_project_composer_opts: '--no-dev --optimize-autoloader'
+  deployTo: Path where application will be deployed on server.
+  deployFrom: "/Users/buenosvinos/Development/ansible"
+  deployTo: "/var/www/atrapalo.com"
+  versionDir: "releases"
+  currentDir: "current"
+  cleanUpAfterDeploy: False
+  maxNumberOfReleases: 10
+  preAndPostTasksFolder: "./custom-tasks"
 ```
 
 Dependencies
@@ -51,20 +76,16 @@ None
 Example Playbook
 -------------------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+In Ansible, a Role cannot be use alone, so you will need to Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
 ```yaml
+# deploy.
 - hosts: servers
     roles:
-        - { role: servergrove.symfony2, symfony2_project_root: /var/www/vhosts/example.com/, symfony2_project_name: demo, symfony2_project_branch: master, symfony2_project_release: 1 }
+        - { role: ansistrano.deploy }
 ```
 
 License
 -------
 
 MIT
-
-Author Information
-------------------
-
-Contributions are welcome: https://github.com/servergrove/ansible-symfony2

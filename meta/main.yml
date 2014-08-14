@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: ansistrano
-  description:
+  description: Ansible role to deploy scripting applications like PHP, Python, Ruby, etc. in a capistrano style
   company: Ansistrano
   # Some suggested licenses:
   # - BSD (default)
