@@ -1,0 +1,49 @@
+---
+# Update code deployment step
+- name: Ensure deployment base path exists
+  file: state=directory recurse=yes path={{ deploy_to }}
+
+- name: Ensure releases folder exists
+  file: state=directory recurse=yes path={{ deploy_to }}/{{ version_dir }}
+
+- name: Ensure shared elements folder exists
+  file: state=directory recurse=yes path={{ deploy_to }}/shared
+
+- name: Ensure shared copy for rsync improvement exists (in rsync case)
+  file: state=directory recurse=yes path={{ deploy_to }}/.shared-copy
+  when: deploy_via == 'rsync'
+
+- name: Get release timestamp
+  command: date +%Y%m%d%H%M%S
+  register: timestamp
+
+- name: Get release path
+  command: echo "{{ deploy_to }}/{{ version_dir }}/{{ timestamp.stdout }}"
+  register: release_path
+
+- name: Get releases path
+  command: echo "{{ deploy_to }}/{{ version_dir }}"
+  register: releases_path
+
+- name: Get shared path (in rsync case)
+  command: echo "{{ deploy_to }}/shared/cached-copy"
+  register: shared_path
+  when: deploy_via == 'rsync'
+
+- name: Rsync application files to remote shared copy (in rsync case)
+  local_action: command rsync -azx --delete {{ deploy_from }} {{ inventory_hostname }}:{{ shared_path.stdout }}
+  when: deploy_via == 'rsync'
+
+- name: Deploy existing code to servers
+  command: cp -pr {{ shared_path.stdout }} {{ deploy.release_path.stdout }}
+  when: deploy_via == 'rsync'
+
+- name: Deploy existing code to remote servers
+  copy: src={{ deploy_from }} dest={{ release_path.stdout }}
+  when: deploy_via == 'copy'
+
+- name: Copy release version into REVISION file
+  shell: echo {{ timestamp.stdout }} > {{ release_path.stdout }}/REVISION
+
+- name: Touches up the release code
+  shell: chmod -R -- g+w {{ release_path.stdout }} && chmod -R g+w {{ release_path.stdout }}

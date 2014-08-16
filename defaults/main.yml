@@ -1,0 +1,7 @@
+---
+deploy_from: "/Users/buenosvinos/Development/ansible"
+deploy_to: "/var/www/atrapalo.com"
+version_dir: "releases"
+current_dir: "current"
+keep_releases: 0
+deploy_via: "rsync"

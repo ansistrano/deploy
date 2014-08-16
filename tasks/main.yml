@@ -1,0 +1,12 @@
+---
+- include: "{{ custom_tasks_path }}/before-update-code.yml"
+- include: update-code.yml
+- include: "{{ custom_tasks_path }}/after-update-code.yml"
+
+- include: "{{ custom_tasks_path }}/before-symlink.yml"
+- include: symlink.yml
+- include: "{{ custom_tasks_path }}/after-symlink.yml"
+
+- include: "{{ custom_tasks_path }}/before-cleanup.yml"
+- include: cleanup.yml
+- include: "{{ custom_tasks_path }}/after-cleanup.yml"
