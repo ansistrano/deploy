@@ -113,10 +113,55 @@ Example Playbook
 In Ansible, a Role cannot be use alone, so you will need to Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
 ```yaml
-# deploy.
-- hosts: servers
-    roles:
-        - { role: ansistrano.deploy }
+---
+- name: Deploy my super WebApp with Ansistrano
+  hosts: all
+  vars:
+    deploy_via: copy
+  roles:
+    - { role: carlosbuenosvinos.ansistrano-deploy }
+```
+
+```ansible-playbook -i hosts deploy-with-ansistrano.yml```
+
+```
+PLAY [Deploy Dots. Game with Ansistrano] **************************************
+
+GATHERING FACTS ***************************************************************
+ok: [web1]
+
+TASK: [carlosbuenosvinos.ansistrano-deploy | Ensure deployment base path exists] ***
+ok: [web1]
+
+TASK: [carlosbuenosvinos.ansistrano-deploy | Ensure releases folder exists] ***
+ok: [web1]
+
+TASK: [carlosbuenosvinos.ansistrano-deploy | Ensure shared elements folder exists] ***
+ok: [web1]
+
+TASK: [carlosbuenosvinos.ansistrano-deploy | Ensure shared copy for rsync improvement exists (in rsync case)] ***
+skipping: [web1]
+
+TASK: [carlosbuenosvinos.ansistrano-deploy | Get release timestamp] ***********
+changed: [web1]
+
+TASK: [carlosbuenosvinos.ansistrano-deploy | Get release path] ****************
+changed: [web1]
+
+TASK: [carlosbuenosvinos.ansistrano-deploy | Get releases path] ***************
+changed: [web1]
+
+TASK: [carlosbuenosvinos.ansistrano-deploy | Get shared path (in rsync case)] ***
+skipping: [web1]
+
+TASK: [carlosbuenosvinos.ansistrano-deploy | Rsync application files to remote shared copy (in rsync case)] ***
+skipping: [web1]
+
+TASK: [carlosbuenosvinos.ansistrano-deploy | Deploy existing code to servers] ***
+skipping: [web1]
+
+TASK: [carlosbuenosvinos.ansistrano-deploy | Deploy existing code to remote servers] ***
+...
 ```
 
 License
