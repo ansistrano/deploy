@@ -29,7 +29,7 @@ Installation
 ------------
 
 ```
-$ ansible-galaxy install ansistrano.deploy ansistrano.rollback
+$ ansible-galaxy install ansible-galaxy install carlosbuenosvinos.ansistrano-deploy ansible-galaxy install carlosbuenosvinos.ansistrano-rollback
 ```
 
 Features
