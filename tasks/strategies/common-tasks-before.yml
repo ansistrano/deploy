@@ -1,0 +1,22 @@
+---
+
+- name: Ensure deployment base path exists
+  file: state=directory recurse=yes path={{ deploy_to }}
+
+- name: Ensure releases folder exists
+  file: state=directory recurse=yes path={{ deploy_to }}/{{ version_dir }}
+
+- name: Ensure shared elements folder exists
+  file: state=directory recurse=yes path={{ deploy_to }}/shared
+
+- name: Get release timestamp
+  command: date +%Y%m%d%H%M%S
+  register: timestamp
+
+- name: Get release path
+  command: echo "{{ deploy_to }}/{{ version_dir }}/{{ timestamp.stdout }}"
+  register: release_path
+
+- name: Get releases path
+  command: echo "{{ deploy_to }}/{{ version_dir }}"
+  register: releases_path

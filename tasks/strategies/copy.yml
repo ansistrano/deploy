@@ -1,0 +1,4 @@
+---
+# Update using copy strategy
+- name: Deploy existing code to remote servers
+  copy: src={{ deploy_from }} dest={{ release_path.stdout }}
