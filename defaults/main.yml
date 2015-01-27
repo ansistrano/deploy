@@ -5,3 +5,5 @@ version_dir: "releases"
 current_dir: "current"
 keep_releases: 0
 deploy_via: "rsync"
+git_repo: git@github.com:USERNAME/REPO.git
+git_branch: master

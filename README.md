@@ -133,6 +133,9 @@ Role Variables
   keep_releases: 10 # Releases to keep after a new deployment. See "Pruning old releases".
   custom_tasks_path: "./custom-tasks" # Path to find custom pre and post tasks for each deployment step.
   current_dir: "current" # Softlink name. You should rarely changed it.
+  git_repo: git@github.com:USERNAME/REPO.git # Location of the git repository
+  git_branch: master # Branch to use when deploying
+  deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync or git
 ```
 
 Dependencies
