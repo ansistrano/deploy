@@ -7,3 +7,4 @@ keep_releases: 0
 deploy_via: "rsync"
 git_repo: git@github.com:USERNAME/REPO.git
 git_branch: master
+custom_tasks_path: "custom-tasks"
