@@ -52,6 +52,10 @@
     chdir: "{{ deploy_to }}/shared"
   when: deploy_via == 'git'
 
+- name: Deploy code from to servers
+  git: repo={{ deploy_from}} dest={{ release_path.stdout }} accept_hostkey=true
+  when: deploy_via == 'git'
+
 - name: Copy release version into REVISION file
   shell: echo {{ timestamp.stdout }} > {{ release_path.stdout }}/REVISION
 
