@@ -41,6 +41,16 @@
 - name: Deploy existing code to remote servers
   copy: src={{ deploy_from }} dest={{ release_path.stdout }}
   when: deploy_via == 'copy'
+  
+- name: Update remote repository
+  git: repo={{ git_repo }} dest={{ deploy_to }}/shared version={{ git_branch }} accept_hostkey=true update=yes
+  when: deploy_via == 'git'
+
+- name: Export a copy of the repo
+  command: git checkout-index -f -a --prefix="{{ release_path.stdout }}/"
+  args:
+    chdir: "{{ deploy_to }}/shared"
+  when: deploy_via == 'git'
 
 - name: Copy release version into REVISION file
   shell: echo {{ timestamp.stdout }} > {{ release_path.stdout }}/REVISION
