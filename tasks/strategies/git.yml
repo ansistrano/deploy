@@ -1,0 +1,12 @@
+---
+# Update using git strategy
+- name: Update remote repository
+  git: repo={{ git_repo }} dest={{ deploy_to }}/shared version={{ git_branch }} accept_hostkey=true update=yes
+
+- name: Export a copy of the repo
+  command: git checkout-index -f -a --prefix="{{ release_path.stdout }}/"
+  args:
+    chdir: "{{ deploy_to }}/shared"
+
+- name: Deploy code from to servers
+  git: repo={{ deploy_from}} dest={{ release_path.stdout }} accept_hostkey=true
