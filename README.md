@@ -40,15 +40,48 @@ Features
 - Keep releases deployed up to a custom limit
 - Pushing release strategy
 
+Main workflow
+-------------
+This role deploys applications following the Capistrano flow.
+* Code update: Uploads the code into the servers
+* Symlink: After deploying the new release into your servers, changes the `current` softlink to new the release
+* Cleanup: Removes any old version based in the `keep_releases` parameter
+
+Custom tasks
+------------
+You will typically need to restart your webserver after the `Symlink` step, or download your dependencies before `Code update` or even do it in production before the `Symlink`. So, in order to perform your custom tasks you have some hooks that ansistrano will execute before and after each of the main 3 steps. By default, ansistrano will try to find some files in `./custom-tasks` path.
+
+```
+-- /my-local-machine/my-app.com
+|-- hosts
+|-- deploy-with-capistrano.yml
+|-- custom-tasks
+|   |-- before-code-update.yml
+|   |-- after-code-update.yml
+|   |-- before-symlink.yml
+|   |-- after-symlink.yml
+|   |-- before-cleanup.yml
+|   |-- after-cleanup.yml
+```
+
+For example, in order to restart apache after `Symlink` step, we'll add in the `after-symlink.yml`
+
+```
+- name: Restart Apache
+  service: name=httpd state=restarted
+```
+
+You can specify a custom folder to your custom tasks using the `custom_tasks_path`.
+
 Deploying
 ---------
 
 * Create a new hosts file. Check [ansible inventory documentation](http://docs.ansible.com/intro_inventory.html) if you
 need help.
-* Create a new fresh deploy.yml
-* Include ansible.deploy role
+* Create a new fresh deploy-with-ansistrano.yml
+* Include carlosbuenosvinos.ansible-deploy role
 * Tune parameteres
-* ```ansible-playbook -i your_hosts_file deploy.yml```
+* ```ansible-playbook -i your_hosts_file deploy-with-ansistrano.yml```
 
 If everything has been set up properly, this command will create the following approximate directory structure on
 your server.
@@ -100,6 +133,9 @@ Role Variables
   keep_releases: 10 # Releases to keep after a new deployment. See "Pruning old releases".
   custom_tasks_path: "./custom-tasks" # Path to find custom pre and post tasks for each deployment step.
   current_dir: "current" # Softlink name. You should rarely changed it.
+  git_repo: git@github.com:USERNAME/REPO.git # Location of the git repository
+  git_branch: master # Branch to use when deploying
+  deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync or git
 ```
 
 Dependencies
