@@ -31,11 +31,11 @@
   when: deploy_via == 'rsync'
 
 - name: Rsync application files to remote shared copy (in rsync case)
-  local_action: command rsync -azx --delete {{ deploy_from }} {{ inventory_hostname }}:{{ shared_path.stdout }}
+  synchronize: src={{ deploy_from }} dest={{ shared_path.stdout }} recursive=yes delete=yes archive=yes compress=yes rsync_opts={{ rsync_extra_params }}
   when: deploy_via == 'rsync'
 
 - name: Deploy existing code to servers
-  command: cp -pr {{ shared_path.stdout }} {{ deploy.release_path.stdout }}
+  command: cp -pr {{ shared_path.stdout }} {{ release_path.stdout }}
   when: deploy_via == 'rsync'
 
 - name: Deploy existing code to remote servers
