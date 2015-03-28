@@ -8,3 +8,4 @@ deploy_via: "rsync"
 git_repo: git@github.com:USERNAME/REPO.git
 git_branch: master
 custom_tasks_path: "custom-tasks"
+rsync_extra_params: ""
