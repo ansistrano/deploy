@@ -7,4 +7,5 @@ ansistrano_keep_releases: 0
 ansistrano_deploy_via: "rsync"
 ansistrano_git_repo: git@github.com:USERNAME/REPO.git
 ansistrano_git_branch: master
+ansistrano_custom_tasks_path: "{{ playbook_dir }}/deploy/custom-tasks"
 ansistrano_rsync_extra_params: ""
