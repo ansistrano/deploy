@@ -7,5 +7,5 @@ keep_releases: 0
 deploy_via: "rsync"
 git_repo: git@github.com:USERNAME/REPO.git
 git_branch: master
-custom_tasks_path: "custom-tasks"
+custom_tasks_path: "{{playbook_dir}}/custom-tasks"
 rsync_extra_params: ""
