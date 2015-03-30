@@ -9,10 +9,6 @@
 - name: Ensure shared elements folder exists
   file: state=directory recurse=yes path={{ ansistrano_deploy_to }}/shared
 
-- name: Ensure shared copy for rsync improvement exists (in rsync case)
-  file: state=directory recurse=yes path={{ ansistrano_deploy_to }}/.shared-copy
-  when: ansistrano_deploy_via == 'rsync'
-
 - name: Get release timestamp
   command: date +%Y%m%d%H%M%S
   register: timestamp
@@ -26,7 +22,7 @@
   register: releases_path
 
 - name: Get shared path (in rsync case)
-  command: echo "{{ ansistrano_deploy_to }}/shared/cached-copy"
+  command: echo "{{ ansistrano_deploy_to }}/shared/.shared-copy"
   register: shared_path
   when: ansistrano_deploy_via == 'rsync'
 
