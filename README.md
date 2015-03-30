@@ -20,6 +20,12 @@ other new tools are becoming easier to use in order to deploy applications, such
 So, I have decided to stop using Capistrano because v2 is not maintained, v3 does not have features enough, and I
 can do everything Capistrano was doing with Ansible. If you are looking for alternatives, check Fabric or Chef Solo.
 
+Sample projects
+---------------
+
+* LastWishes: Domain-Driven Design Sample App: https://github.com/dddinphp/last-wishes
+
+
 Requirements
 ------------
 
