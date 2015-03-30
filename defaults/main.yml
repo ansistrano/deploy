@@ -1,11 +1,11 @@
 ---
-ansistrano_deploy_from: "/Users/buenosvinos/Development/ansible"
-ansistrano_deploy_to: "/var/www/atrapalo.com"
+ansistrano_deploy_from: "{{ playbook_dir }}"
+ansistrano_deploy_to: "/var/www/my-app"
 ansistrano_version_dir: "releases"
 ansistrano_current_dir: "current"
 ansistrano_keep_releases: 0
 ansistrano_deploy_via: "rsync"
 ansistrano_git_repo: git@github.com:USERNAME/REPO.git
 ansistrano_git_branch: master
-ansistrano_custom_tasks_path: "{{ playbook_dir }}/custom-tasks"
+ansistrano_custom_tasks_path: "{{ playbook_dir }}/deploy/custom-tasks"
 ansistrano_rsync_extra_params: ""
