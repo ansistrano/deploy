@@ -131,7 +131,7 @@ Role Variables
   ansistrano_deploy_to: "/var/www/atrapalo.com" # Base path to deploy to.
   ansistrano_version_dir: "releases" # Releases folder name
   ansistrano_keep_releases: 10 # Releases to keep after a new deployment. See "Pruning old releases".
-  ansistrano_custom_tasks_path: "./custom-tasks" # Path to find custom pre and post tasks for each deployment step.
+  ansistrano_custom_tasks_path: "{{ playbook_dir }}/config/deploy/custom-tasks" # Path to find custom pre and post tasks for each deployment step.
   ansistrano_current_dir: "current" # Softlink name. You should rarely changed it.
   ansistrano_git_repo: git@github.com:USERNAME/REPO.git # Location of the git repository
   ansistrano_git_branch: master # Branch to use when deploying
