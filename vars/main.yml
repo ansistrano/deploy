@@ -1,0 +1,2 @@
+---
+ansistrano_custom_tasks_path: "{{ playbook_dir }}/deploy/custom-tasks"
