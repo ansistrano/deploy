@@ -25,6 +25,10 @@ Sample projects
 
 * LastWishes: Domain-Driven Design Sample App: https://github.com/dddinphp/last-wishes
 
+Who is using Ansistrano?
+------------------------
+
+* Atrápalo: https://github.com/atrapalo
 
 Requirements
 ------------
