@@ -45,7 +45,7 @@ Main workflow
 This role deploys applications following the Capistrano flow.
 * Code update: Uploads the code into the servers
 * Symlink: After deploying the new release into your servers, changes the `current` softlink to new the release
-* Cleanup: Removes any old version based in the `keep_releases` parameter
+* Cleanup: Removes any old version based in the `ansistrano_keep_releases` parameter
 
 Custom tasks
 ------------
@@ -71,7 +71,7 @@ For example, in order to restart apache after `Symlink` step, we'll add in the `
   service: name=httpd state=restarted
 ```
 
-You can specify a custom folder to your custom tasks using the `custom_tasks_path`.
+You can specify a custom folder to your custom tasks using the `ansistrano_custom_tasks_path`.
 
 Deploying
 ---------
@@ -119,7 +119,7 @@ Pruning old releases
 In continuous delivery environments, the number of releases that you could possibly have in production is really high.
 Maybe you have tons of space and you don't mind, but it's common to keep just a custom number of releases.
 
-After the deployment, if you want to remove old releases just set the `keep_releases` variable to the total number
+After the deployment, if you want to remove old releases just set the `ansistrano_keep_releases` variable to the total number
 of releases you want to keep.
 
 Role Variables
@@ -127,15 +127,15 @@ Role Variables
 
 ```yaml
 - vars:
-  deploy_from: "/home/carlosbuenosvinos/my-project" # Where my local project is
-  deploy_to: "/var/www/atrapalo.com" # Base path to deploy to.
-  version_dir: "releases" # Releases folder name
-  keep_releases: 10 # Releases to keep after a new deployment. See "Pruning old releases".
-  custom_tasks_path: "./custom-tasks" # Path to find custom pre and post tasks for each deployment step.
-  current_dir: "current" # Softlink name. You should rarely changed it.
-  git_repo: git@github.com:USERNAME/REPO.git # Location of the git repository
-  git_branch: master # Branch to use when deploying
-  deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync or git
+  ansistrano_deploy_from: "/home/carlosbuenosvinos/my-project" # Where my local project is
+  ansistrano_deploy_to: "/var/www/atrapalo.com" # Base path to deploy to.
+  ansistrano_version_dir: "releases" # Releases folder name
+  ansistrano_keep_releases: 10 # Releases to keep after a new deployment. See "Pruning old releases".
+  ansistrano_custom_tasks_path: "./custom-tasks" # Path to find custom pre and post tasks for each deployment step.
+  ansistrano_current_dir: "current" # Softlink name. You should rarely changed it.
+  ansistrano_git_repo: git@github.com:USERNAME/REPO.git # Location of the git repository
+  ansistrano_git_branch: master # Branch to use when deploying
+  ansistrano_deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync or git
 ```
 
 Dependencies
@@ -153,7 +153,7 @@ In Ansible, a Role cannot be use alone, so you will need to Including an example
 - name: Deploy my super WebApp with Ansistrano
   hosts: all
   vars:
-    deploy_via: copy
+    ansistrano_deploy_via: copy
   roles:
     - { role: carlosbuenosvinos.ansistrano-deploy }
 ```
