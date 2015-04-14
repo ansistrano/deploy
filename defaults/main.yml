@@ -14,9 +14,6 @@ ansistrano_current_dir: "current"
 # Number of releases to keep in your hosts, if 0, unlimited releases will be kept
 ansistrano_keep_releases: 0
 
-# Path where custom tasks or hooks are
-ansistrano_custom_tasks_path: "{{ playbook_dir }}/deploy/custom-tasks"
-
 # Deployment strategies variables
 ansistrano_deploy_via: "rsync"
 
