@@ -172,8 +172,8 @@ For example, in order to restart apache after `Symlink` step, we'll add in the `
   service: name=httpd state=reloaded
 ```
 
-**Q: Where would you add sending email notification after a deployment?**
-**Q: (for PHP and Symfony developers) Where would you clean the cache?**
+* **Q: Where would you add sending email notification after a deployment?**
+* **Q: (for PHP and Symfony developers) Where would you clean the cache?**
 
 You can specify a custom tasks file for before and after every step using `ansistrano_before_*_tasks_file` and `ansistrano_after_*_tasks_file` role variables. See "Role Variables" for more information.
 
