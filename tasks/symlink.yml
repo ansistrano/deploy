@@ -1,4 +1,4 @@
 ---
 # Performs symlink exchange
-- name: Change softlink to new release
+- name: ANSISTRANO | Change softlink to new release
   file: state=link path={{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }} src={{ release_path.stdout }}

@@ -1,24 +1,24 @@
 ---
-- name: Execute "Before Update Code" Tasks
-  include: "{{ ansistrano_before_update_code_path | default('empty.yml') }}"
+- name: ANSISTRANO | Execute "Before Update Code" Tasks
+  include: "{{ ansistrano_before_update_code_tasks_file | default('empty.yml') }}"
 
 - include: update-code.yml
 
-- name: Execute "After Update Code" Tasks
-  include: "{{ ansistrano_after_update_code_path | default('empty.yml') }}"
+- name: ANSISTRANO | Execute "After Update Code" Tasks
+  include: "{{ ansistrano_after_update_code_tasks_file | default('empty.yml') }}"
 
-- name: Execute "Before Symlink" Tasks
-  include: "{{ ansistrano_before_symlink_path | default('empty.yml') }}"
+- name: ANSISTRANO | Execute "Before Symlink" Tasks
+  include: "{{ ansistrano_before_symlink_tasks_file | default('empty.yml') }}"
 
 - include: symlink.yml
 
-- name: Execute "After Symlink" Tasks
-  include: "{{ ansistrano_after_symlink_path | default('empty.yml') }}"
+- name: ANSISTRANO | Execute "After Symlink" Tasks
+  include: "{{ ansistrano_after_symlink_tasks_file | default('empty.yml') }}"
 
-- name: Execute "Before Cleanup" Tasks
-  include: "{{ ansistrano_before_cleanup_path | default('empty.yml') }}"
+- name: ANSISTRANO | Execute "Before Cleanup" Tasks
+  include: "{{ ansistrano_before_cleanup_tasks_file | default('empty.yml') }}"
 
 - include: cleanup.yml
 
-- name: Execute "After Cleanup" Tasks
-  include: "{{ ansistrano_after_cleanup_path | default('empty.yml') }}"
+- name: ANSISTRANO | Execute "After Cleanup" Tasks
+  include: "{{ ansistrano_after_cleanup_tasks_file | default('empty.yml') }}"
