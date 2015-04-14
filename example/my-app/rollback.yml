@@ -1,0 +1,10 @@
+---
+- name: Deploy last wishes app to my server
+  hosts: all
+  vars:
+    ansistrano_deploy_from: "./"
+    ansistrano_deploy_to: "/var/www/lastwishes"
+    ansistrano_before_update_code_path: "adsadiasuod"
+    ansistrano_keep_releases: 2
+  roles:
+    - { role: carlosbuenosvinos.ansistrano-deploy }
