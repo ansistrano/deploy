@@ -1,0 +1,3 @@
+---
+- name: SCP | Deploy existing code to remote servers
+  copy: src={{ ansistrano_deploy_from }} dest={{ release_path.stdout }}
