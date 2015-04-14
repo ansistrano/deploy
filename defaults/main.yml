@@ -1,11 +1,28 @@
 ---
+# Path where the code to deploy is
 ansistrano_deploy_from: "{{ playbook_dir }}"
+
+# Path where the code must be deployed to
 ansistrano_deploy_to: "/var/www/my-app"
+
+# Folder name for the releases
 ansistrano_version_dir: "releases"
+
+# Softlink name for the current release
 ansistrano_current_dir: "current"
+
+# Number of releases to keep in your hosts, if 0, unlimited releases will be kept
 ansistrano_keep_releases: 0
+
+# Path where custom tasks or hooks are
+ansistrano_custom_tasks_path: "{{ playbook_dir }}/deploy/custom-tasks"
+
+# Deployment strategies variables
 ansistrano_deploy_via: "rsync"
+
+## GIT pull strategy
 ansistrano_git_repo: git@github.com:USERNAME/REPO.git
 ansistrano_git_branch: master
-ansistrano_custom_tasks_path: "{{ playbook_dir }}/deploy/custom-tasks"
+
+## RSYNC push strategy
 ansistrano_rsync_extra_params: ""
