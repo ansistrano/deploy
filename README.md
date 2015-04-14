@@ -20,7 +20,7 @@ Ansistrano comes from Ansible + Capistrano, easy, isn't it?
 Early adopters
 --------------
 
-If you were an early adopter, we have break BC by moving from using `ansistrano_custom_tasks_path` to individual and specific files per step. See "Role Variables".
+If you were an early adopter, we have break BC by moving from using `ansistrano_custom_tasks_path` to individual and specific files per step. See "Role Variables". **The main problem you can see is that your code is uploaded but custom tasks are not run.**
 
 Who is using Ansistrano?
 ------------------------
