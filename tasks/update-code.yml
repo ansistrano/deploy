@@ -11,31 +11,31 @@
 
 - name: ANSISTRANO | Get release timestamp
   command: date +%Y%m%d%H%M%S
-  register: timestamp
+  register: ansistrano_timestamp
 
 - name: ANSISTRANO | Get release path
-  command: echo "{{ ansistrano_deploy_to }}/{{ ansistrano_version_dir }}/{{ timestamp.stdout }}"
-  register: release_path
+  command: echo "{{ ansistrano_deploy_to }}/{{ ansistrano_version_dir }}/{{ ansistrano_timestamp.stdout }}"
+  register: ansistrano_release_path
 
 - name: ANSISTRANO | Get releases path
   command: echo "{{ ansistrano_deploy_to }}/{{ ansistrano_version_dir }}"
-  register: releases_path
+  register: ansistrano_releases_path
 
 - name: ANSISTRANO | Get shared path (in rsync case)
   command: echo "{{ ansistrano_deploy_to }}/shared/.shared-copy"
-  register: shared_path
+  register: ansistrano_shared_path
   when: ansistrano_deploy_via == 'rsync'
 
 - name: ANSISTRANO | Rsync application files to remote shared copy (in rsync case)
-  synchronize: src={{ ansistrano_deploy_from }} dest={{ shared_path.stdout }} recursive=yes delete=yes archive=yes compress=yes rsync_opts={{ ansistrano_rsync_extra_params }}
+  synchronize: src={{ ansistrano_deploy_from }} dest={{ ansistrano_shared_path.stdout }} recursive=yes delete=yes archive=yes compress=yes rsync_opts={{ ansistrano_rsync_extra_params }}
   when: ansistrano_deploy_via == 'rsync'
 
 - name: ANSISTRANO | Deploy existing code to servers
-  command: cp -pr {{ shared_path.stdout }} {{ release_path.stdout }}
+  command: cp -pr {{ ansistrano_shared_path.stdout }} {{ ansistrano_ansistrano_release_path.stdout }}
   when: ansistrano_deploy_via == 'rsync'
 
 - name: ANSISTRANO | Deploy existing code to remote servers
-  copy: src={{ ansistrano_deploy_from }} dest={{ release_path.stdout }}
+  copy: src={{ ansistrano_deploy_from }} dest={{ ansistrano_ansistrano_release_path.stdout }}
   when: ansistrano_deploy_via == 'copy'
 
 - name: ANSISTRANO | Update remote repository
@@ -43,17 +43,17 @@
   when: ansistrano_deploy_via == 'git'
 
 - name: ANSISTRANO | Export a copy of the repo
-  command: git checkout-index -f -a --prefix="{{ release_path.stdout }}/"
+  command: git checkout-index -f -a --prefix="{{ ansistrano_ansistrano_release_path.stdout }}/"
   args:
     chdir: "{{ ansistrano_deploy_to }}/shared"
   when: ansistrano_deploy_via == 'git'
 
 - name: ANSISTRANO | Deploy code from to servers
-  git: repo={{ ansistrano_deploy_from}} dest={{ release_path.stdout }} accept_hostkey=true
+  git: repo={{ ansistrano_deploy_from}} dest={{ ansistrano_ansistrano_release_path.stdout }} accept_hostkey=true
   when: ansistrano_deploy_via == 'git'
 
 - name: ANSISTRANO | Copy release version into REVISION file
-  shell: echo {{ timestamp.stdout }} > {{ release_path.stdout }}/REVISION
+  shell: echo {{ ansistrano_timestamp.stdout }} > {{ ansistrano_ansistrano_release_path.stdout }}/REVISION
 
 - name: ANSISTRANO | Touches up the release code
-  shell: chmod -R -- g+w {{ release_path.stdout }} && chmod -R g+w {{ release_path.stdout }}
+  shell: chmod -R -- g+w {{ ansistrano_release_path.stdout }} && chmod -R g+w {{ ansistrano_release_path.stdout }}

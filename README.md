@@ -183,6 +183,16 @@ For example, in order to restart apache after `Symlink` step, we'll add in the `
 
 You can specify a custom tasks file for before and after every step using `ansistrano_before_*_tasks_file` and `ansistrano_after_*_tasks_file` role variables. See "Role Variables" for more information.
 
+Variables in custom tasks
+-------------------------
+
+When writing your custom tasks files you may need some variables that Ansistrano makes available to you:
+
+* ```{{ ansistrano_timestamp.stdout }}```: Timestamp for the current deployment
+* ```{{ ansistrano_release_path.stdout }}```: Path to current deployment release (probably the one you are going to use the most)
+* ```{{ ansistrano_releases_path.stdout }}```: Path to releases folder
+* ```{{ ansistrano_shared_path.stdout }}```: Path to shared folder (where common releases assets can be stored)  
+
 Pruning old releases
 --------------------
 
