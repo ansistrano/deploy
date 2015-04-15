@@ -21,35 +21,16 @@
   command: echo "{{ ansistrano_deploy_to }}/{{ ansistrano_version_dir }}"
   register: releases_path
 
-- name: Get shared path (in rsync case)
-  command: echo "{{ ansistrano_deploy_to }}/shared/.shared-copy"
-  register: shared_path
+- name: RSYNC | Deploy using Rsync strategy
+  include: update-code/rsync.yml
   when: ansistrano_deploy_via == 'rsync'
 
-- name: Rsync application files to remote shared copy (in rsync case)
-  synchronize: src={{ ansistrano_deploy_from }} dest={{ shared_path.stdout }} recursive=yes delete=yes archive=yes compress=yes rsync_opts={{ ansistrano_rsync_extra_params }}
-  when: ansistrano_deploy_via == 'rsync'
-
-- name: Deploy existing code to servers
-  command: cp -pr {{ shared_path.stdout }} {{ release_path.stdout }}
-  when: ansistrano_deploy_via == 'rsync'
-
-- name: Deploy existing code to remote servers
-  copy: src={{ ansistrano_deploy_from }} dest={{ release_path.stdout }}
+- name: SCP | Deploy using SCP strategy
+  include: update-code/copy.yml
   when: ansistrano_deploy_via == 'copy'
 
-- name: Update remote repository
-  git: repo={{ ansistrano_git_repo }} dest={{ ansistrano_deploy_to }}/shared version={{ ansistrano_git_branch }} accept_hostkey=true update=yes
-  when: ansistrano_deploy_via == 'git'
-
-- name: Export a copy of the repo
-  command: git checkout-index -f -a --prefix="{{ release_path.stdout }}/"
-  args:
-    chdir: "{{ ansistrano_deploy_to }}/shared"
-  when: ansistrano_deploy_via == 'git'
-
-- name: Deploy code from to servers
-  git: repo={{ ansistrano_deploy_from}} dest={{ release_path.stdout }} accept_hostkey=true
+- name: GIT | Deploy using Git strategy
+  include: update-code/git.yml
   when: ansistrano_deploy_via == 'git'
 
 - name: Copy release version into REVISION file
