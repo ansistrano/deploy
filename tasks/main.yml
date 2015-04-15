@@ -1,7 +1,7 @@
 ---
 - name: ANSISTRANO | Check BC for early adopters
-  fail: msg="Check https://github.com/ansistrano/deploy"
-  when: ansistrano_custom_tasks_path | bool
+  fail: msg="ansistrano_custom_tasks_path is not used anymore. Please, check the documentation at https://github.com/ansistrano/deploy"
+  when: ansistrano_custom_tasks_path is defined
 
 - name: ANSISTRANO | Execute "Before Update Code" Tasks
   include: "{{ ansistrano_before_update_code_tasks_file | default('empty.yml') }}"
