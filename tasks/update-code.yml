@@ -30,5 +30,9 @@
   include: update-code/git.yml
   when: ansistrano_deploy_via == 'git'
 
+- name: ANSISTRANO | S3 | Deploy using S3 strategy
+  include: update-code/s3.yml
+  when: ansistrano_deploy_via == 's3'
+
 - name: ANSISTRANO | Copy release version into REVISION file
   shell: echo {{ ansistrano_release_version }} > {{ ansistrano_release_path.stdout }}/REVISION
