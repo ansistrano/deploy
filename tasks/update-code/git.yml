@@ -1,11 +1,11 @@
 ---
-- name: GIT | Update remote repository
+- name: ANSISTRANO | GIT | Update remote repository
   git: repo={{ ansistrano_git_repo }} dest={{ ansistrano_deploy_to }}/shared version={{ ansistrano_git_branch }} accept_hostkey=true update=yes
 
-- name: GIT | Export a copy of the repo
-  command: git checkout-index -f -a --prefix="{{ release_path.stdout }}/"
+- name: ANSISTRANO | GIT | Export a copy of the repo
+  command: git checkout-index -f -a --prefix="{{ ansistrano_release_path.stdout }}/"
   args:
     chdir: "{{ ansistrano_deploy_to }}/shared"
 
-- name: GIT | Deploy code from to servers
-  git: repo={{ ansistrano_deploy_from}} dest={{ release_path.stdout }} accept_hostkey=true
+- name: ANSISTRANO | GIT | Deploy code from to servers
+  git: repo={{ ansistrano_deploy_from}} dest={{ ansistrano_release_path.stdout }} accept_hostkey=true

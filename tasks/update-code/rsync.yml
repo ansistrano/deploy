@@ -1,10 +1,10 @@
 ---
-- name: RSYNC | Get shared path (in rsync case)
+- name: ANSISTRANO | RSYNC | Get shared path (in rsync case)
   command: echo "{{ ansistrano_deploy_to }}/shared/.shared-copy"
-  register: shared_path
+  register: ansistrano_shared_path
 
-- name: RSYNC | Rsync application files to remote shared copy
-  synchronize: src={{ ansistrano_deploy_from }} dest={{ shared_path.stdout }} recursive=yes delete=yes archive=yes compress=yes rsync_opts={{ ansistrano_rsync_extra_params }}
+- name: ANSISTRANO | RSYNC | Rsync application files to remote shared copy
+  synchronize: src={{ ansistrano_deploy_from }} dest={{ ansistrano_shared_path.stdout }} recursive=yes delete=yes archive=yes compress=yes rsync_opts={{ ansistrano_rsync_extra_params }}
 
-- name: RSYNC | Deploy existing code to servers
-  command: cp -pr {{ shared_path.stdout }} {{ release_path.stdout }}
+- name: ANSISTRANO | RSYNC | Deploy existing code to servers
+  command: cp -pr {{ ansistrano_shared_path.stdout }} {{ ansistrano_release_path.stdout }}

@@ -1,100 +1,118 @@
 Ansistrano
 ==========
 
-**ansistrano.deploy** and **ansistrano.rollback** are Ansible roles to easily manage the deployment process for
-scripting applications such as PHP, Python and Ruby. It's an Ansible port for Capistrano.
+**ansistrano.deploy** and **ansistrano.rollback** are Ansible roles to easily manage the deployment process for scripting applications such as PHP, Python and Ruby. It's an Ansible port for Capistrano.
 
 History
 -------
 
-[Capistrano](http://capistranorb.com/) is a remote server automation tool and it's currently in Version 3.
-[Version 2.0](https://github.com/capistrano/capistrano/tree/legacy-v2) was originally thought in order to deploy RoR
-applications. With additional plugins, you we're able to deploy non Rails applications such as PHP and Python, with
-different deployment strategies, stages and much more. I loved Capistrano v2. I have used it a lot. I developed
-a plugin for it.
+[Capistrano](http://capistranorb.com/) is a remote server automation tool and it's currently in Version 3. [Version 2.0](https://github.com/capistrano/capistrano/tree/legacy-v2) was originally thought in order to deploy RoR applications. With additional plugins, you we're able to deploy non Rails applications such as PHP and Python, with different deployment strategies, stages and much more. I loved Capistrano v2. I have used it a lot. I developed a plugin for it.
 
-Capistrano 2 was a great tool and it works really well. However, right now is not maintained anymore because the
-original team is working in v3. This new version does not have the same features so is less powerful and flexible and
-other new tools are becoming easier to use in order to deploy applications, such as Ansible.
+Capistrano 2 was a great tool and it works really well. However, right now is not maintained anymore because the original team is working in v3. This new version does not have the same features so is less powerful and flexible and other new tools are becoming easier to use in order to deploy applications, such as Ansible.
 
-So, I have decided to stop using Capistrano because v2 is not maintained, v3 does not have features enough, and I
-can do everything Capistrano was doing with Ansible. If you are looking for alternatives, check Fabric or Chef Solo.
+So, I have decided to stop using Capistrano because v2 is not maintained, v3 does not have features enough, and I can do everything Capistrano was doing with Ansible. If you are looking for alternatives, check Fabric or Chef Solo.
 
-Sample projects
----------------
+Project name
+------------
 
-* LastWishes: Domain-Driven Design Sample App: https://github.com/dddinphp/last-wishes
+Ansistrano comes from Ansible + Capistrano, easy, isn't it?
+
+Early adopters
+--------------
+
+If you were an early adopter, we have break BC by moving from using `ansistrano_custom_tasks_path` to individual and specific files per step. See "Role Variables". **The main problem you can see is that your code is uploaded but custom tasks are not run.**
 
 Who is using Ansistrano?
 ------------------------
 
-* Atrápalo: https://github.com/atrapalo
+Is Ansistrano ready to be used? Here are some companies currently using it:
+
+* Atrápalo: https://github.com/atrapalo (9K global alexa ranking)
+
+If you are also using it, please, let us know via PR to this document.
 
 Requirements
 ------------
+
+In order to deploy your apps with Ansistrano, you will need:
 
 * Ansible in your deployer machine
 
 Installation
 ------------
 
+Ansistrano is an Ansible role distributed globally using [Ansible Galaxy](https://galaxy.ansible.com/). In order to install Ansistrano role you can use the following command.
+
 ```
 $ ansible-galaxy install carlosbuenosvinos.ansistrano-deploy carlosbuenosvinos.ansistrano-rollback
+```
+
+Update
+------
+
+If you want to update the role, you need to pass **--force** parameter when installing. Please, check the following command: 
+
+```
+$ ansible-galaxy install --force carlosbuenosvinos.ansistrano-deploy carlosbuenosvinos.ansistrano-rollback
 ```
 
 Features
 --------
 
-- Fast rollback (with ansistrano.rollback role)
-- Custom path deployment
-- Keep releases deployed up to a custom limit
-- Pushing release strategy
+* Rollback in seconds (with ansistrano.rollback role)
+* Customize your deployment with hooks before and after critical steps 
+* Save disk space keeping a maximum fixed releases in your hosts
+* Choose between SCP (push), RSYNC (push) or GIT (pull) deployment strategies
 
 Main workflow
 -------------
-This role deploys applications following the Capistrano flow.
-* Code update: Uploads the code into the servers
-* Symlink: After deploying the new release into your servers, changes the `current` softlink to new the release
-* Cleanup: Removes any old version based in the `ansistrano_keep_releases` parameter
 
-Custom tasks
-------------
-You will typically need to restart your webserver after the `Symlink` step, or download your dependencies before `Code update` or even do it in production before the `Symlink`. So, in order to perform your custom tasks you have some hooks that ansistrano will execute before and after each of the main 3 steps. By default, ansistrano will try to find some files in `./custom-tasks` path.
+Ansistrano deploys applications following the Capistrano flow.
 
+* Code update phase: Puts the new release into your hosts
+* Symlink phase: After deploying the new release into your hosts, this step changes the `current` softlink to new the release
+* Cleanup phase: Removes any old version based in the `ansistrano_keep_releases` parameter (see "Role Variables")
+
+Role Variables
+--------------
+
+```yaml
+- vars:
+  ansistrano_deploy_from: "./" # Where my local project is
+  ansistrano_deploy_to: "/var/www/my-app" # Base path to deploy to.
+  ansistrano_version_dir: "releases" # Releases folder name
+  ansistrano_current_dir: "current" # Softlink name. You should rarely changed it.
+  ansistrano_keep_releases: 0 # Releases to keep after a new deployment. See "Pruning old releases".
+  ansistrano_deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync or git
+  ansistrano_rsync_extra_params: "" # Extra parameters to use when deploying with rsync 
+  ansistrano_git_repo: git@github.com:USERNAME/REPO.git # Location of the git repository
+  ansistrano_git_branch: master # Branch to use when deploying
+  
+  # Hooks: custom tasks if you need them
+  ansistrano_before_update_code_tasks_file: "{{ playbook_dir }}/<your-deployment-config>/my-before-update-code-tasks.yml"
+  ansistrano_after_update_code_tasks_file: "{{ playbook_dir }}/<your-deployment-config>/my-after-update-code-tasks.yml"
+  ansistrano_before_symlink_tasks_file: "{{ playbook_dir }}/<your-deployment-config>/my-before-symlink-tasks.yml"
+  ansistrano_after_symlink_tasks_file: "{{ playbook_dir }}/<your-deployment-config>/my-after-symlink-tasks.yml"
+  ansistrano_before_cleanup_tasks_file: "{{ playbook_dir }}/<your-deployment-config>/my-before-cleanup-tasks.yml"
+  ansistrano_after_cleanup_tasks_file: "{{ playbook_dir }}/<your-deployment-config>/my-after-cleanup-tasks.yml"
 ```
--- /my-local-machine/my-app.com
-|-- hosts
-|-- deploy-with-capistrano.yml
-|-- custom-tasks
-|   |-- before-code-update.yml
-|   |-- after-code-update.yml
-|   |-- before-symlink.yml
-|   |-- after-symlink.yml
-|   |-- before-cleanup.yml
-|   |-- after-cleanup.yml
-```
 
-For example, in order to restart apache after `Symlink` step, we'll add in the `after-symlink.yml`
-
-```
-- name: Restart Apache
-  service: name=httpd state=restarted
-```
-
-You can specify a custom folder to your custom tasks using the `ansistrano_custom_tasks_path`.
+`{{ playbook_dir }}` is an Ansible variable that holds the path to the current playbook.
 
 Deploying
 ---------
 
-* Create a new hosts file. Check [ansible inventory documentation](http://docs.ansible.com/intro_inventory.html) if you
-need help.
-* Create a new fresh deploy-with-ansistrano.yml
-* Include carlosbuenosvinos.ansible-deploy role
-* Tune parameteres
-* ```ansible-playbook -i your_hosts_file deploy-with-ansistrano.yml```
+In order to deploy with Ansistrano, you need to perform some steps:
 
-If everything has been set up properly, this command will create the following approximate directory structure on
-your server.
+* Create a new `hosts` file. Check [ansible inventory documentation](http://docs.ansible.com/intro_inventory.html) if you need help. This file will identify all the hosts where to deploy to. For multistage environments check "Multistage environments"
+* Create a new playbook for deploying your app, for example, deploy.yml
+* Include carlosbuenosvinos.ansible-deploy role
+* Set up role variables (see "Role Variables")
+* Run the deployment role
+
+```ansible-playbook -i hosts deploy.yml```
+
+If everything has been set up properly, this command will create the following approximate directory structure on your server. Check how the hosts folder structure would look like after one, two and three deployments.
 
 ```
 -- /var/www/my-app.com
@@ -123,91 +141,176 @@ your server.
 |-- shared
 ```
 
+Multistage environment (devel, preprod, prod, etc.)
+---------------------------------------------------
+
+If you want to deploy to different environments such as devel, preprod and prod, it's recommended to create different hosts files. When done, you can specify a different host file when running the deployment playbook using the **-i** parameter. On every host file, you can specify different users, password, connection parameters, etc.
+
+```ansible-playbook -i hosts_devel deploy.yml```
+
+```ansible-playbook -i hosts_preprod deploy.yml```
+
+```ansible-playbook -i hosts_prod deploy.yml```
+
+
+Hooks: Custom tasks
+-------------------
+
+You will typically need to reload your webserver after the `Symlink` step, or download your dependencies before `Code update` or even do it in production before the `Symlink`. So, in order to perform your custom tasks you have some hooks that Ansistrano will execute before and after each of the main 3 steps. **This is the main benefit against other similar deployment roles.**
+
+```
+-- /my-local-machine/my-app.com
+|-- hosts
+|-- deploy.yml
+|-- my-custom-tasks
+|   |-- before-code-update.yml
+|   |-- after-code-update.yml
+|   |-- before-symlink.yml
+|   |-- after-symlink.yml
+|   |-- before-cleanup.yml
+|   |-- after-cleanup.yml
+```
+
+For example, in order to restart apache after `Symlink` step, we'll add in the `after-symlink.yml`
+
+```
+- name: Restart Apache
+  service: name=httpd state=reloaded
+```
+
+* **Q: Where would you add sending email notification after a deployment?**
+* **Q: (for PHP and Symfony developers) Where would you clean the cache?**
+
+You can specify a custom tasks file for before and after every step using `ansistrano_before_*_tasks_file` and `ansistrano_after_*_tasks_file` role variables. See "Role Variables" for more information.
+
+Variables in custom tasks
+-------------------------
+
+When writing your custom tasks files you may need some variables that Ansistrano makes available to you:
+
+* ```{{ ansistrano_timestamp.stdout }}```: Timestamp for the current deployment
+* ```{{ ansistrano_release_path.stdout }}```: Path to current deployment release (probably the one you are going to use the most)
+* ```{{ ansistrano_releases_path.stdout }}```: Path to releases folder
+* ```{{ ansistrano_shared_path.stdout }}```: Path to shared folder (where common releases assets can be stored)  
+
 Pruning old releases
 --------------------
 
-In continuous delivery environments, the number of releases that you could possibly have in production is really high.
-Maybe you have tons of space and you don't mind, but it's common to keep just a custom number of releases.
+In continuous delivery environments, the number of releases that you could possibly have in production is really high. Maybe you have tons of space and you don't mind, but it's common to keep just a custom number of releases.
 
-After the deployment, if you want to remove old releases just set the `ansistrano_keep_releases` variable to the total number
-of releases you want to keep.
+After the deployment, if you want to remove old releases just set the `ansistrano_keep_releases` variable to the total number of releases you want to keep.
 
-Role Variables
---------------
+Let's see three deployments with an `ansistrano_keep_releases: 2` configuration:
 
-```yaml
-- vars:
-  ansistrano_deploy_from: "/home/carlosbuenosvinos/my-project" # Where my local project is
-  ansistrano_deploy_to: "/var/www/atrapalo.com" # Base path to deploy to.
-  ansistrano_version_dir: "releases" # Releases folder name
-  ansistrano_keep_releases: 10 # Releases to keep after a new deployment. See "Pruning old releases".
-  ansistrano_custom_tasks_path: "{{ playbook_dir }}/config/deploy/custom-tasks" # Path to find custom pre and post tasks for each deployment step.
-  ansistrano_current_dir: "current" # Softlink name. You should rarely changed it.
-  ansistrano_git_repo: git@github.com:USERNAME/REPO.git # Location of the git repository
-  ansistrano_git_branch: master # Branch to use when deploying
-  ansistrano_deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync or git
+```
+-- /var/www/my-app.com
+|-- current -> /var/www/my-app.com/releases/20100509145325
+|-- releases
+|   |-- 20100509145325
+|-- shared
 ```
 
-Dependencies
-------------
+```
+-- /var/www/my-app.com
+|-- current -> /var/www/my-app.com/releases/20100509150741
+|-- releases
+|   |-- 20100509150741
+|   |-- 20100509145325
+|-- shared
+```
 
-None
+```
+-- /var/www/my-app.com
+|-- current -> /var/www/my-app.com/releases/20100512131539
+|-- releases
+|   |-- 20100512131539
+|   |-- 20100509150741
+|-- shared
+```
+
+See how the release `20100509145325` has been removed.
 
 Example Playbook
--------------------------
+----------------
 
-In Ansible, a Role cannot be use alone, so you will need to Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-```yaml
----
-- name: Deploy my super WebApp with Ansistrano
-  hosts: all
-  vars:
-    ansistrano_deploy_via: copy
-  roles:
-    - { role: carlosbuenosvinos.ansistrano-deploy }
-```
-
-```ansible-playbook -i hosts deploy-with-ansistrano.yml```
+In the folder, `example` you can check an example project that shows how to deploy with Ansistrano. In order to run it, you should:
 
 ```
-PLAY [Deploy Dots. Game with Ansistrano] **************************************
+$ cd example 
+$ ansible-playbook -i hosts deploy.yml
+```
+
+Sample projects
+---------------
+
+We have added Ansistrano support for other projects we are working on.
+
+* LastWishes: Domain-Driven Design PHP Sample App: https://github.com/dddinphp/last-wishes
+
+As an example, see the execution log of the LastWishes deployment: 
+
+```
+PLAY [Deploy last wishes app to my server] ************************************
 
 GATHERING FACTS ***************************************************************
-ok: [web1]
+ok: [quepimquepam.com]
 
 TASK: [carlosbuenosvinos.ansistrano-deploy | Ensure deployment base path exists] ***
-ok: [web1]
+ok: [quepimquepam.com]
 
 TASK: [carlosbuenosvinos.ansistrano-deploy | Ensure releases folder exists] ***
-ok: [web1]
+ok: [quepimquepam.com]
 
 TASK: [carlosbuenosvinos.ansistrano-deploy | Ensure shared elements folder exists] ***
-ok: [web1]
-
-TASK: [carlosbuenosvinos.ansistrano-deploy | Ensure shared copy for rsync improvement exists (in rsync case)] ***
-skipping: [web1]
+ok: [quepimquepam.com]
 
 TASK: [carlosbuenosvinos.ansistrano-deploy | Get release timestamp] ***********
-changed: [web1]
+changed: [quepimquepam.com]
 
 TASK: [carlosbuenosvinos.ansistrano-deploy | Get release path] ****************
-changed: [web1]
+changed: [quepimquepam.com]
 
 TASK: [carlosbuenosvinos.ansistrano-deploy | Get releases path] ***************
-changed: [web1]
+changed: [quepimquepam.com]
 
 TASK: [carlosbuenosvinos.ansistrano-deploy | Get shared path (in rsync case)] ***
-skipping: [web1]
+changed: [quepimquepam.com]
 
 TASK: [carlosbuenosvinos.ansistrano-deploy | Rsync application files to remote shared copy (in rsync case)] ***
-skipping: [web1]
+changed: [quepimquepam.com -> 127.0.0.1]
 
 TASK: [carlosbuenosvinos.ansistrano-deploy | Deploy existing code to servers] ***
-skipping: [web1]
+changed: [quepimquepam.com]
 
 TASK: [carlosbuenosvinos.ansistrano-deploy | Deploy existing code to remote servers] ***
-...
+skipping: [quepimquepam.com]
+
+TASK: [carlosbuenosvinos.ansistrano-deploy | Update remote repository] ********
+skipping: [quepimquepam.com]
+
+TASK: [carlosbuenosvinos.ansistrano-deploy | Export a copy of the repo] *******
+skipping: [quepimquepam.com]
+
+TASK: [carlosbuenosvinos.ansistrano-deploy | Deploy code from to servers] *****
+skipping: [quepimquepam.com]
+
+TASK: [carlosbuenosvinos.ansistrano-deploy | Copy release version into REVISION file] ***
+changed: [quepimquepam.com]
+
+TASK: [carlosbuenosvinos.ansistrano-deploy | Touches up the release code] *****
+changed: [quepimquepam.com]
+
+TASK: [carlosbuenosvinos.ansistrano-deploy | Change softlink to new release] ***
+changed: [quepimquepam.com]
+
+TASK: [carlosbuenosvinos.ansistrano-deploy | Reload Apache] *******************
+changed: [quepimquepam.com]
+
+TASK: [carlosbuenosvinos.ansistrano-deploy | Clean up releases] ***************
+skipping: [quepimquepam.com]
+
+PLAY RECAP ********************************************************************
+quepimquepam.com           : ok=14   changed=10   unreachable=0    failed=0
 ```
 
 License
@@ -217,4 +320,5 @@ MIT
 
 Other resources
 ---------------
-[Thoughts on deploying with Ansible](http://www.future500.nl/articles/2014/07/thoughts-on-deploying-with-ansible/)
+
+* [Thoughts on deploying with Ansible](http://www.future500.nl/articles/2014/07/thoughts-on-deploying-with-ansible/)
