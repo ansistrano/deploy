@@ -1,5 +1,5 @@
 ---
-- name: Deploy last wishes app to my server
+- name: Rollback example app to my-server.com
   hosts: all
   vars:
     ansistrano_deploy_to: "/var/www/my-app.com"

@@ -109,7 +109,7 @@ In order to deploy with Ansistrano, you need to perform some steps:
 * Create a new playbook for deploying your app, for example, deploy.yml
 * Include carlosbuenosvinos.ansible-deploy role
 * Set up role variables (see "Role Variables")
-* Run the deployment role
+* Run the deployment playbook
 
 ```ansible-playbook -i hosts deploy.yml```
 
@@ -140,6 +140,30 @@ If everything has been set up properly, this command will create the following a
 |   |-- 20100509150741
 |   |-- 20100509145325
 |-- shared
+```
+
+Rollbacking
+-----------
+
+In order to rollback with Ansistrano, you need to set up the deployment and run the rollback playbook.
+
+```ansible-playbook -i hosts rollback.yml```
+
+If you try to rollback with zero or one releases deployed, an error will be raised and no actions performed.
+
+Variables you can tune in rollback role are less than in deploy one:
+
+```yaml
+- vars:
+  ansistrano_deploy_to: "/var/www/my-app" # Base path to deploy to.
+  ansistrano_version_dir: "releases" # Releases folder name
+  ansistrano_current_dir: "current" # Softlink name. You should rarely changed it.
+  
+  # Hooks: custom tasks if you need them
+  ansistrano_before_symlink_tasks_file: "{{ playbook_dir }}/<your-deployment-config>/my-before-symlink-tasks.yml"
+  ansistrano_after_symlink_tasks_file: "{{ playbook_dir }}/<your-deployment-config>/my-after-symlink-tasks.yml"
+  ansistrano_before_cleanup_tasks_file: "{{ playbook_dir }}/<your-deployment-config>/my-before-cleanup-tasks.yml"
+  ansistrano_after_cleanup_tasks_file: "{{ playbook_dir }}/<your-deployment-config>/my-after-cleanup-tasks.yml"
 ```
 
 Multistage environment (devel, preprod, prod, etc.)
