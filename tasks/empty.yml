@@ -1,0 +1,2 @@
+# This file is intentionally left empty and it is used in those Capistrano flow steps
+# where you don't need to execute any custom tasks

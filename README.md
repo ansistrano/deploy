@@ -6,11 +6,11 @@ Ansistrano
 History
 -------
 
-[Capistrano](http://capistranorb.com/) is a remote server automation tool and it's currently in Version 3. [Version 2.0](https://github.com/capistrano/capistrano/tree/legacy-v2) was originally thought in order to deploy RoR applications. With additional plugins, you we're able to deploy non Rails applications such as PHP and Python, with different deployment strategies, stages and much more. I loved Capistrano v2. I have used it a lot. I developed a plugin for it.
+[Capistrano](http://capistranorb.com/) is a remote server automation tool and it's currently in Version 3. [Version 2.0](https://github.com/capistrano/capistrano/tree/legacy-v2) was originally thought in order to deploy RoR applications. With additional plugins, you were able to deploy non Rails applications such as PHP and Python, with different deployment strategies, stages and much more. I loved Capistrano v2. I have used it a lot. I developed a plugin for it.
 
-Capistrano 2 was a great tool and it works really well. However, right now is not maintained anymore because the original team is working in v3. This new version does not have the same features so is less powerful and flexible and other new tools are becoming easier to use in order to deploy applications, such as Ansible.
+Capistrano 2 was a great tool and it still works really well. However, it is not maintained anymore since the original team is working in v3. This new version does not have the same set of features so it is less powerful and flexible. Besides that, other new tools are becoming easier to use in order to deploy applications, such as Ansible.
 
-So, I have decided to stop using Capistrano because v2 is not maintained, v3 does not have features enough, and I can do everything Capistrano was doing with Ansible. If you are looking for alternatives, check Fabric or Chef Solo.
+So, I have decided to stop using Capistrano because v2 is not maintained, v3 does not have enough features, and I can do everything Capistrano was doing with Ansible. If you are looking for alternatives, check Fabric or Chef Solo.
 
 Project name
 ------------
@@ -20,7 +20,7 @@ Ansistrano comes from Ansible + Capistrano, easy, isn't it?
 Early adopters
 --------------
 
-If you were an early adopter, we have break BC by moving from using `ansistrano_custom_tasks_path` to individual and specific files per step. See "Role Variables". **The main problem you can see is that your code is uploaded but custom tasks are not run.**
+If you were an early adopter, you should know we have broken BC by moving from using `ansistrano_custom_tasks_path` to individual and specific files per step. See "Role Variables". **The role displays a warning if the variable is defined and although your old playbooks may still run with no errors, you will see that your code is uploaded but custom tasks are not run.**
 
 Who is using Ansistrano?
 ------------------------
@@ -28,8 +28,9 @@ Who is using Ansistrano?
 Is Ansistrano ready to be used? Here are some companies currently using it:
 
 * Atrápalo: https://github.com/atrapalo (9K global alexa ranking)
+* Another Place Productions: http://www.anotherplaceproductions.com
 
-If you are also using it, please, let us know via PR to this document.
+If you are also using it, please let us know via a PR to this document.
 
 Requirements
 ------------
@@ -196,7 +197,7 @@ When writing your custom tasks files you may need some variables that Ansistrano
 Pruning old releases
 --------------------
 
-In continuous delivery environments, the number of releases that you could possibly have in production is really high. Maybe you have tons of space and you don't mind, but it's common to keep just a custom number of releases.
+In continuous delivery environments, you will possibly have a high number of releases in production. Maybe you have tons of space and you don't mind, but it's common practice to keep just a custom number of releases.
 
 After the deployment, if you want to remove old releases just set the `ansistrano_keep_releases` variable to the total number of releases you want to keep.
 

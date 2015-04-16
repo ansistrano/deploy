@@ -7,5 +7,5 @@
   args:
     chdir: "{{ ansistrano_deploy_to }}/shared"
 
-- name: ANSISTRANO | GIT | Deploy code from to servers
-  git: repo={{ ansistrano_deploy_from}} dest={{ ansistrano_release_path.stdout }} accept_hostkey=true
+- name: ANSISTRANO | GIT | Deploy git stored code to servers
+  git: repo={{ ansistrano_deploy_from }} dest={{ ansistrano_release_path.stdout }} accept_hostkey=true
