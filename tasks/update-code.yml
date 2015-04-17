@@ -37,4 +37,4 @@
   shell: echo {{ ansistrano_timestamp.stdout }} > {{ ansistrano_release_path.stdout }}/REVISION
 
 - name: ANSISTRANO | Touches up the release code
-  shell: chmod -R -- g+w {{ ansistrano_release_path.stdout }} && chmod -R g+w {{ ansistrano_release_path.stdout }}
+  file: path={{ ansistrano_release_path.stdout }} state=directory recurse=yes mode="g+w"
