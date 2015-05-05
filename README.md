@@ -74,6 +74,8 @@ Ansistrano deploys applications following the Capistrano flow.
 * Symlink phase: After deploying the new release into your hosts, this step changes the `current` softlink to new the release
 * Cleanup phase: Removes any old version based in the `ansistrano_keep_releases` parameter (see "Role Variables")
 
+![Ansistrano Flow](https://raw.githubusercontent.com/ansistrano/deploy/master/docs/ansistrano-flow.png)
+
 Role Variables
 --------------
 
