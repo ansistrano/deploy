@@ -70,6 +70,7 @@ Main workflow
 
 Ansistrano deploys applications following the Capistrano flow.
 
+* Setup phase: Creates the folder structure to hold your releases
 * Code update phase: Puts the new release into your hosts
 * Symlink phase: After deploying the new release into your hosts, this step changes the `current` softlink to new the release
 * Cleanup phase: Removes any old version based in the `ansistrano_keep_releases` parameter (see "Role Variables")
