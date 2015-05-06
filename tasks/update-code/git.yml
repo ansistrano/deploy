@@ -6,6 +6,3 @@
   command: git checkout-index -f -a --prefix="{{ ansistrano_release_path.stdout }}/"
   args:
     chdir: "{{ ansistrano_deploy_to }}/shared"
-
-- name: ANSISTRANO | GIT | Deploy git stored code to servers
-  git: repo={{ ansistrano_deploy_from }} dest={{ ansistrano_release_path.stdout }} accept_hostkey=true
