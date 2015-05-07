@@ -86,6 +86,7 @@ Role Variables
   ansistrano_deploy_to: "/var/www/my-app" # Base path to deploy to.
   ansistrano_version_dir: "releases" # Releases folder name
   ansistrano_current_dir: "current" # Softlink name. You should rarely changed it.
+  ansistrano_shared_paths: [] # Shared paths to symlink to release dir
   ansistrano_keep_releases: 0 # Releases to keep after a new deployment. See "Pruning old releases".
   ansistrano_deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync or git
   ansistrano_rsync_extra_params: "" # Extra parameters to use when deploying with rsync 
