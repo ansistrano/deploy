@@ -1,11 +1,17 @@
 ---
 # Update code deployment step
 - name: ANSISTRANO | Get release timestamp
-  command: date +%Y%m%d%H%M%S
+  local_action: command date -u +%Y%m%d%H%M%SZ
+  run_once: true
   register: ansistrano_timestamp
+  sudo: no
+
+- name: ANSISTRANO | Set release version from timestamp
+  set_fact: ansistrano_release_version="{{ ansistrano_timestamp.stdout }}"
+  when: ansistrano_release_version is not defined
 
 - name: ANSISTRANO | Get release path
-  command: echo "{{ ansistrano_deploy_to }}/{{ ansistrano_version_dir }}/{{ ansistrano_timestamp.stdout }}"
+  command: echo "{{ ansistrano_deploy_to }}/{{ ansistrano_version_dir }}/{{ ansistrano_release_version }}"
   register: ansistrano_release_path
 
 - name: ANSISTRANO | Get releases path
@@ -25,7 +31,7 @@
   when: ansistrano_deploy_via == 'git'
 
 - name: ANSISTRANO | Copy release version into REVISION file
-  shell: echo {{ ansistrano_timestamp.stdout }} > {{ ansistrano_release_path.stdout }}/REVISION
+  shell: echo {{ ansistrano_release_version }} > {{ ansistrano_release_path.stdout }}/REVISION
 
 - name: ANSISTRANO | Touches up the release code
   file: path={{ ansistrano_release_path.stdout }} state=directory recurse=yes mode="g+w"
