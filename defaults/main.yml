@@ -11,6 +11,9 @@ ansistrano_version_dir: "releases"
 # Softlink name for the current release
 ansistrano_current_dir: "current"
 
+# Shared paths to symlink to release dir
+ansistrano_shared_paths: []
+
 # Number of releases to keep in your hosts, if 0, unlimited releases will be kept
 ansistrano_keep_releases: 0
 
