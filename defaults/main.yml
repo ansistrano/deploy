@@ -17,6 +17,12 @@ ansistrano_shared_paths: []
 # Number of releases to keep in your hosts, if 0, unlimited releases will be kept
 ansistrano_keep_releases: 0
 
+# Dynamic release info from the github api
+ansistrano_github_enabled: false
+ansistrano_github_token: "token"
+ansistrano_github_user: "user"
+ansistrano_github_repo: "repo"
+
 # Deployment strategies variables
 ansistrano_deploy_via: "rsync"
 
@@ -26,3 +32,6 @@ ansistrano_git_branch: master
 
 ## RSYNC push strategy
 ansistrano_rsync_extra_params: ""
+
+## HTTP pull strategy
+ansistrano_http_local_tmp: "/tmp"
