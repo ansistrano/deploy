@@ -92,7 +92,8 @@ Role Variables
   ansistrano_rsync_extra_params: "" # Extra parameters to use when deploying with rsync 
   ansistrano_git_repo: git@github.com:USERNAME/REPO.git # Location of the git repository
   ansistrano_git_branch: master # Branch to use when deploying
-  
+  ansistrano_release_version: 20150520063000Z # When set, overrides the timestamp computed at runtime
+
   # Hooks: custom tasks if you need them
   ansistrano_before_setup_tasks_file: "{{ playbook_dir }}/<your-deployment-config>/my-before-setup-tasks.yml"
   ansistrano_after_setup_tasks_file: "{{ playbook_dir }}/<your-deployment-config>/my-after-setup-tasks.yml"
@@ -147,6 +148,13 @@ If everything has been set up properly, this command will create the following a
 |   |-- 20100509145325
 |-- shared
 ```
+
+### Serial deployments
+
+To prevent different timestamps when deploying to several servers using the [`serial`](http://docs.ansible.com/playbooks_delegation.html#rolling-update-batch-size) option, you should set the `ansistrano_release_version` variable.
+
+```ansible-playbook -i hosts -e "ansistrano_release_version=`date -u +%Y%m%d%H%M%SZ`" deploy.yml```
+
 
 Rollbacking
 -----------
@@ -218,10 +226,11 @@ Variables in custom tasks
 
 When writing your custom tasks files you may need some variables that Ansistrano makes available to you:
 
-* ```{{ ansistrano_timestamp.stdout }}```: Timestamp for the current deployment
+* ```{{ ansistrano_timestamp.stdout }}```: Timestamp for the current deployment (in UTC timezone)
 * ```{{ ansistrano_release_path.stdout }}```: Path to current deployment release (probably the one you are going to use the most)
 * ```{{ ansistrano_releases_path.stdout }}```: Path to releases folder
 * ```{{ ansistrano_shared_path.stdout }}```: Path to shared folder (where common releases assets can be stored)  
+* ```{{ ansistrano_release_version }}```: Directory name for the current deployment (by default equals to `{{ ansistrano_timestamp.stdout }}`)
 
 Pruning old releases
 --------------------

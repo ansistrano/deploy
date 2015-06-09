@@ -4,7 +4,7 @@ galaxy_info:
   description: Ansible role to deploy scripting applications like PHP, Python, Ruby, etc. in a Capistrano style
   company: Ansistrano
   license: MIT
-  min_ansible_version: 1.6
+  min_ansible_version: 1.7
   platforms:
   - name: EL
     versions:
