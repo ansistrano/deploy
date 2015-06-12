@@ -24,13 +24,13 @@
   include: update-code/git.yml
   when: ansistrano_deploy_via == 'git'
 
-- name: ANSISTRANO | HTTP | Deploy using Http+Tarball strategy
+- name: ANSISTRANO | HTTP | Deploy using Http+Archive strategy
   include: update-code/http.yml
   when: ansistrano_deploy_via == 'http'
 
-- name: ANSISTRANO | TARBALL | Deploy using Tarball strategy
-  include: update-code/tarball.yml
-  when: ansistrano_deploy_via == 'tarball'
+- name: ANSISTRANO | ARCHIVE | Deploy using Archive strategy
+  include: update-code/archive.yml
+  when: ansistrano_deploy_via == 'archive'
 
 - name: ANSISTRANO | Copy release version into REVISION file
   shell: echo {{ ansistrano_timestamp.stdout }} > {{ ansistrano_release_path.stdout }}/REVISION

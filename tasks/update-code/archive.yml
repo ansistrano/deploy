@@ -1,0 +1,10 @@
+---
+- name: ANSISTRANO | ARCHIVE | Create release dir
+  file: path={{ ansistrano_release_path.stdout }} state=directory
+
+- name: ANSISTRANO | ARCHIVE | Set ansistrano_archive_from
+  set_fact: ansistrano_archive_from="{{ ansistrano_deploy_from }}"
+  when: ansistrano_archive_from is not defined
+
+- name: ANSISTRANO | ARCHIVE | Deploy existing archive to remote servers
+  unarchive: src={{ ansistrano_archive_from }} dest={{ ansistrano_release_path.stdout }}

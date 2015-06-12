@@ -1,6 +1,6 @@
 ---
 # http basic auth is unhappy with get_url, not sure why
-- name: ANSISTRANO | HTTP | Download tarball
+- name: ANSISTRANO | HTTP | Download archive
   command: "curl --location -s -o {{ ansistrano_http_local_tmp }}/ANSISTRANO-{{ ansistrano_deploy_from | basename }}  {{ ansistrano_deploy_from }}"
   args:
     creates: "{{ ansistrano_http_local_tmp }}/ANSISTRANO-{{ ansistrano_deploy_from | basename }}"
@@ -9,8 +9,8 @@
 
 # We can't override variables that are configured in the playbook/group_vars/host_vars, so set
 # the alternate variable instead
-- name: ANSISTRANO | HTTP | set ansistrano_tarball_from to tarball
-  set_fact: ansistrano_tarball_from="{{ ansistrano_http_local_tmp }}/ANSISTRANO-{{ ansistrano_deploy_from | basename }}"
+- name: ANSISTRANO | HTTP | set ansistrano_archive_from to tmp path
+  set_fact: ansistrano_archive_from="{{ ansistrano_http_local_tmp }}/ANSISTRANO-{{ ansistrano_deploy_from | basename }}"
 
-- name: ANSISTRANO | HTTP | Deploy using tarball
-  include: tarball.yml
+- name: ANSISTRANO | HTTP | Deploy using archive
+  include: archive.yml
