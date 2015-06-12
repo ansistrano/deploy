@@ -29,3 +29,7 @@ ansistrano_rsync_extra_params: ""
 
 ## HTTP pull strategy
 ansistrano_http_local_tmp: "/tmp"
+
+## ARCHIVE push strategy
+# assume content in the archive in a directory and pull it out, ie a tarball from github
+ansistrano_archive_content_in_dir: true

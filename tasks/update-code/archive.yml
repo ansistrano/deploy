@@ -8,3 +8,9 @@
 
 - name: ANSISTRANO | ARCHIVE | Deploy existing archive to remote servers
   unarchive: src={{ ansistrano_archive_from }} dest={{ ansistrano_release_path.stdout }}
+
+- name: ANSISTRANO | ARCHIVE | Pull content out of the container dir
+  shell: TOP=$(ls -d *); mv $TOP/* .; rm -r $TOP;
+  args:
+    chdir: "{{ ansistrano_release_path.stdout }}"
+  when: ansistrano_archive_content_in_dir
