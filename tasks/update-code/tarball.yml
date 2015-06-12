@@ -2,5 +2,9 @@
 - name: ANSISTRANO | TARBALL | Create release dir
   file: path={{ ansistrano_release_path.stdout }} state=directory
 
+- name: ANSISTRANO | TARBALL | Set ansistrano_tarball_from
+  set_fact: ansistrano_tarball_from="{{ ansistrano_deploy_from }}"
+  when: ansistrano_tarball_from is not defined
+
 - name: ANSISTRANO | TARBALL | Deploy existing tarball to remote servers
-  unarchive: src={{ ansistrano_deploy_from }} dest={{ ansistrano_release_path.stdout }}
+  unarchive: src={{ ansistrano_tarball_from }} dest={{ ansistrano_release_path.stdout }}
