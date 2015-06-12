@@ -88,10 +88,11 @@ Role Variables
   ansistrano_current_dir: "current" # Softlink name. You should rarely changed it.
   ansistrano_shared_paths: [] # Shared paths to symlink to release dir
   ansistrano_keep_releases: 0 # Releases to keep after a new deployment. See "Pruning old releases".
-  ansistrano_deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync or git
+  ansistrano_deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync, git, http, tarball
   ansistrano_rsync_extra_params: "" # Extra parameters to use when deploying with rsync 
   ansistrano_git_repo: git@github.com:USERNAME/REPO.git # Location of the git repository
   ansistrano_git_branch: master # Branch to use when deploying
+  ansistrano_release_version: 20150520063000Z # When set, overrides the timestamp computed at runtime
   
   # Hooks: custom tasks if you need them
   ansistrano_before_setup_tasks_file: "{{ playbook_dir }}/<your-deployment-config>/my-before-setup-tasks.yml"

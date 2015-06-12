@@ -1,0 +1,13 @@
+---
+# http basic auth is unhappy with get_url, not sure why
+- name: ANSISTRANO | HTTP | Download tarball
+  command: "curl --location -s -o {{ ansistrano_http_local_tmp }}/ANSISTRANO-{{ ansistrano_github_repo }}.{{ ansistrano_release_version }}.tar.gz  {{ ansistrano_deploy_from }}"
+  args:
+    creates: "{{ ansistrano_http_local_tmp }}/ANSISTRANO-{{ ansistrano_github_repo }}.{{ ansistrano_release_version }}.tar.gz"
+  delegate_to: 127.0.0.1
+
+- name: ANSISTRANO | HTTP | set ansistrano_deploy_from to tarball
+  set_fact: ansistrano_deploy_from="{{ ansistrano_http_local_tmp }}/ANSISTRANO-{{ ansistrano_github_repo }}.{{ ansistrano_release_version }}.tar.gz"
+
+- name: ANSISTRANO | HTTP | Deploy using tarball
+  include: tarball.yml

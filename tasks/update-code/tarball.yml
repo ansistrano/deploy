@@ -1,0 +1,6 @@
+---
+- name: ANSISTRANO | TARBALL | Create release dir
+  file: path={{ ansistrano_release_path.stdout }} state=directory
+
+- name: ANSISTRANO | TARBALL | Deploy existing tarball to remote servers
+  unarchive: src={{ ansistrano_deploy_from }} dest={{ ansistrano_release_path.stdout }}
