@@ -92,7 +92,6 @@ Role Variables
   ansistrano_rsync_extra_params: "" # Extra parameters to use when deploying with rsync 
   ansistrano_git_repo: git@github.com:USERNAME/REPO.git # Location of the git repository
   ansistrano_git_branch: master # Branch to use when deploying
-  ansistrano_release_version: 20150520063000Z # When set, overrides the timestamp computed at runtime
   
   # Hooks: custom tasks if you need them
   ansistrano_before_setup_tasks_file: "{{ playbook_dir }}/<your-deployment-config>/my-before-setup-tasks.yml"
