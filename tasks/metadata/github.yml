@@ -1,0 +1,13 @@
+- name: ANSISTRANO | GITHUB | Latest release from api
+  local_action: uri url="https://api.github.com/repos/{{ ansistrano_github_user }}/{{ ansistrano_github_repo }}/releases/latest" HEADER_Authorization="token {{ ansistrano_github_token }}"
+  register: ansistrano_github_info
+  run_once: true
+
+- name: ANSISTRANO | GITHUB | Set version from github
+  set_fact: ansistrano_release_version="{{ ansistrano_github_info.json.tag_name }}"
+
+- name: ANSISTRANO | GITHUB | Set git branch version
+  set_fact: ansistrano_git_branch="{{ ansistrano_github_info.json.tag_name }}"
+
+- name: ANSISTRANO | GITHUB | Set deploy url
+  set_fact: ansistrano_deploy_from="{{ ansistrano_github_info.json.tarball_url|replace('://','://{{ ansistrano_github_user }}:{{ ansistrano_github_token }}@') }}"
