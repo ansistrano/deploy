@@ -26,3 +26,6 @@ ansistrano_git_branch: master
 
 ## RSYNC push strategy
 ansistrano_rsync_extra_params: ""
+
+# Dynamic metadata
+ansistrano_metadata_source: "none"

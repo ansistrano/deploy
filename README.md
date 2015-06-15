@@ -92,7 +92,10 @@ Role Variables
   ansistrano_rsync_extra_params: "" # Extra parameters to use when deploying with rsync 
   ansistrano_git_repo: git@github.com:USERNAME/REPO.git # Location of the git repository
   ansistrano_git_branch: master # Branch to use when deploying
-  
+  ansistrano_metadata_source: none # Method used to pull dynamic release information like git_branch Options are none, github
+  ansistrano_github_token: token # Oauth token generated at https://github.com/settings/tokens
+  ansistrano_github_repo: username/repo #git repo name
+
   # Hooks: custom tasks if you need them
   ansistrano_before_setup_tasks_file: "{{ playbook_dir }}/<your-deployment-config>/my-before-setup-tasks.yml"
   ansistrano_after_setup_tasks_file: "{{ playbook_dir }}/<your-deployment-config>/my-after-setup-tasks.yml"

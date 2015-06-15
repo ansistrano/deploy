@@ -3,6 +3,10 @@
   fail: msg="ansistrano_custom_tasks_path is not used anymore. Please, check the documentation at https://github.com/ansistrano/deploy"
   when: ansistrano_custom_tasks_path is defined
 
+- name: ANSISTRANO | Load dynamic metadata
+  include: metadata/github.yml
+  when: ansistrano_metadata_source == "github"
+
 - name: ANSISTRANO | Execute "Before Setup" Tasks
   include: "{{ ansistrano_before_setup_tasks_file | default('empty.yml') }}"
 
