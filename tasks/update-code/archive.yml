@@ -1,0 +1,27 @@
+---
+- name: ANSISTRANO | ARCHIVE | Create release dir
+  file: path={{ ansistrano_release_path.stdout }} state=directory
+
+- name: ANSISTRANO | ARCHIVE | Set ansistrano_archive_from
+  set_fact: ansistrano_archive_from="{{ ansistrano_deploy_from }}"
+  when: ansistrano_archive_from is not defined
+
+- name: ANSISTRANO | ARCHIVE | Set ansistrano_archive_copy
+  set_fact: ansistrano_archive_copy=true
+  when: ansistrano_archive_copy is not defined
+
+- name: ANSISTRANO | ARCHIVE | Deploy existing archive to remote servers
+  unarchive: src={{ ansistrano_archive_from }} dest={{ ansistrano_release_path.stdout }} copy={{ ansistrano_archive_copy }}
+
+- name: ANSISTRANO | ARCHIVE | Find top level dir
+  shell: ls -d */ > .TOPLEVELDIR
+  args:
+    chdir: "{{ ansistrano_release_path.stdout }}"
+    creates: "{{ ansistrano_release_path.stdout }}/.TOPLEVELDIR"
+  when: ansistrano_archive_content_in_dir
+
+- name: ANSISTRANO | ARCHIVE | Pull content out of the container dir
+  shell: "TOP=$(cat {{ ansistrano_release_path.stdout }}/.TOPLEVELDIR); mv $TOP/* .; rm -r $TOP;"
+  args:
+    chdir: "{{ ansistrano_release_path.stdout }}"
+  when: ansistrano_archive_content_in_dir
