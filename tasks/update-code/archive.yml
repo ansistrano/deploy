@@ -6,8 +6,12 @@
   set_fact: ansistrano_archive_from="{{ ansistrano_deploy_from }}"
   when: ansistrano_archive_from is not defined
 
+- name: ANSISTRANO | ARCHIVE | Set ansistrano_archive_copy
+  set_fact: ansistrano_archive_copy=true
+  when: ansistrano_archive_copy is not defined
+
 - name: ANSISTRANO | ARCHIVE | Deploy existing archive to remote servers
-  unarchive: src={{ ansistrano_archive_from }} dest={{ ansistrano_release_path.stdout }}
+  unarchive: src={{ ansistrano_archive_from }} dest={{ ansistrano_release_path.stdout }} copy={{ ansistrano_archive_copy }}
 
 - name: ANSISTRANO | ARCHIVE | Find top level dir
   shell: ls -d */ > .TOPLEVELDIR
