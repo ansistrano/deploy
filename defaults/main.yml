@@ -23,6 +23,7 @@ ansistrano_deploy_via: "rsync"
 ## GIT pull strategy
 ansistrano_git_repo: git@github.com:USERNAME/REPO.git
 ansistrano_git_branch: master
+ansistrano_git_identity_key_path: ""
 
 ## RSYNC push strategy
 ansistrano_rsync_extra_params: ""
