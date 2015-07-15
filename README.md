@@ -93,7 +93,7 @@ Role Variables
   ansistrano_rsync_extra_params: "" # Extra parameters to use when deploying with rsync 
   ansistrano_git_repo: git@github.com:USERNAME/REPO.git # Location of the git repository
   ansistrano_git_branch: master # Branch to use when deploying
-  ansistrano_git_identity_key_path: "" # If specified this file is copied over and used as the identity key for the git commands
+  ansistrano_git_identity_key_path: "" # If specified this file is copied over and used as the identity key for the git commands, path is relative to the playbook in which it is used
 
   # Hooks: custom tasks if you need them
   ansistrano_before_setup_tasks_file: "{{ playbook_dir }}/<your-deployment-config>/my-before-setup-tasks.yml"
