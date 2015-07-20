@@ -3,7 +3,7 @@
 - name: ANSISTRANO | GIT | Ensure GIT deployment key is up to date
   copy:
     src: "{{ ansistrano_git_identity_key_path }}"
-    dest: ".ssh/git_identity_key"
+    dest: "{{ ansistrano_deploy_to }}/git_identity_key"
     mode: 0400
   when: ansistrano_git_identity_key_path|trim != ""
 
@@ -23,7 +23,7 @@
     version: "{{ ansistrano_git_branch }}"
     accept_hostkey: true
     update: yes
-    key_file: ".ssh/git_identity_key"
+    key_file: "{{ ansistrano_deploy_to }}/git_identity_key"
   when: ansistrano_git_identity_key_path|trim != ""
 
 - name: ANSISTRANO | GIT | Export a copy of the repo
