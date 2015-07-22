@@ -113,10 +113,10 @@ Deploying
 
 In order to deploy with Ansistrano, you need to perform some steps:
 
-* Create a new `hosts` file. Check [ansible inventory documentation](http://docs.ansible.com/intro_inventory.html) if you need help. This file will identify all the hosts where to deploy to. For multistage environments check "Multistage environments"
-* Create a new playbook for deploying your app, for example, deploy.yml
-* Include carlosbuenosvinos.ansible-deploy role
-* Set up role variables (see "Role Variables")
+* Create a new `hosts` file. Check [ansible inventory documentation](http://docs.ansible.com/intro_inventory.html) if you need help. This file will identify all the hosts where to deploy to. For multistage environments check [Multistage environments](#multistage-environment-devel-preprod-prod-etc).
+* Create a new playbook for deploying your app, for example, `deploy.yml`
+* Set up role variables (see [Role Variables](#role-variables))
+* Include the `carlosbuenosvinos.ansistrano-deploy` role as part of a play
 * Run the deployment playbook
 
 ```ansible-playbook -i hosts deploy.yml```
