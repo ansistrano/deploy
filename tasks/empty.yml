@@ -1,2 +1,7 @@
-# This file is intentionally left empty and it is used in those Capistrano flow steps
-# where you don't need to execute any custom tasks
+# This file acts as an informative placeholder in those Capistrano flow steps where
+# you don't currently execute any custom tasks
+---
+- name: ANSISTRANO | DEFAULT_HOOKS | {{ansistrano_hook_name}}
+  local_action: command true
+  changed_when: false
+  when: false
