@@ -1,5 +1,11 @@
 ---
 # Symlinks shared paths
+- name: ANSISTRANO | Ensure shared paths directory exists
+  file:
+    state: directory
+    path: "{{ ansistrano_deploy_to }}/shared/{{ item }}"
+  with_items: ansistrano_shared_paths
+
 - name: ANSISTRANO | Create softlinks for shared paths
   file:
     state: link
