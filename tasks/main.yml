@@ -3,34 +3,58 @@
   fail: msg="ansistrano_custom_tasks_path is not used anymore. Please, check the documentation at https://github.com/ansistrano/deploy"
   when: ansistrano_custom_tasks_path is defined
 
-- include: "{{ ansistrano_before_setup_tasks_file | default('empty.yml') }}
-    ansistrano_hook_name='Before Setup'"
+- include: "{{
+    ansistrano_before_setup_tasks_file
+    | default(ansistrano_display_default_hooks is defined and ansistrano_display_default_hooks)
+    | ternary('empty-verbose.yml', 'empty.yml')
+  }} ansistrano_hook_name='Before Setup'"
 
 - include: setup.yml
 
-- include: "{{ ansistrano_after_setup_tasks_file | default('empty.yml') }}
-    ansistrano_hook_name='After Setup'"
+- include: "{{
+    ansistrano_after_setup_tasks_file
+    | default(ansistrano_display_default_hooks is defined and ansistrano_display_default_hooks)
+    | ternary('empty-verbose.yml', 'empty.yml')
+  }} ansistrano_hook_name='After Setup'"
 
-- include: "{{ ansistrano_before_update_code_tasks_file | default('empty.yml') }}
-    ansistrano_hook_name='Before Update Code'"
+- include: "{{
+    ansistrano_before_update_code_tasks_file
+    | default(ansistrano_display_default_hooks is defined and ansistrano_display_default_hooks)
+    | ternary('empty-verbose.yml', 'empty.yml')
+  }} ansistrano_hook_name='Before Update Code'"
 
 - include: update-code.yml
 
-- include: "{{ ansistrano_after_update_code_tasks_file | default('empty.yml') }}
-    ansistrano_hook_name='After Update Code'"
+- include: "{{
+    ansistrano_after_update_code_tasks_file
+    | default(ansistrano_display_default_hooks is defined and ansistrano_display_default_hooks)
+    | ternary('empty-verbose.yml', 'empty.yml')
+  }} ansistrano_hook_name='After Update Code'"
 
-- include: "{{ ansistrano_before_symlink_tasks_file | default('empty.yml') }}
-    ansistrano_hook_name='Before Symlink'"
+- include: "{{
+    ansistrano_before_symlink_tasks_file
+    | default(ansistrano_display_default_hooks is defined and ansistrano_display_default_hooks)
+    | ternary('empty-verbose.yml', 'empty.yml')
+  }} ansistrano_hook_name='Before Symlink'"
 
 - include: symlink.yml
 
-- include: "{{ ansistrano_after_symlink_tasks_file | default('empty.yml') }}
-    ansistrano_hook_name='After Symlink'"
+- include: "{{
+    ansistrano_after_symlink_tasks_file
+    | default(ansistrano_display_default_hooks is defined and ansistrano_display_default_hooks)
+    | ternary('empty-verbose.yml', 'empty.yml')
+  }} ansistrano_hook_name='After Symlink'"
 
-- include: "{{ ansistrano_before_cleanup_tasks_file | default('empty.yml') }}
-    ansistrano_hook_name='Before Cleanup'"
+- include: "{{
+    ansistrano_before_cleanup_tasks_file
+    | default(ansistrano_display_default_hooks is defined and ansistrano_display_default_hooks)
+    | ternary('empty-verbose.yml', 'empty.yml')
+  }} ansistrano_hook_name='Before Cleanup'"
 
 - include: cleanup.yml
 
-- include: "{{ ansistrano_after_cleanup_tasks_file | default('empty.yml') }}
-    ansistrano_hook_name='After Cleanup'"
+- include: "{{
+    ansistrano_after_cleanup_tasks_file
+    | default(ansistrano_display_default_hooks is defined and ansistrano_display_default_hooks)
+    | ternary('empty-verbose.yml', 'empty.yml')
+  }} ansistrano_hook_name='After Cleanup'"

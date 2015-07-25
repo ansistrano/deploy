@@ -27,3 +27,6 @@ ansistrano_git_identity_key_path: ""
 
 ## RSYNC push strategy
 ansistrano_rsync_extra_params: ""
+
+# Show verbose hints about hooks during execution
+ansistrano_display_default_hooks: false

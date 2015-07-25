@@ -1,7 +1,2 @@
-# This file acts as an informative placeholder in those Capistrano flow steps where
-# you don't currently execute any custom tasks
----
-- name: ANSISTRANO | DEFAULT_HOOKS | {{ansistrano_hook_name}}
-  local_action: command true
-  changed_when: false
-  when: false
+# This file is an empty placeholder in those Capistrano flow steps where
+# you don't currently execute any custom tasks and verbose_default_hooks is false
