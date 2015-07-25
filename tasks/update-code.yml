@@ -1,13 +1,8 @@
 ---
 # Update code deployment step
-- name: ANSISTRANO | Get release timestamp
-  local_action: command date -u +%Y%m%d%H%M%SZ
+- local_action:
+    set_fact ansistrano_release_version={{ lookup('pipe', 'date -u +%Y%m%d%H%M%SZ') }}
   run_once: true
-  register: ansistrano_timestamp
-  sudo: no
-
-- name: ANSISTRANO | Set release version from timestamp
-  set_fact: ansistrano_release_version="{{ ansistrano_timestamp.stdout }}"
   when: ansistrano_release_version is not defined
 
 - name: ANSISTRANO | Get release path
