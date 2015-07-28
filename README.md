@@ -64,7 +64,7 @@ Features
 * Rollback in seconds (with ansistrano.rollback role)
 * Customize your deployment with hooks before and after critical steps 
 * Save disk space keeping a maximum fixed releases in your hosts
-* Choose between SCP (push), RSYNC (push) or GIT (pull) deployment strategies
+* Choose between SCP (push), RSYNC (push), GIT (pull) or S3 (get) deployment strategies
 
 Main workflow
 -------------
@@ -89,11 +89,14 @@ Role Variables
   ansistrano_current_dir: "current" # Softlink name. You should rarely changed it.
   ansistrano_shared_paths: [] # Shared paths to symlink to release dir
   ansistrano_keep_releases: 0 # Releases to keep after a new deployment. See "Pruning old releases".
-  ansistrano_deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync or git
+  ansistrano_deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync, git or s3
   ansistrano_rsync_extra_params: "" # Extra parameters to use when deploying with rsync 
   ansistrano_git_repo: git@github.com:USERNAME/REPO.git # Location of the git repository
   ansistrano_git_branch: master # Branch to use when deploying
   ansistrano_git_identity_key_path: "" # If specified this file is copied over and used as the identity key for the git commands, path is relative to the playbook in which it is used
+  ansistrano_s3_bucket: s3bucket
+  ansistrano_s3_object: s3object.tgz
+  ansistrano_s3_region: eu-west-1
 
   # Hooks: custom tasks if you need them
   ansistrano_before_setup_tasks_file: "{{ playbook_dir }}/<your-deployment-config>/my-before-setup-tasks.yml"

@@ -27,3 +27,8 @@ ansistrano_git_identity_key_path: ""
 
 ## RSYNC push strategy
 ansistrano_rsync_extra_params: ""
+
+## S3 get strategy
+ansistrano_s3_bucket: s3bucket
+ansistrano_s3_object: s3object.tgz
+ansistrano_s3_region: eu-west-1
