@@ -1,2 +1,2 @@
-# This file is intentionally left empty and it is used in those Capistrano flow steps
-# where you don't need to execute any custom tasks
+# This file is an empty placeholder in those Capistrano flow steps where
+# you don't currently execute any custom tasks and verbose_default_hooks is false
