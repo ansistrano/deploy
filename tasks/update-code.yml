@@ -32,6 +32,3 @@
 
 - name: ANSISTRANO | Copy release version into REVISION file
   shell: echo {{ ansistrano_release_version }} > {{ ansistrano_release_path.stdout }}/REVISION
-
-- name: ANSISTRANO | Touches up the release code
-  file: path={{ ansistrano_release_path.stdout }} state=directory recurse=yes mode="g+w"
