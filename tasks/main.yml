@@ -15,6 +15,12 @@
 
 - include: "{{ ansistrano_after_update_code_tasks_file | default('empty.yml') }}"
 
+- include: "{{ ansistrano_before_symlink_shared_tasks_file | default('empty.yml') }}"
+
+- include: symlink-shared.yml
+
+- include: "{{ ansistrano_after_symlink_shared_tasks_file | default('empty.yml') }}"
+
 - include: "{{ ansistrano_before_symlink_tasks_file | default('empty.yml') }}"
 
 - include: symlink.yml
