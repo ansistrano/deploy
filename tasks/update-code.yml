@@ -18,21 +18,7 @@
   command: echo "{{ ansistrano_deploy_to }}/{{ ansistrano_version_dir }}"
   register: ansistrano_releases_path
 
-- name: ANSISTRANO | RSYNC | Deploy using Rsync strategy
-  include: update-code/rsync.yml
-  when: ansistrano_deploy_via == 'rsync'
-
-- name: ANSISTRANO | SCP | Deploy using SCP strategy
-  include: update-code/copy.yml
-  when: ansistrano_deploy_via == 'copy'
-
-- name: ANSISTRANO | GIT | Deploy using Git strategy
-  include: update-code/git.yml
-  when: ansistrano_deploy_via == 'git'
-
-- name: ANSISTRANO | S3 | Deploy using S3 strategy
-  include: update-code/s3.yml
-  when: ansistrano_deploy_via == 's3'
+- include: "update-code/{{ ansistrano_deploy_via | default('rsync') }}.yml"
 
 - name: ANSISTRANO | Copy release version into REVISION file
   shell: echo {{ ansistrano_release_version }} > {{ ansistrano_release_path.stdout }}/REVISION

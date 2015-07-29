@@ -18,7 +18,11 @@ ansistrano_shared_paths: []
 ansistrano_keep_releases: 0
 
 # Deployment strategies variables
-ansistrano_deploy_via: "rsync"
+
+# Due to runtime variable evaluation, the ansistrano_deploy_via default is actually
+# defined in update-code.yml instead of this file. You can still override it in your
+# playbook as needed.
+# ansistrano_deploy_via: "rsync"
 
 ## GIT pull strategy
 ansistrano_git_repo: git@github.com:USERNAME/REPO.git
