@@ -1,5 +1,4 @@
 ---
-
 - name: ANSISTRANO | GIT | Ensure GIT deployment key is up to date
   copy:
     src: "{{ ansistrano_git_identity_key_path }}"
