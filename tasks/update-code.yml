@@ -11,12 +11,8 @@
   when: ansistrano_release_version is not defined
 
 - name: ANSISTRANO | Get release path
-  command: echo "{{ ansistrano_deploy_to }}/{{ ansistrano_version_dir }}/{{ ansistrano_release_version }}"
+  command: echo "{{ ansistrano_releases_path }}/{{ ansistrano_release_version }}"
   register: ansistrano_release_path
-
-- name: ANSISTRANO | Get releases path
-  command: echo "{{ ansistrano_deploy_to }}/{{ ansistrano_version_dir }}"
-  register: ansistrano_releases_path
 
 - include: "update-code/{{ ansistrano_deploy_via | default('rsync') }}.yml"
 
