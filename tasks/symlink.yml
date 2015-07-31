@@ -1,4 +1,9 @@
 ---
+# Ensure symlinks target paths is absent
+- name: ANSISTRANO | Ensure shared paths targets are absent
+  file: state=absent path={{ ansistrano_release_path.stdout }}/{{ item }}
+  with_items: ansistrano_shared_paths
+
 # Performs symlink exchange
 - name: ANSISTRANO | Change softlink to new release
   file: state=link path={{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }} src={{ ansistrano_release_path.stdout }}
