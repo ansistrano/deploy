@@ -8,11 +8,11 @@
   register: ansistrano_releases_path
 
 - name: ANSISTRANO | Ensure releases folder exists
-  file: state=directory path={{ ansistrano_releases_path }}
+  file: state=directory path={{ ansistrano_releases_path.stdout }}
 
 - name: ANSISTRANO | Set shared path
   command: echo "{{ ansistrano_deploy_to }}/shared"
   register: ansistrano_shared_path
 
 - name: ANSISTRANO | Ensure shared elements folder exists
-  file: state=directory path={{ ansistrano_shared_path }}
+  file: state=directory path={{ ansistrano_shared_path.stdout }}
