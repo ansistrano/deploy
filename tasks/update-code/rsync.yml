@@ -4,7 +4,7 @@
   register: ansistrano_shared_rsync_copy_path
 
 - name: ANSISTRANO | RSYNC | Rsync application files to remote shared copy
-  synchronize: src={{ ansistrano_deploy_from }} dest={{ ansistrano_shared_rsync_copy_path.stdout }} recursive=yes delete=yes archive=yes compress=yes rsync_opts={{ ansistrano_rsync_extra_params }}
+  synchronize: src={{ ansistrano_deploy_from }} dest={{ ansistrano_shared_rsync_copy_path.stdout }} set_remote_user={{ ansistrano_rsync_set_remote_user }} recursive=yes delete=yes archive=yes compress=yes rsync_opts={{ ansistrano_rsync_extra_params }}
 
 - name: ANSISTRANO | RSYNC | Deploy existing code to servers
   command: cp -pr {{ ansistrano_shared_rsync_copy_path.stdout }} {{ ansistrano_release_path.stdout }}

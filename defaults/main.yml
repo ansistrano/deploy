@@ -31,6 +31,10 @@ ansistrano_git_identity_key_path: ""
 
 ## RSYNC push strategy
 ansistrano_rsync_extra_params: ""
+## put user@ for the remote paths. If you have a custom ssh config to define
+## the remote user for a host that does not match the inventory user,
+## you should set this parameter to "no".
+ansistrano_rsync_set_remote_user: yes
 
 ## S3 get strategy
 ansistrano_s3_bucket: s3bucket

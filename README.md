@@ -91,6 +91,7 @@ Role Variables
   ansistrano_keep_releases: 0 # Releases to keep after a new deployment. See "Pruning old releases".
   ansistrano_deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync, git or s3
   ansistrano_rsync_extra_params: "" # Extra parameters to use when deploying with rsync 
+  ansistrano_rsync_set_remote_user: yes # See [ansible synchronize module](http://docs.ansible.com/ansible/synchronize_module.html). Options are yes, no.
   ansistrano_git_repo: git@github.com:USERNAME/REPO.git # Location of the git repository
   ansistrano_git_branch: master # Branch to use when deploying
   ansistrano_git_identity_key_path: "" # If specified this file is copied over and used as the identity key for the git commands, path is relative to the playbook in which it is used
