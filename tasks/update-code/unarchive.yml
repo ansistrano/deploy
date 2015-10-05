@@ -1,0 +1,17 @@
+---
+- name: ANSISTRANO | Unarchive | Stat source archived file
+  stat: path={{ ansistrano_release_path.stdout }}
+  register: ansistrano_release_path_archived
+
+- name: ANSISTRANO | Unarchive | Rename source archived file
+  command: mv {{ ansistrano_release_path.stdout }} {{ ansistrano_release_path.stdout }}.archived
+  when: ansistrano_release_path_archived.stat.exists
+
+- name: ANSISTRANO | Unarchive | Create directory to unarchive source
+  file:  path={{ ansistrano_release_path.stdout }} state=directory
+
+- name: ANSISTRANO | Unarchive | Unarchive source
+  unarchive: copy=no src={{ ansistrano_release_path.stdout }}.archived dest={{ ansistrano_release_path.stdout }}
+
+- name: ANSISTRANO | Unarchive | Delete archived file
+  file: path={{ ansistrano_release_path.stdout }}.archived state=absent
