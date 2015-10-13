@@ -99,6 +99,10 @@ Role Variables
   ansistrano_s3_object: s3object.tgz
   ansistrano_s3_region: eu-west-1
 
+  # Optional variables, omitted by default
+  ansistrano_s3_aws_access_key: YOUR_AWS_ACCESS_KEY
+  ansistrano_s3_aws_secret_key: YOUR_AWS_SECRET_KEY
+
   # Hooks: custom tasks if you need them
   ansistrano_before_setup_tasks_file: "{{ playbook_dir }}/<your-deployment-config>/my-before-setup-tasks.yml"
   ansistrano_after_setup_tasks_file: "{{ playbook_dir }}/<your-deployment-config>/my-after-setup-tasks.yml"
