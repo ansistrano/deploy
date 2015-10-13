@@ -1,0 +1,9 @@
+---
+- name: ANSISTRANO | Unarchive | Create directory to unarchive source
+  file:  path={{ ansistrano_release_path.stdout }} state=directory
+
+- name: ANSISTRANO | Unarchive | Unarchive source
+  unarchive: copy=no src={{ ansistrano_release_path.stdout }}/{{ ansistrano_s3_object }} dest={{ ansistrano_release_path.stdout }}
+
+- name: ANSISTRANO | Unarchive | Delete archived file
+  file: path={{ ansistrano_release_path.stdout }}/{{ ansistrano_s3_object }} state=absent
