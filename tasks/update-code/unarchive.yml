@@ -1,0 +1,6 @@
+---
+- name: ANSISTRANO | Unarchive | Unarchive source
+  unarchive: copy=no src={{ ansistrano_archived_file }} dest={{ ansistrano_release_path.stdout }}
+
+- name: ANSISTRANO | Unarchive | Delete archived file
+  file: path={{ ansistrano_archived_file }} state=absent

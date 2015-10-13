@@ -1,0 +1,7 @@
+---
+- include: s3.yml
+
+- name: ANSISTRANO | s3_unarchive Set archived file
+  set_fact: ansistrano_archived_file={{ ansistrano_release_path.stdout }}/{{ ansistrano_s3_object }}
+
+- include: unarchive.yml
