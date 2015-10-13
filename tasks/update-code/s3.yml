@@ -1,3 +1,3 @@
 ---
 - name: ANSISTRANO | S3 | Get object from S3
-  s3: bucket={{ ansistrano_s3_bucket }} object={{ ansistrano_s3_object }} dest={{ ansistrano_release_path.stdout }} mode=get region={{ ansistrano_s3_region }} aws_access_key={{ ansistrano_s3_aws_access_key | default(omit) }} aws_secret_key={{ ansistrano_s3_aws_secret_key | default(omit) }}
+  s3: bucket={{ ansistrano_s3_bucket }} object={{ ansistrano_s3_object }} dest={{ ansistrano_release_path.stdout }}/{{ ansistrano_s3_object }} mode=get region={{ ansistrano_s3_region }} aws_access_key={{ ansistrano_s3_aws_access_key | default(omit) }} aws_secret_key={{ ansistrano_s3_aws_secret_key | default(omit) }}
