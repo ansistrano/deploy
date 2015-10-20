@@ -364,6 +364,16 @@ PLAY RECAP ********************************************************************
 quepimquepam.com           : ok=14   changed=10   unreachable=0    failed=0
 ```
 
+They're talking about us
+------------------------
+
+* [http://www.ricardclau.com/2015/10/deploying-php-applications-with-ansistrano/](http://www.ricardclau.com/2015/10/deploying-php-applications-with-ansistrano/)
+* [http://es.slideshare.net/OrestesCA/ansible-intro-ansible-barcelona-user-group-june-2015](http://es.slideshare.net/OrestesCA/ansible-intro-ansible-barcelona-user-group-june-2015)
+* [http://carlosbuenosvinos.com/deploying-symfony-and-php-apps-with-ansistrano/](http://carlosbuenosvinos.com/deploying-symfony-and-php-apps-with-ansistrano/)
+* [https://www.youtube.com/watch?v=CPz5zPzzMZE](https://www.youtube.com/watch?v=CPz5zPzzMZE)
+* [https://github.com/cbrunnkvist/ansistrano-symfony-deploy](https://github.com/cbrunnkvist/ansistrano-symfony-deploy)
+* [https://www.reddit.com/r/ansible/comments/2ezzz5/rapid_rollback_with_ansible/](https://www.reddit.com/r/ansible/comments/2ezzz5/rapid_rollback_with_ansible/)
+
 License
 -------
 
