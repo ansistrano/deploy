@@ -31,6 +31,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Another Place Productions](http://www.anotherplaceproductions.com)
 * [Suntransfers](http://www.suntransfers.com)
 * [Ulabox](https://www.ulabox.com)
+* [Euromillions.com](http://euromillions.com/)
 
 If you are also using it, please let us know via a PR to this document.
 
