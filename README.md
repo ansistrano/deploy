@@ -27,8 +27,8 @@ Who is using Ansistrano?
 
 Is Ansistrano ready to be used? Here are some companies currently using it:
 
-* Atrápalo: https://github.com/atrapalo (9K global alexa ranking)
-* Another Place Productions: http://www.anotherplaceproductions.com
+* [Atrápalo](http://www.atrapalo.com)
+* [Another Place Productions](http://www.anotherplaceproductions.com)
 * [Suntransfers](http://www.suntransfers.com)
 * [Ulabox](http://www.ulabox.com)
 
