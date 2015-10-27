@@ -54,7 +54,7 @@ $ ansible-galaxy install carlosbuenosvinos.ansistrano-deploy carlosbuenosvinos.a
 Update
 ------
 
-If you want to update the role, you need to pass **--force** parameter when installing. Please, check the following command: 
+If you want to update the role, you need to pass **--force** parameter when installing. Please, check the following command:
 
 ```
 $ ansible-galaxy install --force carlosbuenosvinos.ansistrano-deploy carlosbuenosvinos.ansistrano-rollback
@@ -64,7 +64,7 @@ Features
 --------
 
 * Rollback in seconds (with ansistrano.rollback role)
-* Customize your deployment with hooks before and after critical steps 
+* Customize your deployment with hooks before and after critical steps
 * Save disk space keeping a maximum fixed releases in your hosts
 * Choose between SCP (push), RSYNC (push), GIT (pull) or S3 (get) deployment strategies
 
@@ -92,16 +92,17 @@ Role Variables
   ansistrano_shared_paths: [] # Shared paths to symlink to release dir
   ansistrano_keep_releases: 0 # Releases to keep after a new deployment. See "Pruning old releases".
   ansistrano_deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync, git or s3
-  
+  ansistrano_allow_anonymous_stats: yes
+
   # Variables used in the rsync deployment strategy
-  ansistrano_rsync_extra_params: "" # Extra parameters to use when deploying with rsync 
+  ansistrano_rsync_extra_params: "" # Extra parameters to use when deploying with rsync
   ansistrano_rsync_set_remote_user: yes # See [ansible synchronize module](http://docs.ansible.com/ansible/synchronize_module.html). Options are yes, no.
-  
+
   # Variables used in the Git deployment strategy
   ansistrano_git_repo: git@github.com:USERNAME/REPO.git # Location of the git repository
   ansistrano_git_branch: master # What version of the repository to check out. This can be the full 40-character SHA-1 hash, the literal string HEAD, a branch name, or a tag name
   ansistrano_git_identity_key_path: "" # If specified this file is copied over and used as the identity key for the git commands, path is relative to the playbook in which it is used
-  
+
   # Variables used in the S3 deployment strategy
   ansistrano_s3_bucket: s3bucket
   ansistrano_s3_object: s3object.tgz
@@ -190,7 +191,7 @@ Variables you can tune in rollback role are less than in deploy one:
   ansistrano_deploy_to: "/var/www/my-app" # Base path to deploy to.
   ansistrano_version_dir: "releases" # Releases folder name
   ansistrano_current_dir: "current" # Softlink name. You should rarely changed it.
-  
+
   # Hooks: custom tasks if you need them
   ansistrano_before_symlink_tasks_file: "{{ playbook_dir }}/<your-deployment-config>/my-before-symlink-tasks.yml"
   ansistrano_after_symlink_tasks_file: "{{ playbook_dir }}/<your-deployment-config>/my-after-symlink-tasks.yml"
@@ -292,7 +293,7 @@ Example Playbook
 In the folder, `example` you can check an example project that shows how to deploy with Ansistrano. In order to run it, you should:
 
 ```
-$ cd example 
+$ cd example
 $ ansible-playbook -i hosts deploy.yml
 ```
 
@@ -303,7 +304,7 @@ We have added Ansistrano support for other projects we are working on.
 
 * LastWishes: Domain-Driven Design PHP Sample App: https://github.com/dddinphp/last-wishes
 
-As an example, see the execution log of the LastWishes deployment: 
+As an example, see the execution log of the LastWishes deployment:
 
 ```
 PLAY [Deploy last wishes app to my server] ************************************
