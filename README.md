@@ -92,15 +92,20 @@ Role Variables
   ansistrano_shared_paths: [] # Shared paths to symlink to release dir
   ansistrano_keep_releases: 0 # Releases to keep after a new deployment. See "Pruning old releases".
   ansistrano_deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync, git or s3
+  
+  # Variables used in the rsync deployment strategy
   ansistrano_rsync_extra_params: "" # Extra parameters to use when deploying with rsync 
   ansistrano_rsync_set_remote_user: yes # See [ansible synchronize module](http://docs.ansible.com/ansible/synchronize_module.html). Options are yes, no.
+  
+  # Variables used in the Git deployment strategy
   ansistrano_git_repo: git@github.com:USERNAME/REPO.git # Location of the git repository
   ansistrano_git_branch: master # What version of the repository to check out. This can be the full 40-character SHA-1 hash, the literal string HEAD, a branch name, or a tag name
   ansistrano_git_identity_key_path: "" # If specified this file is copied over and used as the identity key for the git commands, path is relative to the playbook in which it is used
+  
+  # Variables used in the S3 deployment strategy
   ansistrano_s3_bucket: s3bucket
   ansistrano_s3_object: s3object.tgz
   ansistrano_s3_region: eu-west-1
-
   # Optional variables, omitted by default
   ansistrano_s3_aws_access_key: YOUR_AWS_ACCESS_KEY
   ansistrano_s3_aws_secret_key: YOUR_AWS_SECRET_KEY
