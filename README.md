@@ -95,7 +95,7 @@ Role Variables
   ansistrano_rsync_extra_params: "" # Extra parameters to use when deploying with rsync 
   ansistrano_rsync_set_remote_user: yes # See [ansible synchronize module](http://docs.ansible.com/ansible/synchronize_module.html). Options are yes, no.
   ansistrano_git_repo: git@github.com:USERNAME/REPO.git # Location of the git repository
-  ansistrano_git_branch: master # Branch to use when deploying
+  ansistrano_git_branch: master # What version of the repository to check out. This can be the full 40-character SHA-1 hash, the literal string HEAD, a branch name, or a tag name
   ansistrano_git_identity_key_path: "" # If specified this file is copied over and used as the identity key for the git commands, path is relative to the playbook in which it is used
   ansistrano_s3_bucket: s3bucket
   ansistrano_s3_object: s3object.tgz
