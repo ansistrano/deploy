@@ -32,3 +32,5 @@
 - include: cleanup.yml
 
 - include: "{{ ansistrano_after_cleanup_tasks_file | default('empty.yml') }}"
+
+- include: anon-stats.yml

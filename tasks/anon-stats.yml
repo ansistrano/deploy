@@ -1,0 +1,12 @@
+---
+# Sends anonymous stats if the user is ok with it
+- name: ANSISTRANO | Send anonymous stats
+  uri:
+    url: http://ansistrano.com/deploy
+    method: POST
+    timeout: 5
+  when: ansistrano_allow_anonymous_stats
+  run_once: true
+  ignore_errors: yes
+  delegate_to: 127.0.0.1
+  sudo: false
