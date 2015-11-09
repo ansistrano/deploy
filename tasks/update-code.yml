@@ -1,7 +1,7 @@
 ---
 # Update code deployment step
 - local_action:
-    set_fact ansistrano_release_version={{ lookup('pipe', 'date -u +%Y%m%d%H%M%SZ') }}
+    set_fact ansistrano_release_version={{ lookup('pipe', 'date -u +%Y%m%d%H%M%S%Z') }}
   run_once: true
   when: ansistrano_release_version is not defined
 
