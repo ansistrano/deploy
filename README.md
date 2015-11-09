@@ -180,7 +180,7 @@ If everything has been set up properly, this command will create the following a
 
 To prevent different timestamps when deploying to several servers using the [`serial`](http://docs.ansible.com/playbooks_delegation.html#rolling-update-batch-size) option, you should set the `ansistrano_release_version` variable.
 
-```ansible-playbook -i hosts -e "ansistrano_release_version=`date -u +%Y%m%d%H%M%SZ`" deploy.yml```
+```ansible-playbook -i hosts -e "ansistrano_release_version=`date -u +%Y%m%d%H%M%S%Z`" deploy.yml```
 
 
 Rolling back
