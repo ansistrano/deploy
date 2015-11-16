@@ -5,4 +5,4 @@
     ansistrano_deploy_to: "/var/www/my-app.com"
     ansistrano_after_symlink_tasks_file: "{{ playbook_dir }}/config/deploy/tasks/after-symlink.yml"
   roles:
-    - { role: carlosbuenosvinos.ansistrano-deploy }
+    - { role: carlosbuenosvinos.ansistrano-rollback }
