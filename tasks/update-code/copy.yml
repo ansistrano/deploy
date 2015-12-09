@@ -1,3 +1,14 @@
 ---
+- name: ANSISTRANO | SCP | Create release folder
+  file: state=directory path={{ ansistrano_release_path.stdout }}
+
+- name: ANSISTRANO | SCP | Register destination for copy_unarchive strategy
+  set_fact: ansistrano_release_dest={{ ansistrano_release_path.stdout }}/{{ ansistrano_deploy_from | basename }}
+  when: ansistrano_deploy_via == 'copy_unarchive'
+
+- name: ANSISTRANO | SCP | Register destination for copy strategy
+  set_fact: ansistrano_release_dest={{ ansistrano_release_path.stdout }}
+  when: ansistrano_deploy_via == 'copy'
+
 - name: ANSISTRANO | SCP | Deploy existing code to remote servers
   copy: src={{ ansistrano_deploy_from }} dest={{ ansistrano_release_path.stdout }}
