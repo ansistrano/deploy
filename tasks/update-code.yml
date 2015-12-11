@@ -12,4 +12,4 @@
 - include: "update-code/{{ ansistrano_deploy_via | default('rsync') }}.yml"
 
 - name: ANSISTRANO | Copy release version into REVISION file
-  shell: echo {{ ansistrano_release_version }} > {{ ansistrano_release_path.stdout }}/REVISION
+  copy: content={{ ansistrano_release_version }} dest={{ ansistrano_release_path.stdout }}/REVISION
