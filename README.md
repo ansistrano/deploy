@@ -41,6 +41,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Euromillions.com](http://euromillions.com/)
 * [Uvinum](http://www.uvinum.com)
 * [Cycloid](http://www.cycloid.io)
+* [Spotahome](https://www.spotahome.com)
 
 If you are also using it, please let us know via a PR to this document.
 
