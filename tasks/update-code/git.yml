@@ -1,6 +1,6 @@
 ---
 - name: ANSISTRANO | GIT | Ensure GIT deployment key is up to date
-  copy:
+  template:
     src: "{{ ansistrano_git_identity_key_path }}"
     dest: "{{ ansistrano_deploy_to }}/git_identity_key"
     mode: 0400
