@@ -1,9 +1,11 @@
 ---
 # Update code deployment step
-- local_action:
-    set_fact ansistrano_release_version={{ lookup('pipe', 'date -u +%Y%m%d%H%M%SZ') }}
+- name: ANSISTRANO | Get release version
+  set_fact:
+    ansistrano_release_version: "{{ lookup('pipe', 'date -u +%Y%m%d%H%M%SZ') }}"
   run_once: true
   when: ansistrano_release_version is not defined
+  delegate_to: 127.0.0.1
 
 - name: ANSISTRANO | Get release path
   command: echo "{{ ansistrano_releases_path.stdout }}/{{ ansistrano_release_version }}"
