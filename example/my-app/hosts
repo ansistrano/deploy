@@ -1,1 +1,2 @@
-my-server.com ansible_ssh_user=root
+web01 ansible_user=vagrant ansible_port=2222 ansible_host=127.0.0.1 ansible_ssh_pass=vagrant
+web02 ansible_user=vagrant ansible_port=2200 ansible_host=127.0.0.1 ansible_ssh_pass=vagrant
