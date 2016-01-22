@@ -42,6 +42,8 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Uvinum](http://www.uvinum.com)
 * [Cycloid](http://www.cycloid.io)
 * [Spotahome](https://www.spotahome.com)
+* [Ofertix](http://www.ofertix.com)
+* [Nice&Crazy](http://www.niceandcrazy.com)
 
 If you are also using it, please let us know via a PR to this document.
 
