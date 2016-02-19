@@ -11,6 +11,10 @@ ansistrano_version_dir: "releases"
 # Softlink name for the current release
 ansistrano_current_dir: "current"
 
+# Whether the softlink should be made absolute or relative to ansistrano_deploy_to.
+# Change to "yes" to use relative link.
+ansistrano_relative_softlinks: no
+
 # Shared paths to symlink to release dir
 ansistrano_shared_paths: []
 
