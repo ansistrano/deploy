@@ -44,6 +44,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Spotahome](https://www.spotahome.com)
 * [Ofertix](http://www.ofertix.com)
 * [Nice&Crazy](http://www.niceandcrazy.com)
+* [Gstock](http://www.g-stock.es)
 
 If you are also using it, please let us know via a PR to this document.
 
