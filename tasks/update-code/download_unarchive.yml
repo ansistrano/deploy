@@ -1,0 +1,7 @@
+---
+- include: download.yml
+
+- name: ANSISTRANO | download_unarchive | Set archived file
+  set_fact: ansistrano_archived_file={{ ansistrano_release_path.stdout }}/{{ ansistrano_get_url | basename }}
+
+- include: unarchive.yml

@@ -116,6 +116,9 @@ Role Variables
   ansistrano_git_branch: master # What version of the repository to check out. This can be the full 40-character SHA-1 hash, the literal string HEAD, a branch name, or a tag name
   ansistrano_git_identity_key_path: "" # If specified this file is copied over and used as the identity key for the git commands, path is relative to the playbook in which it is used
 
+  # Variables used in the download deployment strategy
+  ansistrano_get_url: https://github.com/someproject/somearchive.tar.gz
+
   # Variables used in the S3 deployment strategy
   ansistrano_s3_bucket: s3bucket
   ansistrano_s3_object: s3object.tgz
