@@ -36,6 +36,9 @@ ansistrano_rsync_extra_params: ""
 ## you should set this parameter to "no".
 ansistrano_rsync_set_remote_user: yes
 
+## Download strategy
+ansistrano_get_url: https://github.com/someproject/somearchive.tar.gz
+
 ## S3 get strategy
 ansistrano_s3_bucket: s3bucket
 ansistrano_s3_object: s3object.tgz
