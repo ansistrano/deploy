@@ -11,7 +11,7 @@ ansistrano_version_dir: "releases"
 # Softlink name for the current release
 ansistrano_current_dir: "current"
 
-# Current directorty deployment strategy
+# Current directory deployment strategy
 ansistrano_current_via: "symlink"
 
 # Shared paths to symlink to release dir
