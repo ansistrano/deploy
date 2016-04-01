@@ -1,6 +1,10 @@
 ---
 - name: ANSISTRANO | SCP | Create release folder
-  file: state=directory path={{ ansistrano_release_path.stdout }}
+  file:
+    state: directory
+    path: "{{ ansistrano_release_path.stdout }}"
 
 - name: ANSISTRANO | SCP | Deploy existing code to remote servers
-  copy: src={{ ansistrano_deploy_from }} dest={{ ansistrano_release_path.stdout }}
+  copy:
+    src: "{{ ansistrano_deploy_from }}"
+    dest: "{{ ansistrano_release_path.stdout }}"
