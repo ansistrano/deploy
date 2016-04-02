@@ -30,5 +30,5 @@ script:
   - ansible-playbook -i test/inventory test/main.yml --syntax-check
   - cd test && make
 
-notifications:
-  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+#notifications:
+#  webhooks: https://galaxy.ansible.com/api/v1/notifications/
