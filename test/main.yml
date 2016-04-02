@@ -7,7 +7,7 @@
       - name: iptables_host_1
         image: "chrismeyers/centos6"
   roles:
-    - { role: provision_docker, provision_docker_company: 'ansible', provision_docker_inventory: "{{ inventory }}" }
+    - { role: chrismeyersfsu.provision_docker, provision_docker_company: 'ansible', provision_docker_inventory: "{{ inventory }}" }
 
 - name: Run ansistrano-deploy Tests
   hosts: docker_containers
