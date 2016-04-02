@@ -11,10 +11,6 @@
 
 - name: Run ansistrano-deploy Tests
   hosts: docker_containers
-  vars:
-    ports: [22, 1025, 1026]
-  roles:
-    - { role: iptables, iptables_allowed_tcp_ports: "{{ ports }}" }
   tasks:
     - name: Test ports
       command: 'echo "hello world"'
