@@ -105,7 +105,7 @@ Role Variables
   ansistrano_current_dir: "current" # Softlink name. You should rarely changed it.
   ansistrano_shared_paths: [] # Shared paths to symlink to release dir
   ansistrano_keep_releases: 0 # Releases to keep after a new deployment. See "Pruning old releases".
-  ansistrano_deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync, git or s3
+  ansistrano_deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync, git, s3 or download.
   ansistrano_allow_anonymous_stats: yes
 
   # Variables used in the rsync deployment strategy
@@ -122,7 +122,7 @@ Role Variables
 
   # Variables used in the S3 deployment strategy
   ansistrano_s3_bucket: s3bucket
-  ansistrano_s3_object: s3object.tgz
+  ansistrano_s3_object: s3object.tgz # Add the _unarchive suffix to the ansistrano_deploy_via if your object is a package (ie: s3_unarchive)
   ansistrano_s3_region: eu-west-1
   # Optional variables, omitted by default
   ansistrano_s3_aws_access_key: YOUR_AWS_ACCESS_KEY
