@@ -28,7 +28,8 @@ install:
   - ansible-galaxy install chrismeyersfsu.provision_docker
 
 script:
-  - ansible-playbook -i test/inventory test/main.yml
+  - echo localhost > inventory
+  - ansible-playbook -i inventory --connection=local --sudo -vvvv test/main.yml
   #- cd test && make
 
 #notifications:
