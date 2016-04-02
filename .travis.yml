@@ -1,10 +1,18 @@
 language: python
-python: "2.7"
+
+matrix:
+  include:
+    - python: "2.7"
+      env: ANSIBLE_VERSION=ppa:ansible/ansible
+    - python: "2.7"
+      env: ANSIBLE_VERSION=ppa:ansible/ansible-1.9
+
 before_install:
- - sudo apt-get update -qq
- - sudo apt-get install -qq python-apt python-pycurl
-install:
-  - pip install ansible
+ - sudo apt-get install software-properties-common
+ - sudo apt-add-repository $ANSIBLE_VERSION
+ - sudo apt-get update
+ - sudo apt-get install ansible
+
 script:
   - echo localhost > inventory
   - ansible-playbook -i inventory --connection=local --sudo -vv test/test.yml
