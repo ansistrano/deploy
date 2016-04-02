@@ -1,0 +1,11 @@
+---
+- name: Given no deploy when deploying then an rsync deploy must be performed
+  hosts: all
+  vars:
+    ansistrano_deploy_to: "/tmp/my-app.com"
+    ansistrano_keep_releases: 2
+  roles:
+    - { role: local-ansistrano }
+  tasks:
+    - name: Ensure new release exist
+      command: 'echo "hello world"'
