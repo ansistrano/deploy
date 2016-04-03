@@ -13,6 +13,7 @@ before_install:
  - sudo apt-add-repository -y $ANSIBLE_VERSION
  - sudo apt-get -y update
  - sudo apt-get -y install ansible
+ - ansible --version
 
 script:
  - echo localhost > inventory
