@@ -1,0 +1,15 @@
+---
+- name: ANSISTRANO | Ensure shared path 1 exists
+  file:
+    state: directory
+    path: "{{ ansistrano_deploy_to }}/shared/blah"
+
+- name: ANSISTRANO | Ensure shared path 2 exists
+  file:
+    state: directory
+    path: "{{ ansistrano_deploy_to }}/shared/foo/bar"
+
+- name: ANSISTRANO | Ensure shared path 3 exists
+  file:
+    state: directory
+    path: "{{ ansistrano_deploy_to }}/shared/xxx/yyy/zzz"
