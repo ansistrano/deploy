@@ -1,0 +1,11 @@
+---
+# We cannot create the symlinks unless these subfolders exist in the destination release folder
+- name: ANSISTRANO | Ensure internal path foo exists
+  file:
+    state: directory
+    path: "{{ ansistrano_release_path.stdout }}/foo"
+
+- name: ANSISTRANO | Ensure internal path xxx/yyy exists
+  file:
+    state: directory
+    path: "{{ ansistrano_release_path.stdout }}/xxx/yyy"

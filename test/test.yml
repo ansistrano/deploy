@@ -16,6 +16,12 @@
   hosts: all
   vars:
     ansistrano_deploy_to: "/tmp/my-app.com"
+    ansistrano_after_setup_tasks_file: "{{ playbook_dir }}/roles/tasks/create-shared-paths.yml"
+    ansistrano_after_update_code_tasks_file: "{{ playbook_dir }}/roles/tasks/create-internal-paths.yml"
+    ansistrano_shared_paths:
+      - blah
+      - foo/bar
+      - xxx/yyy/zzz
   roles:
     - { role: local-ansistrano }
 
