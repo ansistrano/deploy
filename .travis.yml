@@ -1,11 +1,12 @@
-language: python
+---
+sudo: required
+dist: trusty
+language: generic
 
 matrix:
   include:
-    - python: "2.7"
-      env: ANSIBLE_VERSION=ppa:ansible/ansible
-    - python: "2.7"
-      env: ANSIBLE_VERSION=ppa:ansible/ansible-1.9
+    - env: ANSIBLE_VERSION=ppa:ansible/ansible
+    - env: ANSIBLE_VERSION=ppa:ansible/ansible-1.9
 
 before_install:
  - sudo apt-get -y install software-properties-common
@@ -14,5 +15,5 @@ before_install:
  - sudo apt-get -y install ansible
 
 script:
-  - echo localhost > inventory
-  - ansible-playbook -i inventory --connection=local --sudo -vv test/test.yml
+ - echo localhost > inventory
+ - ansible-playbook -i inventory --connection=local --sudo -vv test/test.yml
