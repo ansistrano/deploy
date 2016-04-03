@@ -8,10 +8,10 @@ matrix:
       env: ANSIBLE_VERSION=ppa:ansible/ansible-1.9
 
 before_install:
- - sudo apt-get -qq -y install software-properties-common
+ - sudo apt-get -y install software-properties-common
  - sudo apt-add-repository -y $ANSIBLE_VERSION
- - sudo apt-get -qq -y update
- - sudo apt-get -qq -y install ansible
+ - sudo apt-get -y update
+ - sudo apt-get -y install ansible
 
 script:
   - echo localhost > inventory
