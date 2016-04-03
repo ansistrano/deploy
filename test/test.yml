@@ -1,11 +1,36 @@
 ---
-- name: Given no deploy when deploying then an rsync deploy must be performed
+- name: Given no previous deploy
   hosts: all
   vars:
     ansistrano_deploy_to: "/tmp/my-app.com"
-    ansistrano_keep_releases: 2
+  tasks:
+    - name: Assert ansistrano_deploy_to path does not exist
+      stat:
+        path: "{{ ansistrano_deploy_to }}"
+      register: st
+    - debug:
+        msg: "Path does not exist and is a directory"
+      when: st.stat.exists is defined and !st.stat.exists
+
+- name: When deploying
+  hosts: all
+  vars:
+    ansistrano_deploy_to: "/tmp/my-app.com"
   roles:
     - { role: local-ansistrano }
   tasks:
-    - name: Ensure new release exist
+    - name: Assert deploy_to path
       command: 'echo "hello world"'
+
+- name: Then a successful deploy with rsync should be done
+  hosts: all
+  vars:
+    ansistrano_deploy_to: "/tmp/my-app.com"
+  tasks:
+    - name: Assert ansistrano_deploy_to path does exist
+      stat:
+        path: "{{ ansistrano_deploy_to }}"
+      register: st
+    - debug:
+        msg: "Path exists and is a directory"
+      when: st.stat.exists is defined and !st.stat.exists
