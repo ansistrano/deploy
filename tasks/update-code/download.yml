@@ -7,4 +7,4 @@
 - name: ANSISTRANO | download | Download artifact
   get_url:
     url: "{{ ansistrano_get_url }}"
-    dest: "{{ ansistrano_release_path.stdout }}"
+    dest: "{{ ansistrano_release_path.stdout }}/{{ ansistrano_get_url | basename }}"
