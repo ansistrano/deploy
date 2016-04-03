@@ -18,9 +18,6 @@
     ansistrano_deploy_to: "/tmp/my-app.com"
   roles:
     - { role: local-ansistrano }
-  tasks:
-    - name: Assert deploy_to path
-      command: 'echo "hello world"'
 
 - name: Then a successful deploy with rsync should be done
   hosts: all
