@@ -33,4 +33,4 @@
       register: st
     - debug:
         msg: "Path exists and is a directory"
-      when: st.stat.exists is defined and !st.stat.exists
+      when: st.stat.exists is defined and st.stat.exists
