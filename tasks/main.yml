@@ -24,6 +24,10 @@
 - include: "{{ ansistrano_before_symlink_tasks_file | default('empty.yml') }}"
 
 - include: symlink.yml
+  when: ansistrano_current_via == "symlink"
+
+- include: rsync-deploy.yml
+  when: ansistrano_current_via == "rsync"
 
 - include: "{{ ansistrano_after_symlink_tasks_file | default('empty.yml') }}"
 
