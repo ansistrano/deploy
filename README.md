@@ -393,6 +393,7 @@ quepimquepam.com           : ok=14   changed=10   unreachable=0    failed=0
 They're talking about us
 ------------------------
 
+* [http://alexmoreno.net/ansistrano-deploying-drupal-ansible](http://alexmoreno.net/ansistrano-deploying-drupal-ansible)
 * [http://www.ricardclau.com/2015/10/deploying-php-applications-with-ansistrano/](http://www.ricardclau.com/2015/10/deploying-php-applications-with-ansistrano/)
 * [http://es.slideshare.net/OrestesCA/ansible-intro-ansible-barcelona-user-group-june-2015](http://es.slideshare.net/OrestesCA/ansible-intro-ansible-barcelona-user-group-june-2015)
 * [http://carlosbuenosvinos.com/deploying-symfony-and-php-apps-with-ansistrano/](http://carlosbuenosvinos.com/deploying-symfony-and-php-apps-with-ansistrano/)
