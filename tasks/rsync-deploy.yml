@@ -27,5 +27,5 @@
   file:
     state: link
     path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}/{{ item }}"
-    src: "{{ item | regex_replace('[^\/]*', '..') }}/shared/{{ item }}"
+    src: "{{ item | regex_replace('[^\\/]*', '..') }}/shared/{{ item }}"
   with_items: "{{ ansistrano_shared_paths }}"
