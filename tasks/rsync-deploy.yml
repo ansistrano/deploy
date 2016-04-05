@@ -1,5 +1,12 @@
 ---
 
+# Remove previous .rsync-filter file
+- name: ANSISTRANO | Ensure .rsync-filter is absent
+  file:
+    state: absent
+    path: "{{ ansistrano_release_path.stdout }}/.rsync-filter"
+
+# Setup .rsync-filter file for current rsync deployment (exclude shared folders)
 - name: ANSISTRANO | Setup .rsync-filter with shared-folders
   lineinfile:
     dest: "{{ ansistrano_release_path.stdout }}/.rsync-filter"
