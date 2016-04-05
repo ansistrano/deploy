@@ -1,4 +1,12 @@
 ---
+
+- name: ANSISTRANO | Setup .rsync-filter with shared-folders
+  lineinfile:
+    dest: "{{ ansistrano_release_path.stdout }}/.rsync-filter"
+    line: "- /{{ item }}"
+    create: yes
+  with_items: "{{ ansistrano_shared_paths }}"
+
 # Perform rsync deployment
 - name: ANSISTRANO | Ensure current folder is a directory
   file:
