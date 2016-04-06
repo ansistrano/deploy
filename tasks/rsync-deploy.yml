@@ -1,5 +1,16 @@
 ---
 
+# Migration check from symlink deployment
+- stat:
+    path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}"
+  register: stat_current_dir
+
+- name: ANSISTRANO | Remove current folder if it's a symlink
+  file:
+    state: absent
+    path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}"
+  when: stat_current_dir.stat.islnk is defined and stat_current_dir.stat.islnk
+
 # Perform rsync deployment
 - name: ANSISTRANO | Ensure current folder is a directory
   file:
