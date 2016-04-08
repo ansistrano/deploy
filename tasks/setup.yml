@@ -15,10 +15,10 @@
     path: "{{ ansistrano_releases_path.stdout }}"
 
 - name: ANSISTRANO | Set shared path
-  command: echo "{{ ansistrano_deploy_to }}/shared"
-  register: ansistrano_shared_path
+  set_fact: ansistrano_shared_path="{{ ansistrano_deploy_to }}/shared"
+  when: ansistrano_shared_path is undefined
 
 - name: ANSISTRANO | Ensure shared elements folder exists
   file:
     state: directory
-    path: "{{ ansistrano_shared_path.stdout }}"
+    path: "{{ ansistrano_shared_path }}"

@@ -3,13 +3,13 @@
 - name: ANSISTRANO | Ensure shared paths targets are absent
   file:
     state: absent
-    path: "{{ ansistrano_release_path.stdout }}/{{ item }}"
+    path: "{{ ansistrano_release_path.stdout }}/{{ item.path }}"
   with_items: "{{ ansistrano_shared_paths }}"
 
 # Symlinks shared paths
 - name: ANSISTRANO | Create softlinks for shared paths
   file:
     state: link
-    path: "{{ ansistrano_release_path.stdout }}/{{ item }}"
-    src: "{{ item | regex_replace('[^\\/]*', '..') }}/../shared/{{ item }}"
+    path: "{{ ansistrano_release_path.stdout }}/{{ item.path }}"
+    src: "{{ ansistrano_shared_path }}/{{ item.src }}"
   with_items: "{{ ansistrano_shared_paths }}"
