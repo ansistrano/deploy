@@ -1,2 +1,2 @@
-web01 ansible_user=vagrant ansible_port=2222 ansible_host=127.0.0.1 ansible_ssh_pass=vagrant
-web02 ansible_user=vagrant ansible_port=2200 ansible_host=127.0.0.1 ansible_ssh_pass=vagrant
+web01 ansible_user=vagrant ansible_port=2222 ansible_host=127.0.0.1 ansible_ssh_private_key_file=../../.vagrant/machines/web01/virtualbox/private_key
+web02 ansible_user=vagrant ansible_port=2200 ansible_host=127.0.0.1 ansible_ssh_private_key_file=../../.vagrant/machines/web02/virtualbox/private_key
