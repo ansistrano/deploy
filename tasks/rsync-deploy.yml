@@ -27,6 +27,13 @@
     archive: yes
   delegate_to: "{{ inventory_hostname }}"
 
+# Ensure symlinks target paths is absent
+- name: ANSISTRANO | Ensure shared paths targets are absent
+  file:
+    state: absent
+    path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}/{{ item }}"
+  with_items: "{{ ansistrano_shared_paths }}"
+
 # Symlinks shared paths
 - name: ANSISTRANO | Create softlinks for shared paths
   file:
