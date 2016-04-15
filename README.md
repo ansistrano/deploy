@@ -48,6 +48,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Nice&Crazy](http://www.niceandcrazy.com)
 * [Gstock](http://www.g-stock.es)
 * [CMP Group](http://www.teamcmp.com)
+* [Jolicode](http://jolicode.com/)
 
 If you are also using it, please let us know via a PR to this document.
 
