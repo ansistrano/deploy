@@ -37,6 +37,53 @@
     - debug:
         msg: "Path exists and is a directory"
       when: st.stat.exists is defined and st.stat.exists
+    - name: Assert ansistrano_deploy_to/current path does exist
+      stat:
+        path: "{{ ansistrano_deploy_to }}/current"
+      register: st
+    - fail:
+        msg: "Path is not a symlink"
+      when: st.stat.exists is defined and st.stat.exists and st.stat.islnk == False
+    - debug:
+        msg: "Path exists and is a symlink"
+      when: st.stat.exists is defined and st.stat.exists and st.stat.islnk
+
+- name: When deploying with rsync current strategy
+  hosts: all
+  vars:
+    ansistrano_deploy_to: "/tmp/my-app.com"
+    ansistrano_after_setup_tasks_file: "{{ playbook_dir }}/tasks/create-shared-paths.yml"
+    ansistrano_after_update_code_tasks_file: "{{ playbook_dir }}/tasks/create-internal-paths.yml"
+    ansistrano_current_via: "rsync"
+    ansistrano_shared_paths:
+      - blah
+      - foo/bar
+      - xxx/yyy/zzz
+  roles:
+    - { role: local-ansistrano }
+
+- name: Then a successful deploy with rsync should be done
+  hosts: all
+  vars:
+    ansistrano_deploy_to: "/tmp/my-app.com"
+  tasks:
+    - name: Assert ansistrano_deploy_to path does exist
+      stat:
+        path: "{{ ansistrano_deploy_to }}"
+      register: st
+    - debug:
+        msg: "Path exists and is a directory"
+      when: st.stat.exists is defined and st.stat.exists
+    - name: Assert ansistrano_deploy_to/current path does exist
+      stat:
+        path: "{{ ansistrano_deploy_to }}/current"
+      register: st
+    - fail:
+        msg: "Path is not a directory"
+      when: st.stat.exists is defined and st.stat.exists and st.stat.isdir == False
+    - debug:
+        msg: "Path exists and is a directory"
+      when: st.stat.exists is defined and st.stat.exists and st.stat.isdir
 
 - name: Given no previous deploy with Git
   hosts: all
