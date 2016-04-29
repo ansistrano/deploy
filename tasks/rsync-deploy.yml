@@ -18,7 +18,7 @@
     path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}"
 
 - name: ANSISTRANO | Sync release to new current path
-  command: rsync -a -F --delete-after "{{ ansistrano_release_path.stdout }}/" "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}/"
+  command: rsync -a -F --no-times --delete-after "{{ ansistrano_release_path.stdout }}/" "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}/"
 
 # Ensure symlinks target paths is absent
 - name: ANSISTRANO | Ensure shared paths targets are absent
