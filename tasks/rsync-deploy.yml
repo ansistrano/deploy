@@ -1,4 +1,16 @@
 ---
+
+# Migration check from symlink deployment
+- stat:
+    path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}"
+  register: stat_current_dir
+
+- name: ANSISTRANO | Remove current folder if it's a symlink
+  file:
+    state: absent
+    path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}"
+  when: stat_current_dir.stat.islnk is defined and stat_current_dir.stat.islnk
+
 # Perform rsync deployment
 - name: ANSISTRANO | Ensure current folder is a directory
   file:
@@ -6,14 +18,7 @@
     path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}"
 
 - name: ANSISTRANO | Sync release to new current path
-  synchronize:
-    src: "{{ ansistrano_release_path.stdout }}/"
-    dest: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}/"
-    set_remote_user: "{{ ansistrano_rsync_set_remote_user }}"
-    recursive: yes
-    delete: yes
-    archive: yes
-  delegate_to: "{{ inventory_hostname }}"
+  command: rsync -a -F --no-times --delete-after "{{ ansistrano_release_path.stdout }}/" "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}/"
 
 # Ensure symlinks target paths is absent
 - name: ANSISTRANO | Ensure shared paths targets are absent
