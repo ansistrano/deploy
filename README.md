@@ -49,6 +49,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Gstock](http://www.g-stock.es)
 * [CMP Group](http://www.teamcmp.com)
 * [Jolicode](http://jolicode.com/)
+* [Wavecontrol](http://monitoring.wavecontrol.com/ca/public/demo/)
 
 If you are also using it, please let us know via a PR to this document.
 
