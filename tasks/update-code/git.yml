@@ -23,6 +23,7 @@
     version: "{{ ansistrano_git_branch }}"
     accept_hostkey: true
     update: yes
+    force: yes
     key_file: "{{ ansistrano_deploy_to }}/git_identity_key"
   when: ansistrano_git_identity_key_path|trim != ""
 
