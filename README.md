@@ -50,6 +50,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [CMP Group](http://www.teamcmp.com)
 * [Jolicode](http://jolicode.com/)
 * [Wavecontrol](http://monitoring.wavecontrol.com/ca/public/demo/)
+* [EnAlquiler](http://www.enalquiler.com/)
 
 If you are also using it, please let us know via a PR to this document.
 
