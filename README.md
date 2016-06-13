@@ -51,6 +51,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Jolicode](http://jolicode.com/)
 * [Wavecontrol](http://monitoring.wavecontrol.com/ca/public/demo/)
 * [EnAlquiler](http://www.enalquiler.com/)
+* [ABA English](http://www.abaenglish.com/)
 
 If you are also using it, please let us know via a PR to this document.
 
