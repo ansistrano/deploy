@@ -14,6 +14,7 @@
     accept_hostkey: true
     update: yes
     force: yes
+  register: ansistrano_git_commit_sha
   when: ansistrano_git_identity_key_path|trim == ''
 
 - name: ANSISTRANO | GIT | Update remote repository using SSH key
@@ -25,6 +26,7 @@
     update: yes
     force: yes
     key_file: "{{ ansistrano_deploy_to }}/git_identity_key"
+  register: ansistrano_git_commit_sha
   when: ansistrano_git_identity_key_path|trim != ""
 
 - name: ANSISTRANO | GIT | Export a copy of the repo
