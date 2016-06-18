@@ -1,0 +1,11 @@
+---
+- name: Deploy example app to my-server.com
+  hosts: all
+  vars:
+    ansistrano_deploy_from: "{{ playbook_dir }}/../my-app"
+    ansistrano_deploy_to: "/tmp/my-app.com"
+    ansistrano_keep_releases: 3
+    # There seems to be an issue with rsync in vagrant
+    ansistrano_deploy_via: copy
+  roles:
+    - { role: carlosbuenosvinos.ansistrano-deploy }

@@ -312,12 +312,25 @@ See how the release `20100509145325` has been removed.
 Example Playbook
 ----------------
 
-In the folder, `example` you can check an example project that shows how to deploy with Ansistrano. In order to run it, you should:
+In the folder, `example` you can check an example project that shows how to deploy a small application with Ansistrano. 
+
+In order to run it, you will need to have Vagrant and the ansistrano roles installed. Please check https://www.vagrantup.com for more information about Vagrant and our Installation section.
 
 ```
-$ cd example
+$ cd example/my-playbook
+$ vagrant up
 $ ansible-playbook -i hosts deploy.yml
 ```
+
+And after running these commands, the index.html located in the `my-app` folder will be deployed to both vagrant boxes
+
+In order to test the rollback playbook, you will need to run deploy.yml at least twice (so that there is something to rollback to). And once this is done, you only need to run
+
+```
+$ ansible-playbook -i hosts rollback.yml
+```
+
+You can check more advanced examples inside the test folder which are run against Travis-CI
 
 Sample projects
 ---------------
