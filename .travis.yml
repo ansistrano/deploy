@@ -1,18 +1,17 @@
 ---
 sudo: required
 dist: trusty
-language: generic
 
 matrix:
   include:
-    - env: ANSIBLE_VERSION=ppa:ansible/ansible
-    - env: ANSIBLE_VERSION=ppa:ansible/ansible-1.9
+    - env: ANSIBLE_VERSION=1.8.4
+    - env: ANSIBLE_VERSION=1.9.5
+    - env: ANSIBLE_VERSION=2.1.0
 
 before_install:
  - sudo apt-get -y install software-properties-common
- - sudo apt-add-repository -y $ANSIBLE_VERSION
- - sudo apt-get -y update
- - sudo apt-get -y install ansible
+ - sudo apt-get -y install python-pip
+ - sudo pip install ansible==$ANSIBLE_VERSION
  - ansible --version
 
 script:
