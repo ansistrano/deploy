@@ -107,10 +107,11 @@ Role Variables
 - vars:
   ansistrano_deploy_from: "{{ playbook_dir }}" # Where my local project is (relative or absolute path)
   ansistrano_deploy_to: "/var/www/my-app" # Base path to deploy to.
+  ansistrano_shared_path: "{{ ansistrano_deploy_to }}/shared"
   ansistrano_version_dir: "releases" # Releases folder name
   ansistrano_current_dir: "current" # Softlink name. You should rarely changed it.
   ansistrano_current_via: "symlink" # Deployment strategy who code should be deployed to current path. Options are symlink or rsync
-  ansistrano_shared_paths: [] # Shared paths to symlink to release dir
+  ansistrano_shared_paths: [] # Shared paths to symlink to release dir, use hashes with keys "src" and "path", eg. { src: "static", path: "public/static" }
   ansistrano_keep_releases: 0 # Releases to keep after a new deployment. See "Pruning old releases".
   ansistrano_deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync, git, s3 or download.
   ansistrano_allow_anonymous_stats: yes
