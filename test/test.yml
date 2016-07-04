@@ -23,6 +23,8 @@
       - blah
       - foo/bar
       - xxx/yyy/zzz
+    ansistrano_shared_files:
+      - test.txt
   roles:
     - { role: local-ansistrano }
 
