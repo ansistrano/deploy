@@ -13,8 +13,8 @@
     path: "{{ ansistrano_deploy_to }}/shared/{{ item | dirname }}"
   with_items: "{{ ansistrano_shared_files }}"
 
-# Symlinks shared paths
-- name: ANSISTRANO | Create softlinks for shared paths
+# Symlinks shared paths and files
+- name: ANSISTRANO | Create softlinks for shared paths and files
   file:
     state: link
     path: "{{ ansistrano_release_path.stdout }}/{{ item }}"
