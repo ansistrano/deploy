@@ -17,6 +17,9 @@ ansistrano_current_via: "symlink"
 # Shared paths to symlink to release dir
 ansistrano_shared_paths: []
 
+# Shared files to symlink to release dir
+ansistrano_shared_files: []
+
 # Number of releases to keep in your hosts, if 0, unlimited releases will be kept
 ansistrano_keep_releases: 0
 
