@@ -13,3 +13,13 @@
   file:
     state: directory
     path: "{{ ansistrano_deploy_to }}/shared/xxx/yyy/zzz"
+
+- name: ANSISTRANO | Ensure shared file 1 exists
+  file:
+    state: touch
+    path: "{{ ansistrano_deploy_to }}/shared/test.txt"
+
+- name: ANSISTRANO | Ensure shared file 2 exists
+  file:
+    state: touch
+    path: "{{ ansistrano_deploy_to }}/shared/foo/test.txt"

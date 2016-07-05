@@ -23,6 +23,9 @@
       - blah
       - foo/bar
       - xxx/yyy/zzz
+    ansistrano_shared_files:
+      - test.txt
+      - foo/test.txt
   roles:
     - { role: local-ansistrano }
 
