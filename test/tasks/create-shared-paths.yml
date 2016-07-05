@@ -22,7 +22,7 @@
 - name: ANSISTRANO | Ensure shared files folder exists
   file:
     state: directory
-    path: "{{ ansistrano_deploy_to }}/shared/files
+    path: "{{ ansistrano_deploy_to }}/shared/files"
 
 - name: ANSISTRANO | Ensure shared file 2 exists
   file:
