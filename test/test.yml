@@ -25,7 +25,7 @@
       - xxx/yyy/zzz
     ansistrano_shared_files:
       - test.txt
-      - foo/test.txt
+      - files/test.txt
   roles:
     - { role: local-ansistrano }
 
@@ -62,6 +62,9 @@
       - blah
       - foo/bar
       - xxx/yyy/zzz
+    ansistrano_shared_files:
+      - test.txt
+      - files/test.txt
   roles:
     - { role: local-ansistrano }
 
@@ -77,6 +80,9 @@
       - blah
       - foo/bar
       - xxx/yyy/zzz
+    ansistrano_shared_files:
+      - test.txt
+      - files/test.txt
   roles:
     - { role: local-ansistrano }
 
@@ -114,6 +120,9 @@
       - blah
       - foo/bar
       - xxx/yyy/zzz
+    ansistrano_shared_files:
+      - test.txt
+      - files/test.txt
   roles:
     - { role: local-ansistrano }
 

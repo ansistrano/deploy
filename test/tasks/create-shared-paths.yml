@@ -19,7 +19,12 @@
     state: touch
     path: "{{ ansistrano_deploy_to }}/shared/test.txt"
 
+- name: ANSISTRANO | Ensure shared files folder exists
+  file:
+    state: directory
+    path: "{{ ansistrano_deploy_to }}/shared/files
+
 - name: ANSISTRANO | Ensure shared file 2 exists
   file:
     state: touch
-    path: "{{ ansistrano_deploy_to }}/shared/foo/test.txt"
+    path: "{{ ansistrano_deploy_to }}/shared/files/test.txt"

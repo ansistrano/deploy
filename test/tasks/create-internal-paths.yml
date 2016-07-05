@@ -9,3 +9,8 @@
   file:
     state: directory
     path: "{{ ansistrano_release_path.stdout }}/xxx/yyy"
+
+- name: ANSISTRANO | Ensure internal path files exists
+  file:
+    state: directory
+    path: "{{ ansistrano_release_path.stdout }}/files"
