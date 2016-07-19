@@ -173,6 +173,54 @@
   roles:
     - { role: local-ansistrano }
 
+- name: When deploying using Git (repo_tree with Single-Layer folder)
+  hosts: all
+  vars:
+    ansistrano_deploy_via: "git"
+    ansistrano_git_repo: https://github.com/ansistrano/deploy.git
+    ansistrano_git_branch: master
+    ansistrano_git_repo_tree: test
+    ansistrano_deploy_to: "/tmp/git/my-app.com"
+  pre_tasks:
+    - name: Clear ansistrano_deploy_to
+      file:
+        path: "{{ ansistrano_deploy_to }}"
+        state: absent
+  roles:
+    - { role: local-ansistrano }
+  tasks:
+    - name: Assert ansistrano_deploy_to/current/test.yml file does exist
+      stat:
+        path: "{{ ansistrano_deploy_to }}/current/test.yml"
+      register: st
+    - fail:
+        msg: "File not exists"
+      when: st.stat.exists is not defined or st.stat.exists == False or st.stat.isdir == True
+
+- name: When deploying using Git (repo_tree with Multi-Layer folder)
+  hosts: all
+  vars:
+    ansistrano_deploy_via: "git"
+    ansistrano_git_repo: https://github.com/ansistrano/deploy.git
+    ansistrano_git_branch: master
+    ansistrano_git_repo_tree: test/roles/
+    ansistrano_deploy_to: "/tmp/git/my-app.com"
+  pre_tasks:
+    - name: Clear ansistrano_deploy_to
+      file:
+        path: "{{ ansistrano_deploy_to }}"
+        state: absent
+  roles:
+    - { role: local-ansistrano }
+  tasks:
+    - name: Assert ansistrano_deploy_to/current/local-ansistrano symbolic link does exist
+      stat:
+        path: "{{ ansistrano_deploy_to }}/current/local-ansistrano"
+      register: st
+    - fail:
+        msg: "Symbolic link not exists"
+      when: st.stat.exists is not defined or st.stat.exists == False or st.stat.islnk == False
+
 # Tests for download strategy
 - name: Given no previous deploy with download strategy
   hosts: all
