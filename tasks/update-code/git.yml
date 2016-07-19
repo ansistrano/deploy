@@ -30,7 +30,7 @@
   when: ansistrano_git_identity_key_path|trim != ""
 
 - name: ANSISTRANO | GIT | Shred GIT deployment key
-  command: "shred -f {{ ansistrano_deploy_to }}/git_identity_key"
+  command: shred -f "{{ ansistrano_deploy_to }}/git_identity_key"
   when: ansistrano_git_identity_key_path|trim != ""
 
 - name: ANSISTRANO | GIT | Export a copy of the repo
