@@ -115,6 +115,7 @@ Role Variables
   ansistrano_keep_releases: 0 # Releases to keep after a new deployment. See "Pruning old releases".
   ansistrano_deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync, git, s3 or download.
   ansistrano_allow_anonymous_stats: yes
+  ansistrano_cleanup_become: no # Cleanup old releases with root privileges.
 
   # Variables used in the rsync deployment strategy
   ansistrano_rsync_extra_params: "" # Extra parameters to use when deploying with rsync in a single string. Although Ansible allows an array this can cause problems if we try to add multiple --include args as it was reported in https://github.com/ansistrano/deploy/commit/e98942dc969d4e620313f00f003a7ea2eab67e86
