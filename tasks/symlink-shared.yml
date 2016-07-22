@@ -1,4 +1,15 @@
 ---
+# Ensure symlinks target paths is absent
+# This was removed in 1.7.3 to improve speed but it introduced regressions in cases where 
+# there are .gitkeep files in such folders (common practice in some PHP frameworks)
+- name: ANSISTRANO | Ensure shared paths targets are absent
+  file:
+    state: absent
+    path: "{{ ansistrano_release_path.stdout }}/{{ item }}"
+  with_flattened:
+    - "{{ ansistrano_shared_paths }}"
+    - "{{ ansistrano_shared_files }}"
+
 # Ensure shared path exists
 - name: ANSISTRANO | Ensure shared paths exists
   file:
@@ -19,7 +30,6 @@
     state: link
     path: "{{ ansistrano_release_path.stdout }}/{{ item }}"
     src: "{{ item | regex_replace('[^\\/]*', '..') }}/../shared/{{ item }}"
-    force: yes
   with_flattened:
     - "{{ ansistrano_shared_paths }}"
     - "{{ ansistrano_shared_files }}"
