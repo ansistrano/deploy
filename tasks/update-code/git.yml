@@ -33,7 +33,23 @@
   command: shred -f "{{ ansistrano_deploy_to }}/git_identity_key"
   when: ansistrano_git_identity_key_path|trim != ""
 
-- name: ANSISTRANO | GIT | Export a copy of the repo
-  command: git checkout-index -f -a --prefix="{{ ansistrano_release_path.stdout }}/"
+- name: ANSISTRANO | GIT | Set git_real_repo_tree
+  set_fact:
+    ansistrano_git_real_repo_tree: "{{ ansistrano_git_repo_tree | trim | regex_replace('^[/]*', '') | regex_replace('[/]*$', '') }}"
+
+- name: ANSISTRANO | GIT | Create release folder
+  file:
+    state: directory
+    path: "{{ ansistrano_release_path.stdout }}"
+
+- name: ANSISTRANO | GIT | Archive and unarchive repo to release path
+  shell: git archive --format=tar {{ ansistrano_git_branch }} | tar -x -f - -C "{{ ansistrano_release_path.stdout }}"
   args:
     chdir: "{{ ansistrano_deploy_to }}/repo"
+  when: ansistrano_git_real_repo_tree == ""
+
+- name: ANSISTRANO | GIT | Archive and unarchive subtree["{{ ansistrano_git_real_repo_tree }}"] of repo to release path
+  shell: git archive --format=tar {{ ansistrano_git_branch }} "{{ ansistrano_git_real_repo_tree }}" | tar -x --strip-components "{{ ansistrano_git_real_repo_tree.split('/') | length }}" -f - -C "{{ ansistrano_release_path.stdout }}"
+  args:
+    chdir: "{{ ansistrano_deploy_to }}/repo"
+  when: ansistrano_git_real_repo_tree != ""

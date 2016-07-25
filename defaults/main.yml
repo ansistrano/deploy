@@ -33,6 +33,7 @@ ansistrano_keep_releases: 0
 ## GIT pull strategy
 ansistrano_git_repo: git@github.com:USERNAME/REPO.git
 ansistrano_git_branch: master
+ansistrano_git_repo_tree: ""
 ansistrano_git_identity_key_path: ""
 
 ## RSYNC push strategy
