@@ -413,6 +413,7 @@ quepimquepam.com           : ok=14   changed=10   unreachable=0    failed=0
 They're talking about us
 ------------------------
 
+* [Pablo Godel - Deploying Symfony - Symfony Cat 2016](https://youtu.be/K2bBhrkmpSg?t=26m)
 * [https://www.artansoft.com/2016/05/deploy-de-proyectos-php-ansistrano/](https://www.artansoft.com/2016/05/deploy-de-proyectos-php-ansistrano/)
 * [http://alexmoreno.net/ansistrano-deploying-drupal-ansible](http://alexmoreno.net/ansistrano-deploying-drupal-ansible)
 * [http://www.ricardclau.com/2015/10/deploying-php-applications-with-ansistrano/](http://www.ricardclau.com/2015/10/deploying-php-applications-with-ansistrano/)
