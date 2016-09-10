@@ -30,7 +30,7 @@
   when: ansistrano_git_identity_key_path|trim != ""
 
 - name: ANSISTRANO | GIT | Register ansistrano_git_result variable
-  set_fact: ansistrano_git_result={{ ansistrano_git_result_update_ssh if ansistrano_git_result_update.skipped else ansistrano_git_result_update }}
+  set_fact: ansistrano_git_result={{ ansistrano_git_result_update_ssh if ansistrano_git_result_update|skipped else ansistrano_git_result_update }}
 
 - name: ANSISTRANO | GIT | Shred GIT deployment key
   command: shred -f "{{ ansistrano_deploy_to }}/git_identity_key"
