@@ -14,7 +14,7 @@
     accept_hostkey: true
     update: yes
     force: yes
-  register: ansistrano_git_result
+  register: ansistrano_git_result_update
   when: ansistrano_git_identity_key_path|trim == ''
 
 - name: ANSISTRANO | GIT | Update remote repository using SSH key
@@ -26,8 +26,11 @@
     update: yes
     force: yes
     key_file: "{{ ansistrano_deploy_to }}/git_identity_key"
-  register: ansistrano_git_result
+  register: ansistrano_git_result_update_ssh
   when: ansistrano_git_identity_key_path|trim != ""
+
+- name: ANSISTRANO | GIT | Register ansistrano_git_result variable
+  set_fact: ansistrano_git_result={{ ansistrano_git_result_update_ssh if ansistrano_git_result_update|skipped else ansistrano_git_result_update }}
 
 - name: ANSISTRANO | GIT | Shred GIT deployment key
   command: shred -f "{{ ansistrano_deploy_to }}/git_identity_key"
