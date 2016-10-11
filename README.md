@@ -54,6 +54,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [ABA English](http://www.abaenglish.com/)
 * [Oferplan](http://oferplan.com/)
 * [Yubl](https://yubl.me/)
+* [Fluxus](http://www.fluxus.io/)
 * TechPump
 
 If you are also using it, please let us know via a PR to this document.
