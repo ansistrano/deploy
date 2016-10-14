@@ -56,6 +56,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Yubl](https://yubl.me/)
 * [Fluxus](http://www.fluxus.io/)
 * TechPump
+* [Nodo Ámbar](http://www.nodoambar.com/)
 
 If you are also using it, please let us know via a PR to this document.
 
