@@ -45,14 +45,16 @@
     state: directory
     path: "{{ ansistrano_release_path.stdout }}"
 
-- name: ANSISTRANO | GIT | Archive and unarchive repo to release path
-  shell: git archive --format=tar {{ ansistrano_git_branch }} | tar -x -f - -C "{{ ansistrano_release_path.stdout }}"
+- name: ANSISTRANO | GIT | Sync repo subtree["{{ ansistrano_git_real_repo_tree }}"] to release path
+  shell: >-
+           {
+             git ls-files --with-tree="{{ ansistrano_git_branch }}";
+             git submodule foreach --recursive --quiet 'git ls-files --with-tree="$sha1" | sed "s#^#$path/#"';
+           }
+           | grep "^$prefix"
+           | sed "s#^$prefix/##"
+           | rsync -a --files-from=- "./$prefix/" {{ ansistrano_release_path.stdout }}/
   args:
-    chdir: "{{ ansistrano_deploy_to }}/repo"
-  when: ansistrano_git_real_repo_tree == ""
-
-- name: ANSISTRANO | GIT | Archive and unarchive subtree["{{ ansistrano_git_real_repo_tree }}"] of repo to release path
-  shell: git archive --format=tar {{ ansistrano_git_branch }} "{{ ansistrano_git_real_repo_tree }}" | tar -x --strip-components "{{ ansistrano_git_real_repo_tree.split('/') | length }}" -f - -C "{{ ansistrano_release_path.stdout }}"
-  args:
-    chdir: "{{ ansistrano_deploy_to }}/repo"
-  when: ansistrano_git_real_repo_tree != ""
+    chdir: "{{ ansistrano_deploy_to }}/repo/"
+  environment:
+    prefix: "{{ ansistrano_git_real_repo_tree }}"
