@@ -3,3 +3,4 @@
 - include: git.yml
 - include: download.yml
 - include: svn.yml
+  when: ansible_version | version_compare(1.9.0, '>=')
