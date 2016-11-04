@@ -2,3 +2,4 @@
 - include: rsync.yml
 - include: git.yml
 - include: download.yml
+- include: svn.yml
