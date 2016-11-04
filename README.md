@@ -131,6 +131,13 @@ Role Variables
   ansistrano_git_repo_tree: "" # If specified the subtree of the repository to deploy
   ansistrano_git_identity_key_path: "" # If specified this file is copied over and used as the identity key for the git commands, path is relative to the playbook in which it is used
 
+  # Variables used in the SVN deployment strategy
+  ansistrano_svn_repo: "https://svn.company.com/project" # Location of the svn repository
+  ansistrano_svn_branch: "trunk" # What branch from the repository to check out.
+  ansistrano_svn_revision: "HEAD" # What revision from the repository to check out.
+  ansistrano_svn_username: "user" # SVN authentication username
+  ansistrano_svn_password: "Pa$$word" # SVN authentication password
+
   # Variables used in the download deployment strategy
   ansistrano_get_url: https://github.com/someproject/somearchive.tar.gz
 
