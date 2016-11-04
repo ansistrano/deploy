@@ -6,7 +6,6 @@
     revision: "{{ ansistrano_svn_revision }}"
     username: "{{ ansistrano_svn_username }}"
     password: "{{ ansistrano_svn_password }}"
-    update: yes
     force: yes
   register: ansistrano_svn_result_update
 
