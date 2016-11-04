@@ -16,7 +16,7 @@ before_install:
 
 script:
  - echo localhost > inventory
- - ansible-playbook -i inventory --connection=local --sudo -v test/test.yml
+ - ansible-playbook -i inventory --connection=local --sudo -v test/main.yml
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
