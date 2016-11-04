@@ -91,7 +91,7 @@ Features
 * Rollback in seconds (with ansistrano.rollback role)
 * Customize your deployment with hooks before and after critical steps
 * Save disk space keeping a maximum fixed releases in your hosts
-* Choose between SCP (push), RSYNC (push), GIT (pull), Download (HTTP Get) or S3 (get) deployment strategies
+* Choose between SCP, RSYNC, GIT, SVN, HTTP Download or S3 GET deployment strategies (optional unarchive step included)
 
 Main workflow
 -------------
