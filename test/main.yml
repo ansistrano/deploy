@@ -1,8 +1,9 @@
 ---
-- debug: var=ansible_version
-- debug: var={{ ansible_version | version_compare('1.9.0', operator='ge', strict=True) }}
 - include: rsync.yml
+
 - include: git.yml
+
 - include: download.yml
+
 - include: svn.yml
-  when: ansible_version | version_compare('1.9.0', operator='ge', strict=True)
+  when: ansible_version | version_compare('1.9', operator='ge')
