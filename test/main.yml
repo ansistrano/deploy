@@ -1,4 +1,4 @@
 ---
-- include: strategies/rsync.yml
-- include: strategies/git.yml
-- include: strategies/download.yml
+- include: rsync.yml
+- include: git.yml
+- include: download.yml
