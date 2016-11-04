@@ -62,9 +62,9 @@
   roles:
     - { role: local-ansistrano }
   tasks:
-    - name: Assert ansistrano_deploy_to/current/test.yml file does exist
+    - name: Assert ansistrano_deploy_to/current/main.yml file does exist
       stat:
-        path: "{{ ansistrano_deploy_to }}/current/test.yml"
+        path: "{{ ansistrano_deploy_to }}/current/main.yml"
       register: st
     - fail:
         msg: "File not exists"
