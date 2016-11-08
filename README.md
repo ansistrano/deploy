@@ -133,6 +133,7 @@ Role Variables
   ansistrano_git_identity_key_path: "" # If specified this file is copied over and used as the identity key for the git commands, path is relative to the playbook in which it is used
 
   # Variables used in the SVN deployment strategy
+  # Please note there was a bug in the subversion module in Ansible 1.8.x series (https://github.com/ansible/ansible-modules-core/issues/370) so it is only supported from Ansible 1.9
   ansistrano_svn_repo: "https://svn.company.com/project" # Location of the svn repository
   ansistrano_svn_branch: "trunk" # What branch from the repository to check out.
   ansistrano_svn_revision: "HEAD" # What revision from the repository to check out.
