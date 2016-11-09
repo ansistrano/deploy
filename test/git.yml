@@ -17,7 +17,7 @@
   hosts: all
   vars:
     ansistrano_deploy_via: "git"
-    ansistrano_git_repo: https://github.com/ansistrano/deploy.git
+    ansistrano_git_repo: https://github.com/ansistrano/git-test.git
     ansistrano_git_branch: master
     ansistrano_deploy_to: "/tmp/git/my-app.com"
   roles:
@@ -40,7 +40,7 @@
   hosts: all
   vars:
     ansistrano_deploy_via: "git"
-    ansistrano_git_repo: https://github.com/ansistrano/deploy.git
+    ansistrano_git_repo: https://github.com/ansistrano/git-test.git
     ansistrano_git_branch: master
     ansistrano_deploy_to: "/tmp/git/my-app.com"
   roles:
@@ -50,9 +50,9 @@
   hosts: all
   vars:
     ansistrano_deploy_via: "git"
-    ansistrano_git_repo: https://github.com/ansistrano/deploy.git
+    ansistrano_git_repo: https://github.com/ansistrano/git-test.git
     ansistrano_git_branch: master
-    ansistrano_git_repo_tree: test
+    ansistrano_git_repo_tree: foo
     ansistrano_deploy_to: "/tmp/git/my-app.com"
   pre_tasks:
     - name: Clear ansistrano_deploy_to
@@ -62,21 +62,21 @@
   roles:
     - { role: local-ansistrano }
   tasks:
-    - name: Assert ansistrano_deploy_to/current/main.yml file does exist
+    - name: Assert ansistrano_deploy_to/current/bar.html file does exist
       stat:
-        path: "{{ ansistrano_deploy_to }}/current/main.yml"
+        path: "{{ ansistrano_deploy_to }}/current/bar.html"
       register: st
     - fail:
-        msg: "File not exists"
+        msg: "File bar.html does not exist"
       when: st.stat.exists is not defined or st.stat.exists == False or st.stat.isdir == True
 
 - name: When deploying using Git (repo_tree with Multi-Layer folder)
   hosts: all
   vars:
     ansistrano_deploy_via: "git"
-    ansistrano_git_repo: https://github.com/ansistrano/deploy.git
+    ansistrano_git_repo: https://github.com/ansistrano/git-test.git
     ansistrano_git_branch: master
-    ansistrano_git_repo_tree: test/roles/
+    ansistrano_git_repo_tree: foo/baz/
     ansistrano_deploy_to: "/tmp/git/my-app.com"
   pre_tasks:
     - name: Clear ansistrano_deploy_to
@@ -86,10 +86,10 @@
   roles:
     - { role: local-ansistrano }
   tasks:
-    - name: Assert ansistrano_deploy_to/current/local-ansistrano symbolic link does exist
+    - name: Assert ansistrano_deploy_to/current/sub.html file does exist
       stat:
-        path: "{{ ansistrano_deploy_to }}/current/local-ansistrano"
+        path: "{{ ansistrano_deploy_to }}/current/sub.html"
       register: st
     - fail:
-        msg: "Symbolic link not exists"
-      when: st.stat.exists is not defined or st.stat.exists == False or st.stat.islnk == False
+        msg: "File sub.html does not exist"
+      when: st.stat.exists is not defined or st.stat.exists == False or st.stat.isdir == True
