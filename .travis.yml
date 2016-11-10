@@ -78,9 +78,9 @@ script:
   # Start The Built Container In The Background
   - if [ "${ANSIBLE_VERSION}" == "docker" ]; then docker run --detach --volume="${PWD}":/etc/ansible/roles/role_under_test:ro ${run_opts} ansiblecheck/ansiblecheck:"${distribution,,}"-"${distribution_version}" "${init}" > "${container_id}" ; fi
   # Ansible syntax check.
-  - if [ "${ANSIBLE_VERSION}" == "docker" ]; then docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/test/ansiblecheck.yml --syntax-check ; fi
+  - if [ "${ANSIBLE_VERSION}" == "docker" ]; then docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/test/main.yml --syntax-check ; fi
   # Test role.
-  - if [ "${ANSIBLE_VERSION}" == "docker" ]; then docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/role_under_test/test/ansiblecheck.yml ; fi
+  - if [ "${ANSIBLE_VERSION}" == "docker" ]; then docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/role_under_test/test/main.yml -v ; fi
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

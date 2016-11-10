@@ -10,24 +10,31 @@
   tasks:
 
     - name: Check Ansible Is Installed
-      command: /usr/bin/env ansible --version
-      register: reg_ansible_version
       changed_when: False
+      command: /usr/bin/env ansible --version
 
-    - name: Current Ansible Version
-      debug: var=reg_ansible_version
-
-    - name: Include Vars For OS
-      include_vars: "{{ ansible_os_family }}.yml"
-
-    - name: Install Required Packages
-      package:
+    - name: Install Required Packages For Debian
+      when: ansible_os_family == 'Debian'
+      apt:
         name: "{{ item }}"
         state: present
       with_items:
         - rsync
         - tar
-        - "{{ ssh_package }}"
+        - ssh
+        - git
+        - unzip
+        - subversion
+
+    - name: Install Required Packages For Redhat
+      when: ansible_os_family == 'RedHat'
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - rsync
+        - tar
+        - openssh-clients
         - git
         - unzip
         - subversion
