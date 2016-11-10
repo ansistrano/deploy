@@ -1,0 +1,29 @@
+---
+- name: ANSISTRANO | SVN | Update remote repository
+  subversion:
+    repo: "{{ ansistrano_svn_repo }}/{{ ansistrano_svn_branch }}"
+    dest: "{{ ansistrano_deploy_to }}/repo"
+    revision: "{{ ansistrano_svn_revision }}"
+    username: "{{ ansistrano_svn_username }}"
+    password: "{{ ansistrano_svn_password }}"
+    force: yes
+  register: ansistrano_svn_result_update
+
+- name: ANSISTRANO | SVN | Register ansistrano_svn_result variable
+  set_fact: ansistrano_svn_result={{ ansistrano_svn_result_update }}
+
+- name: ANSISTRANO | SVN | Create release folder
+  file:
+    state: directory
+    path: "{{ ansistrano_release_path.stdout }}"
+
+- name: ANSISTRANO | SVN | Copy repo to release path
+  subversion:
+    repo: "{{ ansistrano_deploy_to }}/repo"
+    dest: "{{ ansistrano_release_path.stdout }}"
+    revision: "{{ ansistrano_svn_revision }}"
+    username: "{{ ansistrano_svn_username }}"
+    password: "{{ ansistrano_svn_password }}"
+    export: yes
+    force: yes
+  register: ansistrano_svn_result_export

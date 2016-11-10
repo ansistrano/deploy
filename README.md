@@ -57,6 +57,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Fluxus](http://www.fluxus.io/)
 * TechPump
 * [Nodo Ámbar](http://www.nodoambar.com/)
+* [Cabissimo](https://www.cabissimo.com)
 
 If you are also using it, please let us know via a PR to this document.
 
@@ -91,7 +92,7 @@ Features
 * Rollback in seconds (with ansistrano.rollback role)
 * Customize your deployment with hooks before and after critical steps
 * Save disk space keeping a maximum fixed releases in your hosts
-* Choose between SCP (push), RSYNC (push), GIT (pull), Download (HTTP Get) or S3 (get) deployment strategies
+* Choose between SCP, RSYNC, GIT, SVN, HTTP Download or S3 GET deployment strategies (optional unarchive step included)
 
 Main workflow
 -------------
@@ -118,7 +119,7 @@ Role Variables
   ansistrano_shared_paths: [] # Shared paths to symlink to release dir
   ansistrano_shared_files: [] # Shared files to symlink to release dir
   ansistrano_keep_releases: 0 # Releases to keep after a new deployment. See "Pruning old releases".
-  ansistrano_deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync, git, s3 or download.
+  ansistrano_deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync, git, svn, s3 or download. Copy, download and s3 have an optional step to unarchive the downloaded file which can be used by adding _unarchive. You can check all the options inside tasks/update-code folder!
   ansistrano_allow_anonymous_stats: yes
 
   # Variables used in the rsync deployment strategy
@@ -130,6 +131,14 @@ Role Variables
   ansistrano_git_branch: master # What version of the repository to check out. This can be the full 40-character SHA-1 hash, the literal string HEAD, a branch name, or a tag name
   ansistrano_git_repo_tree: "" # If specified the subtree of the repository to deploy
   ansistrano_git_identity_key_path: "" # If specified this file is copied over and used as the identity key for the git commands, path is relative to the playbook in which it is used
+
+  # Variables used in the SVN deployment strategy
+  # Please note there was a bug in the subversion module in Ansible 1.8.x series (https://github.com/ansible/ansible-modules-core/issues/370) so it is only supported from Ansible 1.9
+  ansistrano_svn_repo: "https://svn.company.com/project" # Location of the svn repository
+  ansistrano_svn_branch: "trunk" # What branch from the repository to check out.
+  ansistrano_svn_revision: "HEAD" # What revision from the repository to check out.
+  ansistrano_svn_username: "user" # SVN authentication username
+  ansistrano_svn_password: "Pa$$word" # SVN authentication password
 
   # Variables used in the download deployment strategy
   ansistrano_get_url: https://github.com/someproject/somearchive.tar.gz

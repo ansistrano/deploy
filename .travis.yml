@@ -4,9 +4,12 @@ dist: trusty
 
 matrix:
   include:
-    - env: ANSIBLE_VERSION=1.8.4
+    # Remove temporarily 1.8, perhaps forever
+    # - env: ANSIBLE_VERSION=1.8.4
     - env: ANSIBLE_VERSION=1.9.5
-    - env: ANSIBLE_VERSION=2.1.0
+    # We don´t test 2.0.x series as they are very buggy
+    - env: ANSIBLE_VERSION=2.1.2
+    - env: ANSIBLE_VERSION=2.2.0
 
 before_install:
  - sudo apt-get -y install software-properties-common
@@ -16,7 +19,7 @@ before_install:
 
 script:
  - echo localhost > inventory
- - ansible-playbook -i inventory --connection=local --sudo -v test/test.yml
+ - ansible-playbook -i inventory --connection=local --sudo -v test/main.yml
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
