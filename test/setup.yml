@@ -1,0 +1,33 @@
+---
+
+- hosts: all
+  pre_tasks:
+    - name: Update apt cache.
+      apt:
+        update_cache: yes
+      changed_when: False
+      when: ansible_os_family == 'Debian'
+  tasks:
+
+    - name: Check Ansible Is Installed
+      command: /usr/bin/env ansible --version
+      register: reg_ansible_version
+      changed_when: False
+
+    - name: Current Ansible Version
+      debug: var=reg_ansible_version
+
+    - name: Include Vars For OS
+      include_vars: "{{ ansible_os_family }}.yml"
+
+    - name: Install Required Packages
+      package:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - rsync
+        - tar
+        - "{{ ssh_package }}"
+        - git
+        - unzip
+        - subversion
