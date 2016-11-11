@@ -5,6 +5,8 @@
     url: http://ansistrano.com/deploy
     method: POST
     timeout: 5
+    body: "deploy_via={{ ansistrano_deploy_via | default('rsync') }}&version={{ ansible_version.string }}"
+    HEADER_Content-Type: "application/x-www-form-urlencoded"
   when: ansistrano_allow_anonymous_stats
   run_once: true
   ignore_errors: yes
