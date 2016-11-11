@@ -1,25 +1,86 @@
----
-sudo: required
-dist: trusty
+language: python
+services:
+  - docker
 
-matrix:
-  include:
-    # Remove temporarily 1.8, perhaps forever
-    # - env: ANSIBLE_VERSION=1.8.4
-    - env: ANSIBLE_VERSION=1.9.5
-    # We don´t test 2.0.x series as they are very buggy
-    - env: ANSIBLE_VERSION=2.1.2
-    - env: ANSIBLE_VERSION=2.2.0
+env:
+  - ANSIBLE_VERSION: "1.9.5"
+  - ANSIBLE_VERSION: "2.1.2"
+  - ANSIBLE_VERSION: "2.2.0"
+  - distribution: Ubuntu
+    distribution_version: yakkety
+    init: /lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    ANSIBLE_VERSION: docker
+  - distribution: Ubuntu
+    distribution_version: xenial
+    init: /lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    ANSIBLE_VERSION: docker
+  - distribution: Ubuntu
+    distribution_version: trusty
+    init: /sbin/init
+    run_opts: ""
+    ANSIBLE_VERSION: docker
+  - distribution: Ubuntu
+    distribution_version: precise
+    init: /sbin/init
+    run_opts: ""
+    ANSIBLE_VERSION: docker
+  - distribution: EL
+    distribution_version: "7"
+    init: /usr/lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    ANSIBLE_VERSION: docker
+  - distribution: EL
+    distribution_version: "6"
+    init: /sbin/init
+    run_opts: ""
+    ANSIBLE_VERSION: docker
+  - distribution: Debian
+    distribution_version: jessie
+    init: /lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    ANSIBLE_VERSION: docker
+  - distribution: Debian
+    distribution_version: wheezy
+    init: /sbin/init
+    run_opts: ""
+    ANSIBLE_VERSION: docker
+  - distribution: Fedora
+    distribution_version: "24"
+    init: /usr/lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    ANSIBLE_VERSION: docker
+  - distribution: Fedora
+    distribution_version: "23"
+    init: /usr/lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    ANSIBLE_VERSION: docker
+
 
 before_install:
- - sudo apt-get -y install software-properties-common
- - sudo apt-get -y install python-pip
- - sudo pip install ansible==$ANSIBLE_VERSION
- - ansible --version
+  # Standard Local Testing Commands
+  - if [ "${ANSIBLE_VERSION}" != "docker" ]; then sudo apt-get -y install software-properties-common ; fi
+  - if [ "${ANSIBLE_VERSION}" != "docker" ]; then sudo apt-get -y install python-pip ; fi
+  - if [ "${ANSIBLE_VERSION}" != "docker" ]; then sudo pip install ansible==$ANSIBLE_VERSION ; fi
+  - if [ "${ANSIBLE_VERSION}" != "docker" ]; then ansible --version ; fi
+  # Docker Testing pull container.
+  - if [ "${ANSIBLE_VERSION}" == "docker" ]; then docker pull ansiblecheck/ansiblecheck:${distribution,,}-${distribution_version} ; fi
+
 
 script:
- - echo localhost > inventory
- - ansible-playbook -i inventory --connection=local --sudo -v test/main.yml
+  # Local Testing Commands
+  - if [ "${ANSIBLE_VERSION}" != "docker" ]; then echo localhost > inventory ; fi
+  - if [ "${ANSIBLE_VERSION}" != "docker" ]; then ansible-playbook -i inventory --connection=local --sudo -v test/main.yml ; fi
+
+  # Docker Testing Commands
+  - if [ "${ANSIBLE_VERSION}" == "docker" ]; then container_id=$(mktemp) ; fi
+  # Start The Built Container In The Background
+  - if [ "${ANSIBLE_VERSION}" == "docker" ]; then docker run --detach --volume="${PWD}":/etc/ansible/roles/role_under_test:ro ${run_opts} ansiblecheck/ansiblecheck:"${distribution,,}"-"${distribution_version}" "${init}" > "${container_id}" ; fi
+  # Ansible syntax check.
+  - if [ "${ANSIBLE_VERSION}" == "docker" ]; then docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/test/main.yml --syntax-check ; fi
+  # Test role.
+  - if [ "${ANSIBLE_VERSION}" == "docker" ]; then docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/role_under_test/test/main.yml -v ; fi
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

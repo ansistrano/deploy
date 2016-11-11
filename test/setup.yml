@@ -1,0 +1,40 @@
+---
+
+- hosts: all
+  pre_tasks:
+    - name: Update apt cache.
+      apt:
+        update_cache: yes
+      changed_when: False
+      when: ansible_os_family == 'Debian'
+  tasks:
+
+    - name: Check Ansible Is Installed
+      changed_when: False
+      command: /usr/bin/env ansible --version
+
+    - name: Install Required Packages For Debian
+      when: ansible_os_family == 'Debian'
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - rsync
+        - tar
+        - ssh
+        - git
+        - unzip
+        - subversion
+
+    - name: Install Required Packages For Redhat
+      when: ansible_os_family == 'RedHat'
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - rsync
+        - tar
+        - openssh-clients
+        - git
+        - unzip
+        - subversion
