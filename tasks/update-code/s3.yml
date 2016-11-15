@@ -13,3 +13,17 @@
     region: "{{ ansistrano_s3_region }}"
     aws_access_key: "{{ ansistrano_s3_aws_access_key | default(omit) }}"
     aws_secret_key: "{{ ansistrano_s3_aws_secret_key | default(omit) }}"
+  when: not ansistrano_s3_rgw
+
+- name: ANSISTRANO | S3 | Get object from Ceph RGW
+  s3:
+    rgw: true
+    s3_url: "{{ ansistrano_s3_url }}"
+    encrypt: "{{ ansistrano_s3_encrypt | default(false) }}"
+    bucket: "{{ ansistrano_s3_bucket }}"
+    object: "{{ ansistrano_s3_object }}"
+    dest: "{{ ansistrano_release_path.stdout }}/{{ ansistrano_s3_object | basename }}"
+    mode: get
+    aws_access_key: "{{ ansistrano_s3_aws_access_key | default(omit) }}"
+    aws_secret_key: "{{ ansistrano_s3_aws_secret_key | default(omit) }}"
+  when: ansistrano_s3_rgw
