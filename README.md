@@ -68,7 +68,7 @@ Requirements
 In order to deploy your apps with Ansistrano, you will need:
 
 * Ansible in your deployer machine
-* `rsync` on the target machine
+* `rsync` on the target machine if you are using either the `rsync` or `git` deployment strategy or if you are using `ansistrano_current_via = rsync`
 
 Installation
 ------------
