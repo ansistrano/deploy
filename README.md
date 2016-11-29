@@ -59,6 +59,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Nodo Ámbar](http://www.nodoambar.com/)
 * [Cabissimo](https://www.cabissimo.com)
 * [UNICEF Comité Español](https://www.unicef.es)
+* [Claranet France](http://www.claranet.fr/)
 
 If you are also using it, please let us know via a PR to this document.
 
