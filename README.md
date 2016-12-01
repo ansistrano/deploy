@@ -60,6 +60,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Cabissimo](https://www.cabissimo.com)
 * [UNICEF Comité Español](https://www.unicef.es)
 * [Claranet France](http://www.claranet.fr/)
+* [OpsWay Software Factory](http://opsway.com)
 
 If you are also using it, please let us know via a PR to this document.
 
