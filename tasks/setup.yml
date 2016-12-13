@@ -22,3 +22,4 @@
   file:
     state: directory
     path: "{{ ansistrano_shared_path.stdout }}"
+    follow: True
