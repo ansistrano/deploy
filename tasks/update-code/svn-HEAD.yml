@@ -1,0 +1,19 @@
+---
+- name: ANSISTRANO | SVN-HEAD | Get HEAD revision number
+  command: "svn info --non-interactive --trust-server-cert --no-auth-cache --username {{ ansistrano_svn_username }} --password {{ ansistrano_svn_password }} -rHEAD {{ ansistrano_svn_repo }} warn=no"
+  no_log: true
+  register: ansistrano_svn_info
+
+- name: ANSISTRANO | SVN-HEAD | Convert svn info to yaml
+  set_fact: ansistrano_svn_yaml="{{ ansistrano_svn_info.stdout | from_yaml }}"
+
+- name: ANSISTRANO | SVN-HEAD | Replace HEAD with revision number
+  set_fact: ansistrano_svn_revision={{ ansistrano_svn_yaml.Revision }}
+
+- name: ANSISTRANO | SVN-HEAD | Get release version
+  set_fact: ansistrano_release_version="{{ ansistrano_svn_revision }}"
+  when: ansistrano_release_version == "HEAD"
+
+- name: ANSISTRANO | SVN-HEAD | Get release path
+  command: echo "{{ ansistrano_releases_path.stdout }}/{{ ansistrano_release_version }}"
+  register: ansistrano_release_path set_when_task_skipped=false
