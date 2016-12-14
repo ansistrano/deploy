@@ -61,6 +61,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [UNICEF Comité Español](https://www.unicef.es)
 * [Claranet France](http://www.claranet.fr/)
 * [OpsWay Software Factory](http://opsway.com)
+* [Hexanet](https://www.hexanet.fr)
 
 If you are also using it, please let us know via a PR to this document.
 
