@@ -121,9 +121,24 @@ Role Variables
   ansistrano_version_dir: "releases" # Releases folder name
   ansistrano_current_dir: "current" # Softlink name. You should rarely changed it.
   ansistrano_current_via: "symlink" # Deployment strategy who code should be deployed to current path. Options are symlink or rsync
-  ansistrano_shared_paths: [] # Shared paths to symlink to release dir
-  ansistrano_shared_files: [] # Shared files to symlink to release dir
   ansistrano_keep_releases: 0 # Releases to keep after a new deployment. See "Pruning old releases".
+  
+  # Arrays of directories and files to be shared.
+  # The following arrays of directories and files will be symlinked to the current release directory after the 'update-code' step and its callbacks
+  # Notes:
+  # * Paths are relative to the /shared directory (no starting /)
+  # * If your items are in a subdirectory, write the entire path to each shared directory
+  #
+  # Example:
+  # ansistrano_shared_paths:
+  #   - path/to/first-dir
+  #   - path/next-dir
+  # ansistrano_shared_files:
+  #   - my-file.txt
+  #   - path/to/file.txt
+  ansistrano_shared_paths: []
+  ansistrano_shared_files: []
+  
   ansistrano_deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync, git, svn, s3 or download. Copy, download and s3 have an optional step to unarchive the downloaded file which can be used by adding _unarchive. You can check all the options inside tasks/update-code folder!
   ansistrano_allow_anonymous_stats: yes
 
