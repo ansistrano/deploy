@@ -22,3 +22,17 @@
   file:
     state: directory
     path: "{{ ansistrano_shared_path.stdout }}"
+
+# Ensure shared path exists
+- name: ANSISTRANO | Ensure shared paths exists
+  file:
+    state: directory
+    path: "{{ ansistrano_deploy_to }}/shared/{{ item }}"
+  with_items: "{{ ansistrano_shared_paths }}"
+
+# Ensure basedir shared files exists
+- name: ANSISTRANO | Ensure basedir shared files exists
+  file:
+    state: directory
+    path: "{{ ansistrano_deploy_to }}/shared/{{ item | dirname }}"
+  with_items: "{{ ansistrano_shared_files }}"
