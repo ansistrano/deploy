@@ -42,6 +42,7 @@ ansistrano_svn_branch: "trunk"
 ansistrano_svn_revision: "HEAD"
 ansistrano_svn_username: "user"
 ansistrano_svn_password: "Pa$$word"
+ansistrano_svn_environment: {}
 
 ## RSYNC push strategy
 ansistrano_rsync_extra_params: ""

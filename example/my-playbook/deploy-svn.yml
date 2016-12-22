@@ -1,0 +1,18 @@
+---
+- name: Deploy example app to my-server.com
+  hosts: all
+  vars:
+    ansistrano_deploy_from: "{{ playbook_dir }}/../my-app"
+    ansistrano_deploy_to: "/tmp/my-app.com"
+    ansistrano_keep_releases: 3
+    ansistrano_deploy_via: svn
+    ansistrano_svn_repo: "https://svn.company.com/project" # Location of the svn repository
+    ansistrano_svn_branch: "trunk" # What branch from the repository to check out.
+    ansistrano_svn_revision: "HEAD" # What revision from the repository to check out.
+    ansistrano_svn_username: "user" # SVN authentication username
+    ansistrano_svn_password: "Pa$$word" # SVN authentication password
+    ansistrano_svn_environment: # Environment variables for svn tasks (https://docs.ansible.com/ansible/playbooks_environment.html)
+      LC_CTYPE: en_US.UTF-8
+      ANY_OTHER_ENV_VAR: "and its value"
+  roles:
+      - { role: carlosbuenosvinos.ansistrano-deploy }

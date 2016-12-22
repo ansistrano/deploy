@@ -159,6 +159,7 @@ Role Variables
   ansistrano_svn_revision: "HEAD" # What revision from the repository to check out.
   ansistrano_svn_username: "user" # SVN authentication username
   ansistrano_svn_password: "Pa$$word" # SVN authentication password
+  ansistrano_svn_environment: {} # Dict with environment variables for svn tasks (https://docs.ansible.com/ansible/playbooks_environment.html)
 
   # Variables used in the download deployment strategy
   ansistrano_get_url: https://github.com/someproject/somearchive.tar.gz

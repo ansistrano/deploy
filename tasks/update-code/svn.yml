@@ -7,6 +7,7 @@
     username: "{{ ansistrano_svn_username }}"
     password: "{{ ansistrano_svn_password }}"
     force: yes
+  environment: "{{ ansistrano_svn_environment }}"
   register: ansistrano_svn_result_update
 
 - name: ANSISTRANO | SVN | Register ansistrano_svn_result variable
@@ -26,4 +27,5 @@
     password: "{{ ansistrano_svn_password }}"
     export: yes
     force: yes
+  environment: "{{ ansistrano_svn_environment }}"
   register: ansistrano_svn_result_export
