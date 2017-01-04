@@ -49,6 +49,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Gstock](http://www.g-stock.es)
 * [Hexanet](https://www.hexanet.fr)
 * [Jolicode](http://jolicode.com/)
+* [Kidfund](http://link.kidfund.us/github "Kidfund")
 * [Nice&Crazy](http://www.niceandcrazy.com)
 * [Nodo Ámbar](http://www.nodoambar.com/)
 * [Oferplan](http://oferplan.com/)
