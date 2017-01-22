@@ -1,6 +1,6 @@
 ---
 - name: ANSISTRANO | RSYNC | Get shared path (in rsync case)
-  command: echo "{{ ansistrano_shared_path.stdout }}/.shared-copy"
+  command: echo "{{ ansistrano_shared_path }}/.shared-copy"
   register: ansistrano_shared_rsync_copy_path
 
 - name: ANSISTRANO | RSYNC | Rsync application files to remote shared copy

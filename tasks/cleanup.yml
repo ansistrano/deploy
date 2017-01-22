@@ -1,5 +1,5 @@
 ---
 # Clean up releases
 - name: ANSISTRANO | Clean up releases
-  shell: ls -1dt {{ ansistrano_releases_path.stdout }}/* | tail -n +{{ ansistrano_keep_releases | int + 1 }} | xargs rm -rf
+  shell: ls -1dt {{ ansistrano_releases_path }}/* | tail -n +{{ ansistrano_keep_releases | int + 1 }} | xargs rm -rf
   when: ansistrano_keep_releases > 0
