@@ -1,7 +1,6 @@
 ---
-
-# Migration check from symlink deployment
-- stat:
+- name: ANSISTRANO | Register stats for current dir
+  stat:
     path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}"
   register: stat_current_dir
 
@@ -18,7 +17,14 @@
     path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}"
 
 - name: ANSISTRANO | Sync release to new current path
-  command: rsync -a -F --no-times --delete-after "{{ ansistrano_release_path.stdout }}/" "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}/"
+  synchronize:
+    src: "{{ ansistrano_release_path.stdout }}/"
+    dest: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}/"
+    recursive: yes
+    archive: yes
+    rsync_opts:
+      - "--no-times"
+      - "--delete-after"
 
 # Ensure symlinks target paths is absent
 - name: ANSISTRANO | Ensure shared paths targets are absent

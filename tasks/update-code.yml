@@ -8,8 +8,9 @@
   delegate_to: 127.0.0.1
 
 - name: ANSISTRANO | Get release path
-  command: echo "{{ ansistrano_releases_path.stdout }}/{{ ansistrano_release_version }}"
-  register: ansistrano_release_path
+  set_fact:
+    ansistrano_release_path:
+      stdout: "{{ ansistrano_releases_path.stdout }}/{{ ansistrano_release_version }}"
 
 - include: "update-code/{{ ansistrano_deploy_via | default('rsync') }}.yml"
 
