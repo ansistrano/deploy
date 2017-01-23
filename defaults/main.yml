@@ -8,6 +8,12 @@ ansistrano_deploy_to: "/var/www/my-app"
 # Folder name for the releases
 ansistrano_version_dir: "releases"
 
+# Full path to the releases
+ansistrano_releases_path: "{{ ansistrano_deploy_to }}/{{ ansistrano_version_dir }}"
+
+# Full path to the shared path folder
+ansistrano_shared_path: "{{ ansistrano_deploy_to }}/shared"
+
 # Softlink name for the current release
 ansistrano_current_dir: "current"
 

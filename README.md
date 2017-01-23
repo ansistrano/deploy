@@ -19,10 +19,12 @@ Project name
 
 Ansistrano comes from Ansible + Capistrano, easy, isn't it?
 
-Early adopters
---------------
+BC Breaks in 2.0
+----------------
 
-If you were an early adopter, you should know we have broken BC by moving from using `ansistrano_custom_tasks_path` to individual and specific files per step. See "Role Variables". **The role displays a warning if the variable is defined and although your old playbooks may still run with no errors, you will see that your code is uploaded but custom tasks are not run.**
+* Minimum Ansible version supported is 1.9
+* ansistrano_releases_path and ansistrano_shared_path are now defined as defaults so if you use them in your hooks
+you should stop referring to the stdout string and just use the variable
 
 Ansistrano anonymous usage stats
 --------------------------------
