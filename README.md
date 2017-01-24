@@ -50,6 +50,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Fluxus](http://www.fluxus.io/)
 * [Gstock](http://www.g-stock.es)
 * [Hexanet](https://www.hexanet.fr)
+* [Holaluz](https://www.holaluz.com)
 * [Jolicode](http://jolicode.com/)
 * [Kidfund](http://link.kidfund.us/github "Kidfund")
 * [Nice&Crazy](http://www.niceandcrazy.com)
