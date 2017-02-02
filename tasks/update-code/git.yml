@@ -48,8 +48,8 @@
 - name: ANSISTRANO | GIT | Sync repo subtree["{{ ansistrano_git_real_repo_tree }}"] to release path
   shell: >-
            {
-             git ls-files --with-tree="{{ ansistrano_git_branch }}";
-             git submodule foreach --recursive --quiet 'git ls-files --with-tree="$sha1" | sed "s#^#$path/#"';
+             git ls-files -z --with-tree="{{ ansistrano_git_branch }}" | tr '\0' '\n';
+             git submodule foreach --recursive --quiet 'git ls-files -z --with-tree="$sha1" | tr "\0" "\n" | sed "s#^#$path/#"';
            }
            | grep "^$prefix"
            | sed "s#^$prefix/##"
