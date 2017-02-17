@@ -42,6 +42,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Another Place Productions](http://www.anotherplaceproductions.com)
 * [Atrápalo](http://www.atrapalo.com)
 * [CMP Group](http://www.teamcmp.com)
+* [Clearpoint](http://www.clearpoint.co.nz)
 * [Cabissimo](https://www.cabissimo.com)
 * [Claranet France](http://www.claranet.fr/)
 * [Cycloid](http://www.cycloid.io)
