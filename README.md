@@ -144,6 +144,12 @@ Role Variables
   ansistrano_shared_paths: []
   ansistrano_shared_files: []
   
+
+  # Shared paths and basedir shared files creation.
+  # By default the shared paths directories and base directories for shared files are created automatically if not exists. But in some scenarios those paths could be symlinks to another directories in the filesystem, and the deployment process would fails. With these variables you can disable the involved tasks. If you have two or three shared paths, and don't need creation only for some of them, you always could disable the automatic creation and add a custom task in a hook.
+  ansistrano_ensure_shared_paths_exist: yes
+  ansistrano_ensure_basedirs_shared_files_exist: yes
+
   ansistrano_deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync, git, svn, s3 or download. Copy, download and s3 have an optional step to unarchive the downloaded file which can be used by adding _unarchive. You can check all the options inside tasks/update-code folder!
   ansistrano_allow_anonymous_stats: yes
 

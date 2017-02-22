@@ -21,6 +21,7 @@
     state: directory
     path: "{{ ansistrano_deploy_to }}/shared/{{ item }}"
   with_items: "{{ ansistrano_shared_paths }}"
+  when: ansistrano_ensure_shared_paths_exist
 
 # Ensure basedir shared files exists
 - name: ANSISTRANO | Ensure basedir shared files exists
@@ -28,3 +29,4 @@
     state: directory
     path: "{{ ansistrano_deploy_to }}/shared/{{ item | dirname }}"
   with_items: "{{ ansistrano_shared_files }}"
+  when: ansistrano_ensure_basedirs_shared_files_exist
