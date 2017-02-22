@@ -27,8 +27,8 @@ ansistrano_shared_paths: []
 ansistrano_shared_files: []
 
 # Shared paths and basedir shared files creation
-ansistrano_ensure_shared_paths_exists: yes
-ansistrano_ensure_basedir_shared_files_exists: yes
+ansistrano_ensure_shared_paths_exist: yes
+ansistrano_ensure_basedirs_shared_files_exist: yes
 
 # Number of releases to keep in your hosts, if 0, unlimited releases will be kept
 ansistrano_keep_releases: 0
