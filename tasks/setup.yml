@@ -30,3 +30,15 @@
     path: "{{ ansistrano_deploy_to }}/shared/{{ item | dirname }}"
   with_items: "{{ ansistrano_shared_files }}"
   when: ansistrano_ensure_basedirs_shared_files_exist
+
+# Ensure no deploys exist that are later than what current points to.
+# They are probably previously failed deploys and it would be dangerous
+# to allow them to exist, since they can be rolled back to.
+- name: ANSISTRANO | get current release name
+  shell: test -L {{ansistrano_deploy_to}}/{{ansistrano_current_dir}} && readlink -f {{ansistrano_deploy_to}}/{{ansistrano_current_dir}}
+  register: ansistrano_old_current
+  ignore_errors: true
+- name: ANSISTRANO | delete previous incomplete deploys
+  shell: find {{ansistrano_deploy_to}}/{{ansistrano_version_dir}}/* -maxdepth 0 -newer {{ansistrano_old_current.stdout}} -exec rm -rf "{}" \;
+  when: ansistrano_old_current.rc == 0
+
