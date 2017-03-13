@@ -31,7 +31,7 @@ Ansistrano anonymous usage stats
 
 We have recently added an extra optional step in Ansistrano so that we can know how many people are deploying their applications with our project. Unfortunately, Ansible Galaxy does not provide any numbers on usage or downloads so this is one of the only ways we have to measure how many users we really have.
 
-You can check the code we use to store your anonyomus stats at [the ansistrano.com repo](https://github.com/ansistrano/ansistrano.com) and anyway, if you are not comfortable with this, you will always be able to disable this extra step by setting `ansistrano_allow_anonymous_stats` to false in your playbooks.
+You can check the code we use to store your anonymous stats at [the ansistrano.com repo](https://github.com/ansistrano/ansistrano.com) and anyway, if you are not comfortable with this, you will always be able to disable this extra step by setting `ansistrano_allow_anonymous_stats` to false in your playbooks.
 
 Who is using Ansistrano?
 ------------------------
@@ -127,7 +127,7 @@ Role Variables
   ansistrano_current_dir: "current" # Softlink name. You should rarely changed it.
   ansistrano_current_via: "symlink" # Deployment strategy who code should be deployed to current path. Options are symlink or rsync
   ansistrano_keep_releases: 0 # Releases to keep after a new deployment. See "Pruning old releases".
-  
+
   # Arrays of directories and files to be shared.
   # The following arrays of directories and files will be symlinked to the current release directory after the 'update-code' step and its callbacks
   # Notes:
@@ -143,7 +143,7 @@ Role Variables
   #   - path/to/file.txt
   ansistrano_shared_paths: []
   ansistrano_shared_files: []
-  
+
 
   # Shared paths and basedir shared files creation.
   # By default the shared paths directories and base directories for shared files are created automatically if not exists. But in some scenarios those paths could be symlinks to another directories in the filesystem, and the deployment process would fails. With these variables you can disable the involved tasks. If you have two or three shared paths, and don't need creation only for some of them, you always could disable the automatic creation and add a custom task in a hook.
@@ -162,6 +162,8 @@ Role Variables
   ansistrano_git_branch: master # What version of the repository to check out. This can be the full 40-character SHA-1 hash, the literal string HEAD, a branch name, or a tag name
   ansistrano_git_repo_tree: "" # If specified the subtree of the repository to deploy
   ansistrano_git_identity_key_path: "" # If specified this file is copied over and used as the identity key for the git commands, path is relative to the playbook in which it is used
+  # Optional variable, omitted by default
+  ansistrano_git_refspec: ADDITIONAL_GIT_REFSPEC # Additional refspec to be used by the 'git' module. Uses the same syntax as the 'git fetch' command.
 
   # Variables used in the SVN deployment strategy
   # Please note there was a bug in the subversion module in Ansible 1.8.x series (https://github.com/ansible/ansible-modules-core/issues/370) so it is only supported from Ansible 1.9
@@ -364,7 +366,7 @@ See how the release `20100509145325` has been removed.
 Example Playbook
 ----------------
 
-In the folder, `example` you can check an example project that shows how to deploy a small application with Ansistrano. 
+In the folder, `example` you can check an example project that shows how to deploy a small application with Ansistrano.
 
 In order to run it, you will need to have Vagrant and the ansistrano roles installed. Please check https://www.vagrantup.com for more information about Vagrant and our Installation section.
 
