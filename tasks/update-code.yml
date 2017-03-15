@@ -4,14 +4,28 @@
   set_fact:
     ansistrano_release_version: "{{ lookup('pipe', 'date -u +%Y%m%d%H%M%SZ') }}"
   run_once: true
-  when: ansistrano_release_version is not defined
-  delegate_to: 127.0.0.1
+# TODO: remove
+#  when: ansistrano_release_version is not defined
+#  delegate_to: 127.0.0.1
 
 - name: ANSISTRANO | Get release path
   command: echo "{{ ansistrano_releases_path }}/{{ ansistrano_release_version }}"
   register: ansistrano_release_path
+  always_run: yes
 
 - include: "update-code/{{ ansistrano_deploy_via | default('rsync') }}.yml"
+  become: yes
+  become_user: '{{ ansistrano_user }}'
+
+- name: Chmod new release
+  file:
+    path: "{{ ansistrano_release_path.stdout }}"
+    state: directory
+    mode: "g+ws"
+    recurse: yes
+    owner: "{{ ansistrano_user }}"
+    group: "{{ ansistrano_group }}"
+  when: ansistrano_chmod_gid
 
 - name: ANSISTRANO | Copy release version into REVISION file
   copy:

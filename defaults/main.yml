@@ -1,9 +1,16 @@
 ---
+ansistrano_app_name: "default_app_name"
+ansistrano_user: "admin"
+ansistrano_group: "{{ ansistrano_user }}"
+deploy_user: "{{ ansistrano_user }}"
+
 # Path where the code to deploy is
 ansistrano_deploy_from: "{{ playbook_dir }}"
 
 # Path where the code must be deployed to
 ansistrano_deploy_to: "/var/www/my-app"
+ansistrano_setup_only: false
+ansistrano_rolling_releases: true
 
 # Folder name for the releases
 ansistrano_version_dir: "releases"
@@ -31,7 +38,7 @@ ansistrano_ensure_shared_paths_exist: yes
 ansistrano_ensure_basedirs_shared_files_exist: yes
 
 # Number of releases to keep in your hosts, if 0, unlimited releases will be kept
-ansistrano_keep_releases: 0
+ansistrano_keep_releases: 5
 
 # Deployment strategies variables
 
@@ -72,4 +79,38 @@ ansistrano_s3_rgw: false
 
 ## Sends anonymous stats to the www.ansistrano.com servers
 ## You can disallow it by just setting this parameter to "no" in your playbook
-ansistrano_allow_anonymous_stats: yes
+ansistrano_allow_anonymous_stats: no
+
+slack_token: ""
+slack: false
+
+# Handler flag
+ansistrano_supervisord_enabled: false
+ansistrano_supervisord_restart_only: false
+ansistrano_supervisord_programs:
+  - "{{ ansistrano_app_name }}"
+ansistrano_nginx_enabled: false
+ansistrano_php5_fpm_enabled: false
+
+# Legacy namming
+ansistrano_php_fpm_enabled: "{{ansistrano_php5_fpm_enabled}}"
+ansistrano_php_fpm_service_name: "php5-fpm"
+
+# Sensu
+ansistrano_sensu_enabled: false
+ansistrano_sensu_stashes: []
+
+# Chmod used for webproject with www-data
+ansistrano_chmod_gid: false
+
+# Use in case of archive code
+ansistrano_additional_path: ""
+
+ansistrano_rolling_elb_enabled: false
+ansistrano_elb_name: ""
+aws_region: "eu-west-1"
+
+# a list of path used by config files
+ansistrano_parameters_templates_directories: []
+# a list of map of config files
+ansistrano_parameters_templates: []
