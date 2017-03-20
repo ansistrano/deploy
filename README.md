@@ -120,7 +120,7 @@ Role Variables
 --------------
 
 ```yaml
-- vars:
+vars:
   ansistrano_deploy_from: "{{ playbook_dir }}" # Where my local project is (relative or absolute path)
   ansistrano_deploy_to: "/var/www/my-app" # Base path to deploy to.
   ansistrano_version_dir: "releases" # Releases folder name
