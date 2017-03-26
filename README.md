@@ -263,7 +263,7 @@ If you try to rollback with zero or one releases deployed, an error will be rais
 Variables you can tune in rollback role are less than in deploy one:
 
 ```yaml
-- vars:
+vars:
   ansistrano_deploy_to: "/var/www/my-app" # Base path to deploy to.
   ansistrano_version_dir: "releases" # Releases folder name
   ansistrano_current_dir: "current" # Softlink name. You should rarely changed it.
