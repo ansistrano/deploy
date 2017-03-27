@@ -128,6 +128,7 @@ Role Variables
   # Notes:
   # * Paths are relative to the /shared directory (no starting /)
   # * If your items are in a subdirectory, write the entire path to each shared directory
+  # * If you are NOT SHARING any files, simply comment out `ansistrano_shared_paths` and `ansistrano_shared_files` vars to avoid throwing errors
   #
   # Example:
   # ansistrano_shared_paths:
