@@ -19,7 +19,7 @@ Project name
 
 Ansistrano comes from Ansible + Capistrano, easy, isn't it?
 
-BC Breaks in 2.0
+Breaking Changes in 2.0
 ----------------
 
 * Minimum Ansible version supported is 1.9
