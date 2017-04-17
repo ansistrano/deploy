@@ -6,6 +6,8 @@ env:
   - ANSIBLE_VERSION: "1.9.5"
   - ANSIBLE_VERSION: "2.1.2"
   - ANSIBLE_VERSION: "2.2.1"
+  - ANSIBLE_VERSION: "2.2.2"
+  - ANSIBLE_VERSION: "2.3.0"
   - distribution: Ubuntu
     distribution_version: yakkety
     init: /lib/systemd/systemd
