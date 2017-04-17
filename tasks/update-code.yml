@@ -12,6 +12,12 @@
   register: ansistrano_release_path
 
 - include: "update-code/{{ ansistrano_deploy_via | default('rsync') }}.yml"
+  when:
+    - ansistrano_deploy_via != "task"
+
+- include: "{{ ansistrano_deploy_task_file }}"
+  when:
+    - ansistrano_deploy_via == "task"
 
 - name: ANSISTRANO | Copy release version into REVISION file
   copy:
