@@ -50,6 +50,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Euromillions.com](http://euromillions.com/)
 * [Fluxus](http://www.fluxus.io/)
 * [Gstock](http://www.g-stock.es)
+* [HackSoft](https://hacksoft.io/)
 * [Hexanet](https://www.hexanet.fr)
 * [Holaluz](https://www.holaluz.com)
 * [Jolicode](http://jolicode.com/)
@@ -67,7 +68,6 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Uvinum](http://www.uvinum.com)
 * [Wavecontrol](http://monitoring.wavecontrol.com/ca/public/demo/)
 * [Yubl](https://yubl.me/)
-* [HackSoft](https://hacksoft.io/)
 
 If you are also using it, please let us know via a PR to this document.
 
