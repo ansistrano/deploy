@@ -177,6 +177,8 @@ vars:
 
   # Variables used in the download deployment strategy
   ansistrano_get_url: https://github.com/someproject/somearchive.tar.gz
+  ansistrano_download_force_basic_auth: false # no default as this is only supported from Ansible 2.0
+  ansistrano_download_headers: "" # no default as this is only supported from Ansible 2.0
 
   # Variables used in the S3 deployment strategy
   ansistrano_s3_bucket: s3bucket
