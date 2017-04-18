@@ -1,7 +1,8 @@
 Ansistrano
 ==========
 
-[![Build Status](https://travis-ci.org/ansistrano/deploy.svg?branch=master)](https://travis-ci.org/ansistrano/deploy)
+[![Build Status](https://travis-ci.org/ansistrano/deploy.svg?branch=master)](https://travis-ci.org/ansistrano/deploy) [![OpenCollective](https://opencollective.com/deploy/backers/badge.svg)](#backers) [![OpenCollective](https://opencollective.com/deploy/sponsors/badge.svg)](#sponsors)
+
 
 **ansistrano.deploy** and **ansistrano.rollback** are Ansible roles to easily manage the deployment process for scripting applications such as PHP, Python and Ruby. It's an Ansible port for Capistrano.
 
@@ -475,6 +476,76 @@ They're talking about us
 * [https://github.com/cbrunnkvist/ansistrano-symfony-deploy](https://github.com/cbrunnkvist/ansistrano-symfony-deploy)
 * [https://www.reddit.com/r/ansible/comments/2ezzz5/rapid_rollback_with_ansible/](https://www.reddit.com/r/ansible/comments/2ezzz5/rapid_rollback_with_ansible/)
 
+Support
+--------
+### Backers
+Support us with a monthly donation and help us continue our activities. [[Become a backer](https://opencollective.com/deploy#backer)]
+
+<a href="https://opencollective.com/deploy/backer/0/website" target="_blank"><img src="https://opencollective.com/deploy/backer/0/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/1/website" target="_blank"><img src="https://opencollective.com/deploy/backer/1/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/2/website" target="_blank"><img src="https://opencollective.com/deploy/backer/2/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/3/website" target="_blank"><img src="https://opencollective.com/deploy/backer/3/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/4/website" target="_blank"><img src="https://opencollective.com/deploy/backer/4/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/5/website" target="_blank"><img src="https://opencollective.com/deploy/backer/5/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/6/website" target="_blank"><img src="https://opencollective.com/deploy/backer/6/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/7/website" target="_blank"><img src="https://opencollective.com/deploy/backer/7/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/8/website" target="_blank"><img src="https://opencollective.com/deploy/backer/8/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/9/website" target="_blank"><img src="https://opencollective.com/deploy/backer/9/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/10/website" target="_blank"><img src="https://opencollective.com/deploy/backer/10/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/11/website" target="_blank"><img src="https://opencollective.com/deploy/backer/11/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/12/website" target="_blank"><img src="https://opencollective.com/deploy/backer/12/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/13/website" target="_blank"><img src="https://opencollective.com/deploy/backer/13/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/14/website" target="_blank"><img src="https://opencollective.com/deploy/backer/14/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/15/website" target="_blank"><img src="https://opencollective.com/deploy/backer/15/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/16/website" target="_blank"><img src="https://opencollective.com/deploy/backer/16/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/17/website" target="_blank"><img src="https://opencollective.com/deploy/backer/17/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/18/website" target="_blank"><img src="https://opencollective.com/deploy/backer/18/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/19/website" target="_blank"><img src="https://opencollective.com/deploy/backer/19/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/20/website" target="_blank"><img src="https://opencollective.com/deploy/backer/20/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/21/website" target="_blank"><img src="https://opencollective.com/deploy/backer/21/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/22/website" target="_blank"><img src="https://opencollective.com/deploy/backer/22/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/23/website" target="_blank"><img src="https://opencollective.com/deploy/backer/23/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/24/website" target="_blank"><img src="https://opencollective.com/deploy/backer/24/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/25/website" target="_blank"><img src="https://opencollective.com/deploy/backer/25/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/26/website" target="_blank"><img src="https://opencollective.com/deploy/backer/26/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/27/website" target="_blank"><img src="https://opencollective.com/deploy/backer/27/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/28/website" target="_blank"><img src="https://opencollective.com/deploy/backer/28/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/backer/29/website" target="_blank"><img src="https://opencollective.com/deploy/backer/29/avatar.svg"></a>
+
+
+### Sponsors
+Become a sponsor and get your logo on our README on Github with a link to your site. [[Become a sponsor](https://opencollective.com/deploy#sponsor)]
+
+<a href="https://opencollective.com/deploy/sponsor/0/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/1/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/2/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/3/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/4/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/5/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/6/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/7/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/8/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/9/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/9/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/10/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/10/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/11/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/11/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/12/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/12/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/13/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/13/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/14/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/14/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/15/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/15/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/16/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/16/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/17/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/17/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/18/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/18/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/19/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/19/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/20/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/20/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/21/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/21/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/22/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/22/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/23/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/23/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/24/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/24/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/25/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/25/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/26/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/26/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/27/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/27/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/28/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/28/avatar.svg"></a>
+<a href="https://opencollective.com/deploy/sponsor/29/website" target="_blank"><img src="https://opencollective.com/deploy/sponsor/29/avatar.svg"></a>
 
 License
 -------
