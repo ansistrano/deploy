@@ -13,7 +13,7 @@
     archive: yes
     compress: yes
     rsync_opts: "{{ ansistrano_rsync_extra_params }}"
-    rsync_path: "{{ ansistrano_rysnc_path }}"
+    rsync_path: "{{ ansistrano_rsync_path }}"
 
 - name: ANSISTRANO | RSYNC | Deploy existing code to servers
   command: cp -a {{ ansistrano_shared_rsync_copy_path.stdout }} {{ ansistrano_release_path.stdout }}
