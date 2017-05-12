@@ -5,6 +5,21 @@ Ansistrano
 
 **ansistrano.deploy** and **ansistrano.rollback** are Ansible roles to easily manage the deployment process for scripting applications such as PHP, Python and Ruby. It's an Ansible port for Capistrano.
 
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Update](#update)
+- [Features](#features)
+- [Main workflow](#main-workflow)
+- [Role Variables](#role-variables)
+- [Deploying](#deploying)
+- [Rolling back](#rolling-back)
+- [Multistage environment (devel, preprod, prod, etc.)](#multistage-environment-devel-preprod-prod-etc)
+- [Hooks: Custom tasks](#hooks-custom-tasks)
+- [Variables in custom tasks](#variables-in-custom-tasks)
+- [Pruning old releases](#pruning-old-releases)
+- [Example Playbook](#example-playbook)
+- [Sample projects](#sample-projects)
+
 History
 -------
 
