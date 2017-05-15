@@ -489,7 +489,7 @@ They're talking about us
 * [https://www.youtube.com/watch?v=CPz5zPzzMZE](https://www.youtube.com/watch?v=CPz5zPzzMZE)
 * [https://github.com/cbrunnkvist/ansistrano-symfony-deploy](https://github.com/cbrunnkvist/ansistrano-symfony-deploy)
 * [https://www.reddit.com/r/ansible/comments/2ezzz5/rapid_rollback_with_ansible/](https://www.reddit.com/r/ansible/comments/2ezzz5/rapid_rollback_with_ansible/)
-
+* [Cookiecutting Ansible for Django](https://hacksoft.io/blog/cookiecutting-django-ansible/)
 
 License
 -------
