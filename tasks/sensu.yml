@@ -1,0 +1,15 @@
+---
+# NOTE: not using the uri module because of that: https://github.com/ansible/ansible-modules-core/issues/265
+
+- name: "stash server {{ item.body.path }}"
+  command: >
+    curl -XPOST -u "sensu: {{vault_sensu_server_api_password }}" -d '{{ item.body | to_json }}' "http://{{ sensu_url }}:4567/stashes"
+  with_items: "{{ ansistrano_sensu_stashes }}"
+  when: ansistrano_sensu_stashes is defined and stashes
+
+- name: "unstash server {{ item.body.path }}"
+  command: >
+    curl -XDELETE -u "sensu: {{vault_sensu_server_api_password }}" "http://{{ sensu_url }}:4567/stashes/{{ item.body.path }}"
+  with_items: "{{ ansistrano_sensu_stashes }}"
+  when: ansistrano_sensu_stashes is defined and unstash
+

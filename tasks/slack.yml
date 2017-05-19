@@ -1,0 +1,16 @@
+---
+- name: Get release timestamp
+  local_action: command date -u +%Y%m%d%H%M%SZ
+  run_once: true
+  register: ansistrano_timestamp
+  become: no
+  always_run: yes
+
+- name: Send {{ state }} notification message via Slack
+  local_action:
+    module: slack
+    domain: cycloid-io.slack.com
+    token: "{{ slack_token }}"
+    channel: "{{ slack_channel }}"
+    msg: "{{ state }} - Deploy of {{ slack_title }} - server: {{ ansible_hostname}}, ts:{{ ansistrano_timestamp.stdout }}, env: {{ env }}, application: {{ ansistrano_app_name }}"
+  ignore_errors: yes
