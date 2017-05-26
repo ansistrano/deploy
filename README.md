@@ -70,6 +70,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Holaluz](https://www.holaluz.com)
 * [Jolicode](http://jolicode.com/)
 * [Kidfund](http://link.kidfund.us/github "Kidfund")
+* [Moss](https://moss.sh)
 * [Nice&Crazy](http://www.niceandcrazy.com)
 * [Nodo Ámbar](http://www.nodoambar.com/)
 * [Oferplan](http://oferplan.com/)
