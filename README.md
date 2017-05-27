@@ -66,6 +66,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Fluxus](http://www.fluxus.io/)
 * [Gstock](http://www.g-stock.es)
 * [HackSoft](https://hacksoft.io/)
+* [HackConf](https://hackconf.bg/en/)
 * [Hexanet](https://www.hexanet.fr)
 * [Holaluz](https://www.holaluz.com)
 * [Jolicode](http://jolicode.com/)
