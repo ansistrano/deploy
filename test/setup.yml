@@ -25,6 +25,7 @@
         - git
         - unzip
         - subversion
+        - mercurial
 
     - name: Install Required Packages For Redhat
       when: ansible_os_family == 'RedHat'
@@ -38,3 +39,4 @@
         - git
         - unzip
         - subversion
+        - mercurial
