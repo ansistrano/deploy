@@ -13,6 +13,6 @@
     path: "{{ ansistrano_release_path.stdout }}"
 
 - name: ANSISTRANO | HG | Sync repo to release path
-  shell: hg archive -r "{{ ansistrano_hg_branch }}" "{{ ansistrano_release_path.stdout }}"
+  shell: "hg archive -r {{ ansistrano_hg_branch }} {{ ansistrano_release_path.stdout }}"
   args:
     chdir: "{{ ansistrano_deploy_to }}/repo/"
