@@ -1,0 +1,18 @@
+---
+- name: ANSISTRANO | HG | Update remote repository
+  hg:
+    repo: "{{ ansistrano_hg_repo }}"
+    dest: "{{ ansistrano_deploy_to }}/repo"
+    revision: "{{ ansistrano_hg_branch }}"
+    force: yes
+  register: ansistrano_hg_result
+
+- name: ANSISTRANO | HG | Create release folder
+  file:
+    state: directory
+    path: "{{ ansistrano_release_path.stdout }}"
+
+- name: ANSISTRANO | HG | Sync repo to release path
+  shell: "hg archive -r {{ ansistrano_hg_branch }} {{ ansistrano_release_path.stdout }}"
+  args:
+    chdir: "{{ ansistrano_deploy_to }}/repo/"

@@ -4,3 +4,4 @@
 - include: git.yml
 - include: download.yml
 - include: svn.yml
+- include: hg.yml
