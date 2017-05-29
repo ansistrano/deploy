@@ -3,7 +3,7 @@
   copy:
     src: "{{ ansistrano_git_identity_key_path }}"
     dest: "{{ ansistrano_deploy_to }}/git_identity_key"
-    mode: 0400
+    mode: 0600
   when: ansistrano_git_identity_key_path|trim != ""
 
 - name: ANSISTRANO | GIT | Update remote repository
