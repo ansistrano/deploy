@@ -54,6 +54,10 @@ ansistrano_svn_username: "user"
 ansistrano_svn_password: "Pa$$word"
 ansistrano_svn_environment: {}
 
+## HG pull strategy
+ansistrano_hg_repo: "https://USERNAME@bitbucket.org/USERNAME/REPO"
+ansistrano_hg_branch: "default"
+
 ## RSYNC push strategy
 ansistrano_rsync_extra_params: ""
 ## put user@ for the remote paths. If you have a custom ssh config to define

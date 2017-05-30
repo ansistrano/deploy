@@ -120,7 +120,7 @@ Features
 * Rollback in seconds (with ansistrano.rollback role)
 * Customize your deployment with hooks before and after critical steps
 * Save disk space keeping a maximum fixed releases in your hosts
-* Choose between SCP, RSYNC, GIT, SVN, HTTP Download or S3 GET deployment strategies (optional unarchive step included)
+* Choose between SCP, RSYNC, GIT, SVN, HG, HTTP Download or S3 GET deployment strategies (optional unarchive step included)
 
 Main workflow
 -------------
@@ -192,6 +192,10 @@ vars:
   ansistrano_svn_username: "user" # SVN authentication username
   ansistrano_svn_password: "Pa$$word" # SVN authentication password
   ansistrano_svn_environment: {} # Dict with environment variables for svn tasks (https://docs.ansible.com/ansible/playbooks_environment.html)
+
+  # Variables used in the HG deployment strategy
+  ansistrano_hg_repo: "https://USERNAME@bitbucket.org/USERNAME/REPO" # Location of the hg repo
+  ansistrano_hg_branch: "default" # Any branch identifier that works with hg -r, so named branch, bookmark, commit hash...
 
   # Variables used in the download deployment strategy
   ansistrano_get_url: https://github.com/someproject/somearchive.tar.gz
