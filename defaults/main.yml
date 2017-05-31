@@ -77,3 +77,7 @@ ansistrano_s3_rgw: false
 ## Sends anonymous stats to the www.ansistrano.com servers
 ## You can disallow it by just setting this parameter to "no" in your playbook
 ansistrano_allow_anonymous_stats: yes
+
+
+# Cleanup old releases with root privileges
+ansistrano_cleanup_become: no
