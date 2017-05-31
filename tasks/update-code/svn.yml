@@ -1,4 +1,14 @@
 ---
+- name: ANSISTRANO | SVN | Check svn instaled
+  command: "svn --version --quiet warn=no"
+
+- name: ANSISTRANO | SVN-HEAD | Check
+  set_fact: ansistrano_SVN_HEAD=true
+  when: ansistrano_svn_revision == "HEAD"
+
+- include: svn-HEAD.yml
+  when: ansistrano_SVN_HEAD is defined
+
 - name: ANSISTRANO | SVN | Update remote repository
   subversion:
     repo: "{{ ansistrano_svn_repo }}/{{ ansistrano_svn_branch }}"
