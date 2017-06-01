@@ -115,3 +115,8 @@ aws_region: "eu-west-1"
 ansistrano_parameters_templates_directories: []
 # a list of map of config files
 ansistrano_parameters_templates: []
+
+# A list of map of config files to fetch from remote server
+ansistrano_fetch_remote_templates: []
+# Run once fetch remote tempplates
+ansistrano_fetch_remote_templates_run_once: true

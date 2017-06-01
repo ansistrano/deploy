@@ -363,6 +363,29 @@ Let's see three deployments with an `ansistrano_keep_releases: 2` configuration:
 
 See how the release `20100509145325` has been removed.
 
+Using templates files from remote hosts
+---------------------------------------
+
+During the `parameters` you can specify a list of template file to render `ansistrano_parameters_templates`.
+Those templates source path refered to the how who run the ansible playbook.
+
+To be able to get and use remote template you could use `ansistrano_fetch_remote_templates`.
+
+Usecase example : A template is provided in a git repository cloned on the remote host.
+We want to get the provided template on the host to render it.
+
+```
+# Get the template from the remote host
+ansistrano_fetch_remote_templates:
+  - dest: /tmp/play-application.conf.j2
+    src: "{{ansistrano_release_path.stdout}}/conf/application.conf.j2"
+
+# Then use this fetched template to configure the remote host
+ansistrano_parameters_templates:
+  - src: /tmp/play-application.conf.j2
+    dest: "{{ansistrano_release_path.stdout}}/conf/application.conf"
+```
+
 Example Playbook
 ----------------
 
