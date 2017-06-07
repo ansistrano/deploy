@@ -12,7 +12,7 @@
     delete: yes
     archive: yes
     compress: yes
-    rsync_opts: "{{ ansistrano_rsync_extra_params }}"
+    rsync_opts: "{{ ansistrano_rsync_extra_params | default(omit) }}"
     rsync_path: "{{ ansistrano_rsync_path | default(omit) }}"
 
 - name: ANSISTRANO | RSYNC | Deploy existing code to servers

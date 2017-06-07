@@ -59,7 +59,7 @@ ansistrano_hg_repo: "https://USERNAME@bitbucket.org/USERNAME/REPO"
 ansistrano_hg_branch: "default"
 
 ## RSYNC push strategy
-ansistrano_rsync_extra_params: ""
+# ansistrano_rsync_extra_params: ""
 ## put user@ for the remote paths. If you have a custom ssh config to define
 ## the remote user for a host that does not match the inventory user,
 ## you should set this parameter to "no".
