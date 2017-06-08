@@ -1,19 +1,55 @@
 ---
 # Setup folders
+- name: ANSISTRANO | Ensure deployment base path exists and add stickygid
+  file:
+    state: directory
+    path: "{{ ansistrano_deploy_to }}"
+    owner: "{{ ansistrano_user }}"
+    group: "{{ ansistrano_group }}"
+    mode: "2750"
+  when: ansistrano_chmod_gid
+
 - name: ANSISTRANO | Ensure deployment base path exists
   file:
     state: directory
     path: "{{ ansistrano_deploy_to }}"
+    owner: "{{ ansistrano_user }}"
+    group: "{{ ansistrano_group }}"
+  when: not ansistrano_chmod_gid
+
+- name: ANSISTRANO | Ensure releases folder exists and add stickygid
+  file:
+    state: directory
+    path: "{{ ansistrano_releases_path }}"
+    owner: "{{ ansistrano_user }}"
+    group: "{{ ansistrano_group }}"
+    mode: "2770"
+  when: ansistrano_rolling_releases and ansistrano_chmod_gid
 
 - name: ANSISTRANO | Ensure releases folder exists
   file:
     state: directory
     path: "{{ ansistrano_releases_path }}"
+    owner: "{{ ansistrano_user }}"
+    group: "{{ ansistrano_group }}"
+  when: ansistrano_rolling_releases and not ansistrano_chmod_gid
+
+- name: ANSISTRANO | Ensure shared elements folder exists and add stickygid
+  file:
+    state: directory
+    path: "{{ ansistrano_shared_path }}"
+    owner: "{{ ansistrano_user }}"
+    group: "{{ ansistrano_group }}"
+    mode: "2770"
+  when: ansistrano_rolling_releases and ansistrano_chmod_gid
 
 - name: ANSISTRANO | Ensure shared elements folder exists
   file:
     state: directory
     path: "{{ ansistrano_shared_path }}"
+    owner: "{{ ansistrano_user }}"
+    group: "{{ ansistrano_group }}"
+  when: ansistrano_rolling_releases and not ansistrano_chmod_gid
 
 # Ensure shared path exists
 - name: ANSISTRANO | Ensure shared paths exists
@@ -28,5 +64,7 @@
   file:
     state: directory
     path: "{{ ansistrano_deploy_to }}/shared/{{ item | dirname }}"
+    owner: "{{ ansistrano_user }}"
+    group: "{{ ansistrano_group }}"
   with_items: "{{ ansistrano_shared_files }}"
-  when: ansistrano_ensure_basedirs_shared_files_exist
+  when: ansistrano_ensure_basedirs_shared_files_exist and ansistrano_rolling_releases and not ansistrano_chmod_gid

@@ -1,0 +1,15 @@
+---
+- name: Gathering ec2 facts
+  action: ec2_facts
+
+- debug: msg="Instance_id={{ ansible_ec2_instance_id }}"
+
+- name: Instance De-register
+  local_action:
+    module: ec2_elb
+    region: "{{ aws_region }}"
+    ec2_elbs: "{{ item }}"
+    instance_id: "{{ ansible_ec2_instance_id }}"
+    state: "absent"
+  with_items:
+    - '{{ ansistrano_elb_name }}'
