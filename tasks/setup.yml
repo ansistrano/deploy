@@ -19,7 +19,7 @@
 - name: ANSISTRANO | Ensure shared paths exists
   file:
     state: directory
-    path: "{{ ansistrano_deploy_to }}/shared/{{ item }}"
+    path: "{{ ansistrano_shared_path }}/{{ item }}"
   with_items: "{{ ansistrano_shared_paths }}"
   when: ansistrano_ensure_shared_paths_exist
 
