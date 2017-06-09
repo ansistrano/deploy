@@ -1,0 +1,11 @@
+---
+
+- name : fetch template from remote host
+  run_once: "{{ansistrano_fetch_remote_templates_run_once}}"
+  fetch:
+    src="{{ item.src }}"
+    dest="{{ item.dest }}"
+    flat=yes
+    fail_on_missing=yes
+  with_items: "{{ ansistrano_fetch_remote_templates }}"
+
