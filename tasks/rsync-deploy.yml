@@ -25,7 +25,9 @@
   file:
     state: absent
     path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}/{{ item }}"
-  with_items: "{{ ansistrano_shared_paths }}"
+  with_flattened:
+    - "{{ ansistrano_shared_paths }}"
+    - "{{ ansistrano_shared_files }}"
 
 # Symlinks shared paths
 - name: ANSISTRANO | Create softlinks for shared paths
@@ -33,4 +35,6 @@
     state: link
     path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}/{{ item }}"
     src: "{{ item | regex_replace('[^\\/]*', '..') }}/shared/{{ item }}"
-  with_items: "{{ ansistrano_shared_paths }}"
+  with_flattened:
+    - "{{ ansistrano_shared_paths }}"
+    - "{{ ansistrano_shared_files }}"

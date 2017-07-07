@@ -33,5 +33,7 @@
     dest: "{{ ansistrano_release_path.stdout }}/.rsync-filter"
     line: "- /{{ item }}"
     create: yes
-  with_items: "{{ ansistrano_shared_paths }}"
+  with_flattened:
+    - "{{ ansistrano_shared_paths }}"
+    - "{{ ansistrano_shared_files }}"
   when: ansistrano_current_via == "rsync"
