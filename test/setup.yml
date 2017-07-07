@@ -3,10 +3,9 @@
 - hosts: all
   pre_tasks:
     - name: Update apt cache.
-      apt:
-        update_cache: yes
-      changed_when: False
+      command: apt -y update
       when: ansible_os_family == 'Debian'
+      
   tasks:
 
     - name: Check Ansible Is Installed
