@@ -22,25 +22,9 @@ env:
     init: /sbin/init
     run_opts: ""
     ANSIBLE_VERSION: docker
-  - distribution: Ubuntu
-    distribution_version: precise
-    init: /sbin/init
-    run_opts: ""
-    ANSIBLE_VERSION: docker
   - distribution: EL
     distribution_version: "7"
     init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    ANSIBLE_VERSION: docker
-  # Temporary commenting out broken tests
-  # - distribution: EL
-  #   distribution_version: "6"
-  #   init: /sbin/init
-  #   run_opts: ""
-  #   ANSIBLE_VERSION: docker
-  - distribution: Debian
-    distribution_version: jessie
-    init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     ANSIBLE_VERSION: docker
   - distribution: Debian
@@ -53,12 +37,6 @@ env:
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     ANSIBLE_VERSION: docker
-  - distribution: Fedora
-    distribution_version: "23"
-    init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    ANSIBLE_VERSION: docker
-
 
 before_install:
   # Standard Local Testing Commands
