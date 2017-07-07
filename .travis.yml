@@ -28,9 +28,9 @@ env:
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     ANSIBLE_VERSION: docker
   - distribution: Debian
-    distribution_version: wheezy
-    init: /sbin/init
-    run_opts: ""
+    distribution_version: jessie
+    init: /lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     ANSIBLE_VERSION: docker
   - distribution: Fedora
     distribution_version: "24"
