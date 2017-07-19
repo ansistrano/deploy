@@ -180,7 +180,18 @@ vars:
   ansistrano_git_repo: git@github.com:USERNAME/REPO.git # Location of the git repository
   ansistrano_git_branch: master # What version of the repository to check out. This can be the full 40-character SHA-1 hash, the literal string HEAD, a branch name, or a tag name
   ansistrano_git_repo_tree: "" # If specified the subtree of the repository to deploy
-  ansistrano_git_identity_key_path: "" # If specified this file is copied over and used as the identity key for the git commands, path is relative to the playbook in which it is used
+  # If either ansistrano_git_identity_key_path and ansistrano_git_identity_key_content is specified,
+  # a deployment key is is delivered just-in-time and used as the identity key for git commands.
+  # The variables are mutually exclusive.
+  # Use one or the other; using both causes ansistrano_git_identity_key_content to prevail
+  # The remote file is shred'd after each deploy.
+  # 
+  # Example: "secret-deploy-key.pem": path is relative to the playbook in which it is used
+  ansistrano_git_identity_key_path: "" 
+  # Example: "{{ lookup('file', '/Users/<username>/secret-deploy-key.pem') }}": pipe a local file to the remote host
+  # Example: "{{ vault_git_deployment_key }}": insert the contents of a variable as the deployment key
+  ansistrano_git_identity_key_content: ""
+
   # Optional variable, omitted by default
   ansistrano_git_refspec: ADDITIONAL_GIT_REFSPEC # Additional refspec to be used by the 'git' module. Uses the same syntax as the 'git fetch' command.
 

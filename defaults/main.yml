@@ -44,7 +44,17 @@ ansistrano_keep_releases: 0
 ansistrano_git_repo: git@github.com:USERNAME/REPO.git
 ansistrano_git_branch: master
 ansistrano_git_repo_tree: ""
-ansistrano_git_identity_key_path: ""
+# GIT strategy using SSH key
+# If either ansistrano_git_identity_key_path and ansistrano_git_identity_key_content is specified,
+# a deployment key is is delivered just-in-time and used as the identity key for git commands.
+# The variables are mutually exclusive.
+# Use one or the other; using both causes ansistrano_git_identity_key_content to prevail
+# The remote file is shred'd after each deploy.
+#
+# Example: "secret-deploy-key.pem": path is relative to the playbook in which it is used
+ansistrano_git_identity_key_path: "" 
+# Example: "{{ lookup('file', '/Users/<username>/secret-deploy-key.pem') }}": pipe a local file to the remote host
+# Example: "{{ vault_git_deployment_key }}": insert the contents of a variable as the deployment key
 ansistrano_git_identity_key_content: ""
 
 ## SVN pull strategy
