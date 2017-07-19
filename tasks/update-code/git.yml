@@ -1,10 +1,22 @@
 ---
-- name: ANSISTRANO | GIT | Ensure GIT deployment key is up to date
+# Ansible in English:
+# Inspect two variables for a non-empty value, then omit opposite the module parameter.
+- name: ANSISTRANO | GIT | Deliver SSH deployment key
   copy:
-    src: "{{ ansistrano_git_identity_key_path }}"
+    content: "{{ (item.key == 'content')|ternary(item.value, omit) }}"
+    src: "{{ (item.key == 'src')|ternary(item.value, omit) }}"
     dest: "{{ ansistrano_deploy_to }}/git_identity_key"
     mode: 0400
-  when: ansistrano_git_identity_key_path|trim != ""
+  no_log: True
+  with_dict:
+    src: "{{ ansistrano_git_identity_key_path }}"
+    content: "{{ ansistrano_git_identity_key_content }}"
+  when: item.value|trim != ""
+
+- name: ANSISTRANO | GIT | Detect SSH key for deployment
+  stat:
+    path: "{{ ansistrano_deploy_to }}/git_identity_key"
+  register: ansistrano_git_ssh_key
 
 - name: ANSISTRANO | GIT | Update remote repository
   git:
@@ -16,7 +28,7 @@
     force: yes
     refspec: "{{ ansistrano_git_refspec | default(omit) }}"
   register: ansistrano_git_result_update
-  when: ansistrano_git_identity_key_path|trim == ''
+  when: ansistrano_git_ssh_key.stat.exists != True
 
 - name: ANSISTRANO | GIT | Update remote repository using SSH key
   git:
@@ -29,14 +41,14 @@
     refspec: "{{ ansistrano_git_refspec | default(omit) }}"
     key_file: "{{ ansistrano_deploy_to }}/git_identity_key"
   register: ansistrano_git_result_update_ssh
-  when: ansistrano_git_identity_key_path|trim != ""
+  when: ansistrano_git_ssh_key.stat.exists
 
 - name: ANSISTRANO | GIT | Register ansistrano_git_result variable
   set_fact: ansistrano_git_result={{ ansistrano_git_result_update_ssh if ansistrano_git_result_update|skipped else ansistrano_git_result_update }}
 
 - name: ANSISTRANO | GIT | Shred GIT deployment key
-  command: shred -f "{{ ansistrano_deploy_to }}/git_identity_key"
-  when: ansistrano_git_identity_key_path|trim != ""
+  command: shred -f -u "{{ ansistrano_deploy_to }}/git_identity_key"
+  when: ansistrano_git_ssh_key.stat.exists
 
 - name: ANSISTRANO | GIT | Set git_real_repo_tree
   set_fact:
