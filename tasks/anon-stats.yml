@@ -3,7 +3,7 @@
 - name: ANSISTRANO | Send anonymous stats
   uri:
     url: http://ansistrano.com/deploy
-    follow_redirects: true
+    follow_redirects: all
     method: POST
     timeout: 5
     body: "deploy_via={{ ansistrano_deploy_via | default('rsync') }}&version={{ ansible_version.string }}"
