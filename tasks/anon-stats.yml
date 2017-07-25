@@ -2,7 +2,7 @@
 # Sends anonymous stats if the user is ok with it
 - name: ANSISTRANO | Send anonymous stats
   uri:
-    url: http://ansistrano.com/deploy
+    url: https://ansistrano.com/deploy
     follow_redirects: all
     method: POST
     timeout: 5
