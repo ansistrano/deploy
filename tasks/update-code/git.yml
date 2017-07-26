@@ -1,10 +1,18 @@
 ---
-- name: ANSISTRANO | GIT | Ensure GIT deployment key is up to date
+- name: ANSISTRANO | GIT | Ensure GIT deployment key is up to date (local key file)
   copy:
     src: "{{ ansistrano_git_identity_key_path }}"
     dest: "{{ ansistrano_deploy_to }}/git_identity_key"
     mode: 0400
   when: ansistrano_git_identity_key_path|trim != ""
+
+- name: ANSISTRANO | GIT | Ensure GIT deployment key is up to date (remote key file)
+  copy:
+    remote_src: true
+    src: "{{ ansistrano_git_identity_key_remote_path }}"
+    dest: "{{ ansistrano_deploy_to }}/git_identity_key"
+    mode: 0400
+  when: ansistrano_git_identity_key_remote_path|trim != ""
 
 - name: ANSISTRANO | GIT | Update remote repository
   git:
@@ -16,7 +24,7 @@
     force: yes
     refspec: "{{ ansistrano_git_refspec | default(omit) }}"
   register: ansistrano_git_result_update
-  when: ansistrano_git_identity_key_path|trim == ''
+  when: ansistrano_git_identity_key_path|trim == '' and ansistrano_git_identity_key_remote_path == ''
 
 - name: ANSISTRANO | GIT | Update remote repository using SSH key
   git:
@@ -29,14 +37,14 @@
     refspec: "{{ ansistrano_git_refspec | default(omit) }}"
     key_file: "{{ ansistrano_deploy_to }}/git_identity_key"
   register: ansistrano_git_result_update_ssh
-  when: ansistrano_git_identity_key_path|trim != ""
+  when: ansistrano_git_identity_key_path|trim != "" or ansistrano_git_identity_key_remote_path != ""
 
 - name: ANSISTRANO | GIT | Register ansistrano_git_result variable
   set_fact: ansistrano_git_result={{ ansistrano_git_result_update_ssh if ansistrano_git_result_update|skipped else ansistrano_git_result_update }}
 
 - name: ANSISTRANO | GIT | Shred GIT deployment key
   command: shred -f "{{ ansistrano_deploy_to }}/git_identity_key"
-  when: ansistrano_git_identity_key_path|trim != ""
+  when: ansistrano_git_identity_key_path|trim != "" or ansistrano_git_identity_key_remote_path != ""
 
 - name: ANSISTRANO | GIT | Set git_real_repo_tree
   set_fact:

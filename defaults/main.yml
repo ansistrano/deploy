@@ -45,6 +45,7 @@ ansistrano_git_repo: git@github.com:USERNAME/REPO.git
 ansistrano_git_branch: master
 ansistrano_git_repo_tree: ""
 ansistrano_git_identity_key_path: ""
+ansistrano_git_identity_key_remote_path: ""
 
 ## SVN pull strategy
 ansistrano_svn_repo: "https://svn.company.com/project"
