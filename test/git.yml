@@ -184,7 +184,7 @@
   hosts: all
   vars:
     ansistrano_deploy_via: "git"
-    ansistrano_git_repo: git@github.com:fjros/ansistrano-git-test.git
+    ansistrano_git_repo: git@github.com:ansistrano/git-test.git
     ansistrano_git_branch: master
     ansistrano_git_repo_tree: foo
     ansistrano_deploy_to: "/tmp/git/my-app.com"
