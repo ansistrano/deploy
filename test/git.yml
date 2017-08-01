@@ -179,3 +179,30 @@
     - fail:
         msg: "File bar.html does not exist"
       when: st.stat.exists is not defined or st.stat.exists == False or st.stat.isdir == True
+
+- name: When deploying using Git (remote path for identity key)
+  hosts: all
+  vars:
+    ansistrano_deploy_via: "git"
+    ansistrano_git_repo: git@github.com:ansistrano/git-test.git
+    ansistrano_git_branch: master
+    ansistrano_git_repo_tree: foo
+    ansistrano_deploy_to: "/tmp/git/my-app.com"
+    ansistrano_git_identity_key_remote_path_local_test: "{{ ansible_env.PWD }}/deploy.key"
+    ansistrano_git_identity_key_remote_path_docker_test: "/etc/ansible/roles/role_under_test/test/deploy.key"
+    ansistrano_git_identity_key_remote_path: "{{ (lookup('env', 'ANSIBLE_VERSION') == 'docker') | ternary(ansistrano_git_identity_key_remote_path_docker_test, ansistrano_git_identity_key_remote_path_local_test) }}"
+  pre_tasks:
+    - name: Clear ansistrano_deploy_to
+      file:
+        path: "{{ ansistrano_deploy_to }}"
+        state: absent
+  roles:
+    - { role: local-ansistrano }
+  tasks:
+    - name: Assert ansistrano_deploy_to/current/bar.html file does exist
+      stat:
+        path: "{{ ansistrano_deploy_to }}/current/bar.html"
+      register: st
+    - fail:
+        msg: "File bar.html does not exist"
+      when: st.stat.exists is not defined or st.stat.exists == False or st.stat.isdir == True
