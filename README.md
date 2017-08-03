@@ -83,6 +83,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [UNICEF Comité Español](https://www.unicef.es)
 * [Ulabox](https://www.ulabox.com)
 * [Uvinum](http://www.uvinum.com)
+* [VirginMobile Chile](https://empresas.virginmobile.cl)
 * [Wavecontrol](http://monitoring.wavecontrol.com/ca/public/demo/)
 * [Yubl](https://yubl.me/)
 
