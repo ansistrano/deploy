@@ -63,6 +63,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Cycloid](http://www.cycloid.io)
 * [EnAlquiler](http://www.enalquiler.com/)
 * [Euromillions.com](http://euromillions.com/)
+* [Finizens](https://finizens.com/)
 * [Fluxus](http://www.fluxus.io/)
 * [Gstock](http://www.g-stock.es)
 * [HackSoft](https://hacksoft.io/)
