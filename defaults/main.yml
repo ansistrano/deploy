@@ -84,6 +84,8 @@ ansistrano_allow_anonymous_stats: no
 
 slack_token: ""
 slack: false
+slack_headline: ""
+slack_icon_url: ""
 
 # Handler flag
 ansistrano_supervisord_enabled: false
