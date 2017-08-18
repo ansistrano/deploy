@@ -60,6 +60,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Cabissimo](https://www.cabissimo.com)
 * [Claranet France](http://www.claranet.fr/)
 * [Clearpoint](http://www.clearpoint.co.nz)
+* [Clever Age](https://www.clever-age.com)
 * [Cycloid](http://www.cycloid.io)
 * [EnAlquiler](http://www.enalquiler.com/)
 * [Euromillions.com](http://euromillions.com/)
@@ -87,7 +88,6 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [VirginMobile Chile](https://empresas.virginmobile.cl)
 * [Wavecontrol](http://monitoring.wavecontrol.com/ca/public/demo/)
 * [Yubl](https://yubl.me/)
-* [Clever Age](https://www.clever-age.com)
 
 If you are also using it, please let us know via a PR to this document.
 
