@@ -351,8 +351,8 @@ Variables in custom tasks
 When writing your custom tasks files you may need some variables that Ansistrano makes available to you:
 
 * ```{{ ansistrano_release_path.stdout }}```: Path to current deployment release (probably the one you are going to use the most)
-* ```{{ ansistrano_releases_path.stdout }}```: Path to releases folder
-* ```{{ ansistrano_shared_path.stdout }}```: Path to shared folder (where common releases assets can be stored)
+* ```{{ ansistrano_releases_path }}```: Path to releases folder
+* ```{{ ansistrano_shared_path }}```: Path to shared folder (where common releases assets can be stored)
 * ```{{ ansistrano_release_version }}```: Relative directory name for the release (by default equals to the current timestamp in UTC timezone)
 
 Pruning old releases
