@@ -71,6 +71,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [HackConf](https://hackconf.bg/en/)
 * [Hexanet](https://www.hexanet.fr)
 * [Holaluz](https://www.holaluz.com)
+* [Hosting4devs](https://hosting4devs.com)
 * [Jolicode](http://jolicode.com/)
 * [Kidfund](http://link.kidfund.us/github "Kidfund")
 * [Moss](https://moss.sh)
