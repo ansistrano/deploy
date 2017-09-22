@@ -11,7 +11,7 @@
   command: echo "{{ ansistrano_releases_path }}/{{ ansistrano_release_version }}"
   register: ansistrano_release_path
 
-- include: "update-code/{{ ansistrano_deploy_via | default('rsync') }}.yml"
+- import_tasks: "update-code/{{ ansistrano_deploy_via | default('rsync') }}.yml"
 
 - name: ANSISTRANO | Copy release version into REVISION file
   copy:
