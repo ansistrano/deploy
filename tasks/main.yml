@@ -1,36 +1,36 @@
 ---
-- include: "{{ ansistrano_before_setup_tasks_file | default('empty.yml') }}"
+- import_tasks: "{{ ansistrano_before_setup_tasks_file | default('empty.yml') }}"
 
-- include: setup.yml
+- import_tasks: setup.yml
 
-- include: "{{ ansistrano_after_setup_tasks_file | default('empty.yml') }}"
+- import_tasks: "{{ ansistrano_after_setup_tasks_file | default('empty.yml') }}"
 
-- include: "{{ ansistrano_before_update_code_tasks_file | default('empty.yml') }}"
+- import_tasks: "{{ ansistrano_before_update_code_tasks_file | default('empty.yml') }}"
 
-- include: update-code.yml
+- import_tasks: update-code.yml
 
-- include: "{{ ansistrano_after_update_code_tasks_file | default('empty.yml') }}"
+- import_tasks: "{{ ansistrano_after_update_code_tasks_file | default('empty.yml') }}"
 
-- include: "{{ ansistrano_before_symlink_shared_tasks_file | default('empty.yml') }}"
+- import_tasks: "{{ ansistrano_before_symlink_shared_tasks_file | default('empty.yml') }}"
 
-- include: symlink-shared.yml
+- import_tasks: symlink-shared.yml
 
-- include: "{{ ansistrano_after_symlink_shared_tasks_file | default('empty.yml') }}"
+- import_tasks: "{{ ansistrano_after_symlink_shared_tasks_file | default('empty.yml') }}"
 
-- include: "{{ ansistrano_before_symlink_tasks_file | default('empty.yml') }}"
+- import_tasks: "{{ ansistrano_before_symlink_tasks_file | default('empty.yml') }}"
 
-- include: symlink.yml
+- import_tasks: symlink.yml
   when: ansistrano_current_via == "symlink"
 
-- include: rsync-deploy.yml
+- import_tasks: rsync-deploy.yml
   when: ansistrano_current_via == "rsync"
 
-- include: "{{ ansistrano_after_symlink_tasks_file | default('empty.yml') }}"
+- import_tasks: "{{ ansistrano_after_symlink_tasks_file | default('empty.yml') }}"
 
-- include: "{{ ansistrano_before_cleanup_tasks_file | default('empty.yml') }}"
+- import_tasks: "{{ ansistrano_before_cleanup_tasks_file | default('empty.yml') }}"
 
-- include: cleanup.yml
+- import_tasks: cleanup.yml
 
-- include: "{{ ansistrano_after_cleanup_tasks_file | default('empty.yml') }}"
+- import_tasks: "{{ ansistrano_after_cleanup_tasks_file | default('empty.yml') }}"
 
-- include: anon-stats.yml
+- import_tasks: anon-stats.yml
