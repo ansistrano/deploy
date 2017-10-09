@@ -83,6 +83,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Spotahome](https://www.spotahome.com)
 * [Suntransfers](http://www.suntransfers.com)
 * [TechPump](http://www.techpump.com/)
+* [The Cocktail](https://the-cocktail.com/)
 * [UNICEF Comité Español](https://www.unicef.es)
 * [Ulabox](https://www.ulabox.com)
 * [Uvinum](http://www.uvinum.com)
