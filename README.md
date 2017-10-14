@@ -79,6 +79,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Nodo Ámbar](http://www.nodoambar.com/)
 * [Oferplan](http://oferplan.com/)
 * [Ofertix](http://www.ofertix.com)
+* [Òmnium Cultural](https://www.omnium.cat, https://cridademocracia.org)
 * [OpsWay Software Factory](http://opsway.com)
 * [Spotahome](https://www.spotahome.com)
 * [Suntransfers](http://www.suntransfers.com)
