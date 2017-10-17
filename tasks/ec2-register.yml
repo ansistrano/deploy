@@ -1,0 +1,12 @@
+---
+- name: Instance Register
+  local_action:
+    module: ec2_elb
+    region: "{{ aws_region }}"
+    instance_id: "{{ ansible_ec2_instance_id }}"
+    ec2_elbs: "{{ item }}"
+    state: 'present'
+    wait: yes
+    wait_timeout: 300
+  with_items:
+    - '{{ ansistrano_elb_name }}'

@@ -16,6 +16,8 @@
     state: link
     path: "{{ ansistrano_release_path.stdout }}/{{ item }}"
     src: "{{ item | regex_replace('[^\\/]*', '..') }}/../shared/{{ item }}"
+    owner: "{{ ansistrano_user }}"
+    group: "{{ ansistrano_group }}"
   with_flattened:
     - "{{ ansistrano_shared_paths }}"
     - "{{ ansistrano_shared_files }}"

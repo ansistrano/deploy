@@ -1,0 +1,31 @@
+- name: ANSISTRANO | Copy parameter.yml
+  template:
+    src="{{ ansistrano_parameters_template }}"
+    dest="{{ ansistrano_release_path.stdout }}/{{ ansistrano_parameters_destination }}"
+    owner="{{ ansistrano_user }}"
+    group="{{ ansistrano_user }}"
+  become: yes
+  become_user: "{{ ansistrano_user }}"
+  when: ansistrano_parameters_template is defined and ansistrano_parameters_destination is defined
+
+
+- name: ANSISTRANO | Create config directories
+  file:
+    path="{{ item }}"
+    state=directory
+    mode=744
+    owner="{{ ansistrano_user }}"
+    group="{{ ansistrano_user }}"
+  become: yes
+  become_user: "{{ ansistrano_user }}"
+  with_items: "{{ ansistrano_parameters_templates_directories }}"
+
+- name: ANSISTRANO | Copy config files
+  template:
+    src="{{ item.src }}"
+    dest="{{ item.dest }}"
+    owner="{{ ansistrano_user }}"
+    group="{{ ansistrano_user }}"
+  become: yes
+  become_user: "{{ ansistrano_user }}"
+  with_items: "{{ ansistrano_parameters_templates }}"

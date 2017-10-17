@@ -4,6 +4,29 @@
     copy: no
     src: "{{ ansistrano_archived_file }}"
     dest: "{{ ansistrano_release_path.stdout }}"
+  when: not ansistrano_s3_archive_content
+
+- name: ANSISTRANO | Create temporary archive directory
+  register: mktemp
+  command: mktemp -d
+  when: ansistrano_s3_archive_content
+
+- name: ANSISTRANO | Unarchive | Unarchive source to get content
+  unarchive:
+    copy: no
+    src: "{{ ansistrano_archived_file }}"
+    dest: "{{ mktemp.stdout }}"
+  when: ansistrano_s3_archive_content
+
+- name: ANSISTRANO | Move archive content files
+  shell: "cp -r {{ mktemp.stdout }}/*/. {{ ansistrano_release_path.stdout }}"
+  when: ansistrano_s3_archive_content
+
+- name: ANSISTRANO | Remove temporary archive directory
+  file:
+    path: "{{ mktemp.stdout }}"
+    state: absent
+  when: ansistrano_s3_archive_content
 
 - name: ANSISTRANO | Unarchive | Delete archived file
   file:

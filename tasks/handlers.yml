@@ -1,0 +1,19 @@
+---
+
+# Use in replcacement of traditionnal handler
+# https://github.com/ansible/ansible/issues/8684
+
+- name: restart supervisord
+  become: yes
+  supervisorctl: name={{ item }} state=restarted
+  with_items: "{{ ansistrano_supervisord_programs }}"
+  when: ansistrano_supervisord_enabled
+
+- name: Test nginx and reload
+  command: nginx -t
+  when: ansistrano_nginx_enabled
+
+- name: reload php-fpm
+  service: name="{{ansistrano_php_fpm_service_name}}" state=restarted
+  when: ansistrano_php_fpm_enabled
+

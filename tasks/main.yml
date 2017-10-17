@@ -1,4 +1,17 @@
 ---
+- include: slack.yml state=start
+  when: slack
+
+- supervisorctl: name={{ item }} state=stopped
+  when: ansistrano_supervisord_enabled and not ansistrano_supervisord_restart_only
+  with_items: "{{ ansistrano_supervisord_programs }}"
+
+- include: sensu.yml stash=true
+  when: ansistrano_sensu_enabled
+
+- include: ec2-deregister.yml
+  when: ansistrano_rolling_elb_enabled
+
 - include: "{{ ansistrano_before_setup_tasks_file | default('empty.yml') }}"
 
 - include: setup.yml
@@ -8,29 +21,47 @@
 - include: "{{ ansistrano_before_update_code_tasks_file | default('empty.yml') }}"
 
 - include: update-code.yml
+  when: not ansistrano_setup_only
+
+- include: fetch-remote-templates.yml
+
+- include: parameters.yml
 
 - include: "{{ ansistrano_after_update_code_tasks_file | default('empty.yml') }}"
 
 - include: "{{ ansistrano_before_symlink_shared_tasks_file | default('empty.yml') }}"
 
 - include: symlink-shared.yml
+  when: not ansistrano_setup_only
 
 - include: "{{ ansistrano_after_symlink_shared_tasks_file | default('empty.yml') }}"
 
 - include: "{{ ansistrano_before_symlink_tasks_file | default('empty.yml') }}"
 
 - include: symlink.yml
-  when: ansistrano_current_via == "symlink"
+  when: ansistrano_current_via == "symlink" and not ansistrano_setup_only
 
 - include: rsync-deploy.yml
-  when: ansistrano_current_via == "rsync"
+  when: ansistrano_current_via == "rsync" and not ansistrano_setup_only
 
 - include: "{{ ansistrano_after_symlink_tasks_file | default('empty.yml') }}"
 
 - include: "{{ ansistrano_before_cleanup_tasks_file | default('empty.yml') }}"
 
 - include: cleanup.yml
+  when: not ansistrano_setup_only
 
 - include: "{{ ansistrano_after_cleanup_tasks_file | default('empty.yml') }}"
 
 - include: anon-stats.yml
+
+- include: handlers.yml
+
+- include: ec2-register.yml
+  when: ansistrano_rolling_elb_enabled
+
+- include: sensu.yml stash=false
+  when: ansistrano_sensu_enabled
+
+- include: slack.yml state=end
+  when: slack
