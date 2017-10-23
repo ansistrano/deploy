@@ -23,6 +23,8 @@
 - include: update-code.yml
   when: not ansistrano_setup_only
 
+- include: "{{ ansistrano_before_parameters_tasks_file | default('empty.yml') }}"
+
 - include: fetch-remote-templates.yml
 
 - include: parameters.yml
