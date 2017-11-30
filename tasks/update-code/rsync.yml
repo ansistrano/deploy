@@ -17,3 +17,8 @@
 
 - name: ANSISTRANO | RSYNC | Deploy existing code to servers
   command: cp -a {{ ansistrano_shared_rsync_copy_path.stdout }} {{ ansistrano_release_path.stdout }}
+  when: not ansistrano_use_hardlinks
+
+- name: ANSISTRANO | RSYNC | Deploy existing code to servers (using hard links)
+  command: cp -al {{ ansistrano_shared_rsync_copy_path.stdout }} {{ ansistrano_release_path.stdout }}
+  when: ansistrano_use_hardlinks
