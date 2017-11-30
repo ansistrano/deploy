@@ -11,6 +11,16 @@
   command: echo "{{ ansistrano_releases_path }}/{{ ansistrano_release_version }}"
   register: ansistrano_release_path
 
+# Prevent going on if release already exists
+# This could happen if you don't use a long date in ansistrano_release_version
+- name: ANSISTRANO | Check if release already exists
+  stat:
+    path: "{{ ansistrano_release_path.stdout }}"
+  register: st
+- fail:
+    msg: "Release already exists: {{ ansistrano_release_path.stdout | basename }}"
+  when: st.stat.exists is defined and st.stat.exists
+
 - include: "update-code/{{ ansistrano_deploy_via | default('rsync') }}.yml"
 
 - name: ANSISTRANO | Copy release version into REVISION file
