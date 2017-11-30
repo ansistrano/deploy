@@ -154,6 +154,7 @@ vars:
   ansistrano_current_dir: "current" # Softlink name. You should rarely changed it.
   ansistrano_current_via: "symlink" # Deployment strategy who code should be deployed to current path. Options are symlink or rsync
   ansistrano_keep_releases: 0 # Releases to keep after a new deployment. See "Pruning old releases".
+  ansistrano_use_hardlinks: no # If your system allows it, you can save you a lot of space by using hard links.
 
   # Arrays of directories and files to be shared.
   # The following arrays of directories and files will be symlinked to the current release directory after the 'update-code' step and its callbacks
@@ -397,6 +398,13 @@ Let's see three deployments with an `ansistrano_keep_releases: 2` configuration:
 ```
 
 See how the release `20100509145325` has been removed.
+
+Additionally, you can save tons of space by using hard links instead of having duplicate files between releases.
+Just set `ansistrano_use_hardlinks` to `yes`. 
+
+Not fully tested. Today only works with `ansistrano_deploy_via: "rsync"`. 
+Check if your system supports `cp -l` and your filesystem supports hard links, like `ext2/3/4`. 
+Not useful if your filesystem already has _Data deduplication_, like `ZFS` or `Btrfs`. 
 
 Example Playbook
 ----------------

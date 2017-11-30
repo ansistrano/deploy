@@ -33,6 +33,9 @@ ansistrano_ensure_basedirs_shared_files_exist: yes
 # Number of releases to keep in your hosts, if 0, unlimited releases will be kept
 ansistrano_keep_releases: 0
 
+# Use hard links between releases to save space
+ansistrano_use_hardlinks: no
+
 # Deployment strategies variables
 
 # Due to runtime variable evaluation, the ansistrano_deploy_via default is actually
