@@ -191,8 +191,9 @@ vars:
   ansistrano_git_repo_tree: "" # If specified the subtree of the repository to deploy
   ansistrano_git_identity_key_path: "" # If specified this file is copied over and used as the identity key for the git commands, path is relative to the playbook in which it is used
   ansistrano_git_identity_key_remote_path: "" # If specified this file on the remote server is used as the identity key for the git commands, remote path is absolute
-  # Optional variable, omitted by default
+  # Optional variables, omitted by default
   ansistrano_git_refspec: ADDITIONAL_GIT_REFSPEC # Additional refspec to be used by the 'git' module. Uses the same syntax as the 'git fetch' command.
+  ansistrano_git_ssh_opts: "-o StrictHostKeyChecking=no" # Additional ssh options to be used in Git
 
   # Variables used in the SVN deployment strategy
   # Please note there was a bug in the subversion module in Ansible 1.8.x series (https://github.com/ansible/ansible-modules-core/issues/370) so it is only supported from Ansible 1.9

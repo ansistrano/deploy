@@ -22,6 +22,7 @@
     accept_hostkey: true
     update: yes
     force: yes
+    ssh_opts: "{{ ansistrano_git_ssh_opts | default(omit) }}"
     refspec: "{{ ansistrano_git_refspec | default(omit) }}"
   register: ansistrano_git_result_update
   when: ansistrano_git_identity_key_path|trim == '' and ansistrano_git_identity_key_remote_path|trim == ''
@@ -34,6 +35,7 @@
     accept_hostkey: true
     update: yes
     force: yes
+    ssh_opts: "{{ ansistrano_git_ssh_opts | default(omit) }}"
     refspec: "{{ ansistrano_git_refspec | default(omit) }}"
     key_file: "{{ ansistrano_deploy_to }}/git_identity_key"
   register: ansistrano_git_result_update_ssh
