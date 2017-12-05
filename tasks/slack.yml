@@ -4,7 +4,7 @@
   run_once: true
   register: ansistrano_timestamp
   become: no
-  always_run: yes
+  check_mode: no
 
 - name: Send {{ state }} notification message via Slack
   local_action:

@@ -11,7 +11,7 @@
 - name: ANSISTRANO | Get release path
   command: echo "{{ ansistrano_releases_path }}/{{ ansistrano_release_version }}"
   register: ansistrano_release_path
-  always_run: yes
+  check_mode: no
 
 - include: "update-code/{{ ansistrano_deploy_via | default('rsync') }}.yml"
   become: yes
