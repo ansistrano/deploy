@@ -15,6 +15,6 @@
 
 - name: ANSISTRANO | Create REVISION file containing release version
   lineinfile:
-    path: "{{ ansistrano_release_path.stdout }}/REVISION"
+    dest: "{{ ansistrano_release_path.stdout }}/REVISION"
     line: "{{ ansistrano_release_version }}"
     create: true
