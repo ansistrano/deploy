@@ -26,11 +26,6 @@ env:
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     ANSIBLE_VERSION: docker
-  - distribution: Fedora
-    distribution_version: "24"
-    init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    ANSIBLE_VERSION: docker
 
 before_install:
   # Standard Local Testing Commands
