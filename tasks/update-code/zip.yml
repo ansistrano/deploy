@@ -1,0 +1,27 @@
+---
+
+- name: ANSISTRANO | SCP_ZIP | Create release folder
+  file:
+    state: directory
+    path: "{{ ansistrano_release_path.stdout }}"
+
+- name: ANSISTRANO | SCP_ZIP | Set archived file
+  set_fact:
+    ansistrano_archived_file: "{{ ansistrano_release_path.stdout }}/data.gz"
+    work_file: "/tmp/ansistrano.gz"
+
+- name: ANSISTRANO | SCP_ZIP | Zip source file
+  local_action: command tar czfh {{work_file}} {% for fn in ansistrano_zip_exclude %} --exclude {{fn}} {% endfor %} -C {{ ansistrano_deploy_from }} .
+
+
+- name: ANSISTRANO | SCP_ZIP | Upload files
+  copy:
+    src: "{{ work_file }}"
+    dest: "{{ ansistrano_archived_file }}"
+
+- name: ANSISTRANO | SCP_ZIP | Remove temporal file
+  local_action: command rm {{work_file}}
+
+
+- include: unarchive.yml
+
