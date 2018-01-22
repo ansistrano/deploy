@@ -179,7 +179,7 @@ vars:
   ansistrano_ensure_shared_paths_exist: yes
   ansistrano_ensure_basedirs_shared_files_exist: yes
 
-  ansistrano_deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync, git, svn, s3 or download. Copy, download and s3 have an optional step to unarchive the downloaded file which can be used by adding _unarchive. You can check all the options inside tasks/update-code folder!
+  ansistrano_deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, copy_zipped, rsync, git, svn, s3 or download. Copy, Copy_zipped, download and s3 have an optional step to unarchive the downloaded file which can be used by adding _unarchive. You can check all the options inside tasks/update-code folder!
   ansistrano_allow_anonymous_stats: yes
 
   # Variables used in the rsync deployment strategy
@@ -224,6 +224,10 @@ vars:
   # Optional variables, omitted by default
   ansistrano_s3_aws_access_key: YOUR_AWS_ACCESS_KEY
   ansistrano_s3_aws_secret_key: YOUR_AWS_SECRET_KEY
+  
+  # Variables used in the copy_zippped deployment strategy
+  ansistrano_zip_exclude: [ '.git', '*.tmp' ]   
+  
 
   # Hooks: custom tasks if you need them
   ansistrano_before_setup_tasks_file: "{{ playbook_dir }}/<your-deployment-config>/my-before-setup-tasks.yml"

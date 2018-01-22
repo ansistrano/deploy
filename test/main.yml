@@ -1,5 +1,6 @@
 ---
 - include: setup.yml
+- include: copy_zipped.yml
 - include: rsync.yml
 - include: git.yml
 - include: download.yml
