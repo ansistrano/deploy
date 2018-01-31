@@ -76,6 +76,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Hosting4devs](https://hosting4devs.com)
 * [Jolicode](http://jolicode.com/)
 * [Kidfund](http://link.kidfund.us/github "Kidfund")
+* [Lumao SAS](https://lumao.eu)
 * [MEDIA.figaro](http://media.figaro.fr)
 * [Moss](https://moss.sh)
 * [Nice&Crazy](http://www.niceandcrazy.com)
