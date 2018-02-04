@@ -520,3 +520,4 @@ Other resources
 ---------------
 
 * [Thoughts on deploying with Ansible](http://www.future500.nl/articles/2014/07/thoughts-on-deploying-with-ansible/)
+* [Docker image](https://hub.docker.com/r/lavoweb/ansistrano/)
