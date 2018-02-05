@@ -180,7 +180,7 @@ vars:
   ansistrano_ensure_shared_paths_exist: yes
   ansistrano_ensure_basedirs_shared_files_exist: yes
 
-  ansistrano_deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync, git, svn, s3 or download. Copy, download and s3 have an optional step to unarchive the downloaded file which can be used by adding _unarchive. You can check all the options inside tasks/update-code folder!
+  ansistrano_deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync, git, svn, s3 or download. Copy, rsync, download and s3 have an optional step to unarchive the downloaded file which can be used by adding _unarchive. You can check all the options inside tasks/update-code folder!
   ansistrano_allow_anonymous_stats: yes
 
   # Variables used in the rsync deployment strategy

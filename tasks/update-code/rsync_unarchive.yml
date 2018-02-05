@@ -1,0 +1,39 @@
+---
+- name: ANSISTRANO | RSYNC | Get shared path (in rsync case)
+  command: echo "{{ ansistrano_shared_path }}/.shared-copy"
+  register: ansistrano_shared_rsync_copy_path
+
+- name: ANSISTRANO | RSYNC | Get Archive filepath (in rsync case)
+  command: echo "{{ ansistrano_shared_path }}/{{ ansistrano_deploy_from | basename }}"
+  register: ansistrano_rsync_file_path
+
+- name: ANSISTRANO | RSYNC | Rsync application files to remote shared copy
+  synchronize:
+    src: "{{ ansistrano_deploy_from }}"
+    dest: "{{ ansistrano_rsync_file_path.stdout }}"
+    set_remote_user: "{{ ansistrano_rsync_set_remote_user }}"
+    recursive: yes
+    delete: yes
+    archive: yes
+    compress: yes
+    rsync_opts: "{{ ansistrano_rsync_extra_params | default(omit) }}"
+    rsync_path: "{{ ansistrano_rsync_path | default(omit) }}"
+
+- name: ANSISTRANO | RSYNC_UNARCHIVE | Create release folder
+  file:
+    state: directory
+    path: "{{ ansistrano_shared_rsync_copy_path.stdout }}"
+
+- name: ANSISTRANO | Unarchive | Unarchive source
+  unarchive:
+    copy: no
+    src: "{{ ansistrano_rsync_file_path.stdout }}"
+    dest: "{{ ansistrano_shared_rsync_copy_path.stdout }}"
+
+- name: ANSISTRANO | Unarchive | Delete archived file
+  file:
+    path: "{{ ansistrano_rsync_file_path.stdout }}"
+    state: absent
+
+- name: ANSISTRANO | RSYNC | Deploy existing code to servers
+  command: cp -a {{ ansistrano_shared_rsync_copy_path.stdout }} {{ ansistrano_release_path.stdout }}
