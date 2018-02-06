@@ -13,7 +13,8 @@
 
 - include: "update-code/{{ ansistrano_deploy_via | default('rsync') }}.yml"
 
-- name: ANSISTRANO | Copy release version into REVISION file
-  copy:
-    content: "{{ ansistrano_release_version }}"
+- name: ANSISTRANO | Create REVISION file containing release version
+  lineinfile:
     dest: "{{ ansistrano_release_path.stdout }}/REVISION"
+    line: "{{ ansistrano_release_version }}"
+    create: true

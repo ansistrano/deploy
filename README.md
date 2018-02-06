@@ -479,7 +479,7 @@ skipping: [quepimquepam.com]
 TASK: [carlosbuenosvinos.ansistrano-deploy | Deploy code from to servers] *****
 skipping: [quepimquepam.com]
 
-TASK: [carlosbuenosvinos.ansistrano-deploy | Copy release version into REVISION file] ***
+TASK: [carlosbuenosvinos.ansistrano-deploy | Create REVISION file containing release version] ***
 changed: [quepimquepam.com]
 
 TASK: [carlosbuenosvinos.ansistrano-deploy | Touches up the release code] *****
