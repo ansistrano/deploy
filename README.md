@@ -68,6 +68,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Clever Age](https://www.clever-age.com)
 * [CridaDemocracia](https://cridademocracia.org)
 * [Cycloid](http://www.cycloid.io)
+* [Deliverea](https://www.deliverea.com/)
 * [EnAlquiler](http://www.enalquiler.com/)
 * [Euromillions.com](http://euromillions.com/)
 * [Finizens](https://finizens.com/)
