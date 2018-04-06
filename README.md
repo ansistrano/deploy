@@ -236,7 +236,7 @@ vars:
   # Variables used in the GCS deployment strategy
   ansistrano_gcs_bucket: gcsbucket
   ansistrano_gcs_object: gcsobject.tgz # Add the _unarchive suffix to the ansistrano_deploy_via if your object is a package (ie: s3_unarchive)
-  ansistrano_gcs_region: eu-west-1
+  ansistrano_gcs_region: eu-west-1 # https://cloud.google.com/storage/docs/bucket-locations
   # Optional variables, omitted by default
   ansistrano_gcs_access_key: YOUR_GCS_ACCESS_KEY # navigate to Cloud console > Storage > Settings > Interoperability
   ansistrano_gcs_secret_key: YOUR_GCS_SECRET_KEY
