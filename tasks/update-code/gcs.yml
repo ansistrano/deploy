@@ -9,7 +9,7 @@
     bucket: "{{ ansistrano_gcs_bucket }}"
     object: "{{ ansistrano_gcs_object }}"
     region: "{{ ansistrano_gcs_region }}"
-    gcs_access_key: "{{ ansistrano_gcs_aws_access_key | default(omit) }}"
-    gcs_secret_key: "{{ ansistrano_gcs_aws_secret_key | default(omit) }}"
+    gcs_access_key: "{{ ansistrano_gcs_access_key | default(omit) }}"
+    gcs_secret_key: "{{ ansistrano_gcs_secret_key | default(omit) }}"
     dest: "{{ ansistrano_release_path.stdout }}/{{ ansistrano_gcs_object | basename }}"
     mode: get

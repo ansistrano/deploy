@@ -237,10 +237,9 @@ vars:
   ansistrano_gcs_bucket: gcsbucket
   ansistrano_gcs_object: gcsobject.tgz # Add the _unarchive suffix to the ansistrano_deploy_via if your object is a package (ie: s3_unarchive)
   ansistrano_gcs_region: eu-west-1
-  ansistrano_gcs_url: http://rgw.example.com # when use Ceph RGW, set url
   # Optional variables, omitted by default
-  ansistrano_gcs_aws_access_key: YOUR_AWS_ACCESS_KEY
-  ansistrano_gcs_aws_secret_key: YOUR_AWS_SECRET_KEY
+  ansistrano_gcs_access_key: YOUR_AWS_ACCESS_KEY
+  ansistrano_gcs_secret_key: YOUR_AWS_SECRET_KEY
 
   # Hooks: custom tasks if you need them
   ansistrano_before_setup_tasks_file: "{{ playbook_dir }}/<your-deployment-config>/my-before-setup-tasks.yml"
