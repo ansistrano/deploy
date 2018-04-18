@@ -12,6 +12,7 @@
     delete: yes
     archive: yes
     compress: yes
+    use_ssh_args: "{{ ansistrano_rsync_use_ssh_args | default(omit) }}"
     rsync_opts: "{{ ansistrano_rsync_extra_params | default(omit) }}"
     rsync_path: "{{ ansistrano_rsync_path | default(omit) }}"
 
