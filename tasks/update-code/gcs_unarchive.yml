@@ -1,0 +1,8 @@
+---
+- include: gcs.yml
+
+- name: ANSISTRANO | gcs_unarchive | Set archived file
+  set_fact:
+    ansistrano_archived_file: "{{ ansistrano_release_path.stdout }}/{{ ansistrano_gcs_object | basename }}"
+
+- include: unarchive.yml

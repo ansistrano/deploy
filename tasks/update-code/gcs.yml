@@ -1,0 +1,15 @@
+---
+- name: ANSISTRANO | GC storage | Create release folder
+  file:
+    state: directory
+    path: "{{ ansistrano_release_path.stdout }}"
+
+- name: ANSISTRANO | GC storage | Get object from GC storage
+  gc_storage:
+    bucket: "{{ ansistrano_gcs_bucket }}"
+    object: "{{ ansistrano_gcs_object }}"
+    region: "{{ ansistrano_gcs_region }}"
+    gs_access_key: "{{ ansistrano_gcs_access_key | default(omit) }}"
+    gs_secret_key: "{{ ansistrano_gcs_secret_key | default(omit) }}"
+    dest: "{{ ansistrano_release_path.stdout }}/{{ ansistrano_gcs_object | basename }}"
+    mode: get

@@ -232,6 +232,14 @@ vars:
   # Optional variables, omitted by default
   ansistrano_s3_aws_access_key: YOUR_AWS_ACCESS_KEY
   ansistrano_s3_aws_secret_key: YOUR_AWS_SECRET_KEY
+  
+  # Variables used in the GCS deployment strategy
+  ansistrano_gcs_bucket: gcsbucket
+  ansistrano_gcs_object: gcsobject.tgz # Add the _unarchive suffix to the ansistrano_deploy_via if your object is a package (ie: s3_unarchive)
+  ansistrano_gcs_region: eu-west-1 # https://cloud.google.com/storage/docs/bucket-locations
+  # Optional variables, omitted by default
+  ansistrano_gcs_access_key: YOUR_GCS_ACCESS_KEY # navigate to Cloud console > Storage > Settings > Interoperability
+  ansistrano_gcs_secret_key: YOUR_GCS_SECRET_KEY
 
   # Hooks: custom tasks if you need them
   ansistrano_before_setup_tasks_file: "{{ playbook_dir }}/<your-deployment-config>/my-before-setup-tasks.yml"
