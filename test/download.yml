@@ -17,7 +17,7 @@
   hosts: all
   vars:
     ansistrano_deploy_via: "download_unarchive"
-    ansistrano_get_url: https://github.com/ansistrano/deploy/archive/1.4.1.zip
+    ansistrano_get_url: https://github.com/ansistrano/deploy/archive/master.zip
     ansistrano_deploy_to: "/tmp/download/my-app.com"
   roles:
     - { role: local-ansistrano }
@@ -39,7 +39,7 @@
   hosts: all
   vars:
     ansistrano_deploy_via: "download_unarchive"
-    ansistrano_get_url: https://github.com/ansistrano/deploy/archive/1.4.1.zip
+    ansistrano_get_url: https://github.com/ansistrano/deploy/archive/master.zip
     ansistrano_deploy_to: "/tmp/download/my-app.com"
   roles:
     - { role: local-ansistrano }
