@@ -1,7 +1,7 @@
 ---
 - include: setup.yml
-- include: rsync.yml
-- include: git.yml
-- include: download.yml
-- include: svn.yml
-- include: hg.yml
+- include: rsync-test.yml
+- include: git-test.yml
+- include: download-test.yml
+- include: svn-test.yml
+- include: hg-test.yml
