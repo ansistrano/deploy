@@ -2,7 +2,7 @@
 - name: ANSISTRANO | HG | Update remote repository
   hg:
     repo: "{{ ansistrano_hg_repo }}"
-    dest: "{{ ansistrano_deploy_to }}/repo"
+    dest: "{{ ansistrano_deploy_to }}/{{ ansistrano_repo_dir }}"
     revision: "{{ ansistrano_hg_branch }}"
     force: yes
   register: ansistrano_hg_result
@@ -15,4 +15,4 @@
 - name: ANSISTRANO | HG | Sync repo to release path
   shell: "hg archive -r {{ ansistrano_hg_branch }} {{ ansistrano_release_path.stdout }}"
   args:
-    chdir: "{{ ansistrano_deploy_to }}/repo/"
+    chdir: "{{ ansistrano_deploy_to }}/{{ ansistrano_repo_dir }}/"
