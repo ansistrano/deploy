@@ -20,6 +20,7 @@
   file:
     state: directory
     path: "{{ ansistrano_shared_path }}/{{ item }}"
+    follow: true
   with_items: "{{ ansistrano_shared_paths }}"
   when: ansistrano_ensure_shared_paths_exist
 
@@ -28,5 +29,6 @@
   file:
     state: directory
     path: "{{ ansistrano_shared_path }}/{{ item | dirname }}"
+    follow: true
   with_items: "{{ ansistrano_shared_files }}"
   when: ansistrano_ensure_basedirs_shared_files_exist
