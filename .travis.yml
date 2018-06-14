@@ -6,7 +6,8 @@ env:
   - ANSIBLE_VERSION: "2.2.3"
   - ANSIBLE_VERSION: "2.3.3"
   - ANSIBLE_VERSION: "2.4.4"
-  - ANSIBLE_VERSION: "2.5.1"
+  - ANSIBLE_VERSION: "2.5.4"
+  - ANSIBLE_VERSION: "2.6.0rc2"
   - distribution: Ubuntu
     distribution_version: xenial
     init: /lib/systemd/systemd
