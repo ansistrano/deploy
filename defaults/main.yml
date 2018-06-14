@@ -40,6 +40,9 @@ ansistrano_keep_releases: 0
 # playbook as needed.
 # ansistrano_deploy_via: "rsync"
 
+# Directory name for the checked out repository
+ansistrano_repo_dir: "repo"
+
 ## GIT pull strategy
 ansistrano_git_repo: git@github.com:USERNAME/REPO.git
 ansistrano_git_branch: master

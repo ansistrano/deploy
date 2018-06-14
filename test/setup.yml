@@ -39,3 +39,4 @@
         - unzip
         - subversion
         - mercurial
+        - findutils
