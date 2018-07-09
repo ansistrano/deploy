@@ -3,11 +3,10 @@ services:
   - docker
 
 env:
-  - ANSIBLE_VERSION: "2.2.3"
   - ANSIBLE_VERSION: "2.3.3"
-  - ANSIBLE_VERSION: "2.4.4"
-  - ANSIBLE_VERSION: "2.5.4"
-  - ANSIBLE_VERSION: "2.6.0rc2"
+  - ANSIBLE_VERSION: "2.4.6"
+  - ANSIBLE_VERSION: "2.5.6"
+  - ANSIBLE_VERSION: "2.6.1"
   - distribution: Ubuntu
     distribution_version: xenial
     init: /lib/systemd/systemd
