@@ -1,7 +1,7 @@
 ---
-- include: setup.yml
-- include: rsync-test.yml
-- include: git-test.yml
-- include: download-test.yml
-- include: svn-test.yml
-- include: hg-test.yml
+- include_tasks: setup.yml
+- include_tasks: rsync-test.yml
+- include_tasks: git-test.yml
+- include_tasks: download-test.yml
+- include_tasks: svn-test.yml
+- include_tasks: hg-test.yml
