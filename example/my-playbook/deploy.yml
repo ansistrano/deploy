@@ -8,4 +8,4 @@
     # There seems to be an issue with rsync in vagrant
     ansistrano_deploy_via: copy
   roles:
-    - { role: carlosbuenosvinos.ansistrano-deploy }
+    - { role: ansistrano.deploy }

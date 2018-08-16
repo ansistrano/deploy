@@ -120,7 +120,7 @@ Installation
 Ansistrano is an Ansible role distributed globally using [Ansible Galaxy](https://galaxy.ansible.com/). In order to install Ansistrano role you can use the following command.
 
 ```
-$ ansible-galaxy install carlosbuenosvinos.ansistrano-deploy carlosbuenosvinos.ansistrano-rollback
+$ ansible-galaxy install ansistrano.deploy ansistrano.rollback
 ```
 
 Update
@@ -129,7 +129,7 @@ Update
 If you want to update the role, you need to pass **--force** parameter when installing. Please, check the following command:
 
 ```
-$ ansible-galaxy install --force carlosbuenosvinos.ansistrano-deploy carlosbuenosvinos.ansistrano-rollback
+$ ansible-galaxy install --force ansistrano.deploy ansistrano.rollback
 ```
 
 Features
@@ -265,7 +265,7 @@ In order to deploy with Ansistrano, you need to perform some steps:
 * Create a new `hosts` file. Check [ansible inventory documentation](http://docs.ansible.com/intro_inventory.html) if you need help. This file will identify all the hosts where to deploy to. For multistage environments check [Multistage environments](#multistage-environment-devel-preprod-prod-etc).
 * Create a new playbook for deploying your app, for example, `deploy.yml`
 * Set up role variables (see [Role Variables](#role-variables))
-* Include the `carlosbuenosvinos.ansistrano-deploy` role as part of a play
+* Include the `ansistrano.deploy` role as part of a play
 * Run the deployment playbook
 
 ```ansible-playbook -i hosts deploy.yml```

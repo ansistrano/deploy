@@ -15,4 +15,4 @@
       LC_CTYPE: en_US.UTF-8
       ANY_OTHER_ENV_VAR: "and its value"
   roles:
-      - { role: carlosbuenosvinos.ansistrano-deploy }
+      - { role: ansistrano.deploy }

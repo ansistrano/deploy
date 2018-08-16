@@ -4,4 +4,4 @@
   vars:
     ansistrano_deploy_to: "/tmp/my-app.com"
   roles:
-    - { role: carlosbuenosvinos.ansistrano-rollback }
+    - { role: ansistrano.rollback }
