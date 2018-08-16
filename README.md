@@ -38,13 +38,6 @@ Project name
 
 Ansistrano comes from Ansible + Capistrano, easy, isn't it?
 
-BC Breaks in 2.0
-----------------
-
-* Minimum Ansible version supported is 1.9
-* `ansistrano_releases_path` and `ansistrano_shared_path` are now defined as defaults so if you use them in your hooks
-you should stop referring to the stdout string and just use the variable
-
 Ansistrano anonymous usage stats
 --------------------------------
 
