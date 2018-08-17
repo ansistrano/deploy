@@ -226,6 +226,7 @@ vars:
   # Optional variables, omitted by default
   ansistrano_s3_aws_access_key: YOUR_AWS_ACCESS_KEY
   ansistrano_s3_aws_secret_key: YOUR_AWS_SECRET_KEY
+  ansistrano_s3_ignore_nonexistent_bucket: false
   
   # Variables used in the GCS deployment strategy
   ansistrano_gcs_bucket: gcsbucket

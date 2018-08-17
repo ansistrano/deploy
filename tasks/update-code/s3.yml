@@ -13,6 +13,7 @@
     region: "{{ ansistrano_s3_region }}"
     aws_access_key: "{{ ansistrano_s3_aws_access_key | default(omit) }}"
     aws_secret_key: "{{ ansistrano_s3_aws_secret_key | default(omit) }}"
+    ignore_nonexistent_bucket: "{{ ansistrano_s3_ignore_nonexistent_bucket | default(omit) }}"
   when: not ansistrano_s3_rgw
 
 - name: ANSISTRANO | S3 | Get object from Ceph RGW
@@ -26,4 +27,5 @@
     mode: get
     aws_access_key: "{{ ansistrano_s3_aws_access_key | default(omit) }}"
     aws_secret_key: "{{ ansistrano_s3_aws_secret_key | default(omit) }}"
+    ignore_nonexistent_bucket: "{{ ansistrano_s3_ignore_nonexistent_bucket | default(omit) }}"
   when: ansistrano_s3_rgw
