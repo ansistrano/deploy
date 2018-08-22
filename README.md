@@ -450,58 +450,58 @@ PLAY [Deploy last wishes app to my server] ************************************
 GATHERING FACTS ***************************************************************
 ok: [quepimquepam.com]
 
-TASK: [carlosbuenosvinos.ansistrano-deploy | Ensure deployment base path exists] ***
+TASK: [ansistrano.deploy | Ensure deployment base path exists] ***
 ok: [quepimquepam.com]
 
-TASK: [carlosbuenosvinos.ansistrano-deploy | Ensure releases folder exists] ***
+TASK: [ansistrano.deploy | Ensure releases folder exists] ***
 ok: [quepimquepam.com]
 
-TASK: [carlosbuenosvinos.ansistrano-deploy | Ensure shared elements folder exists] ***
+TASK: [ansistrano.deploy | Ensure shared elements folder exists] ***
 ok: [quepimquepam.com]
 
-TASK: [carlosbuenosvinos.ansistrano-deploy | Get release timestamp] ***********
+TASK: [ansistrano.deploy | Get release timestamp] ***********
 changed: [quepimquepam.com]
 
-TASK: [carlosbuenosvinos.ansistrano-deploy | Get release path] ****************
+TASK: [ansistrano.deploy | Get release path] ****************
 changed: [quepimquepam.com]
 
-TASK: [carlosbuenosvinos.ansistrano-deploy | Get releases path] ***************
+TASK: [ansistrano.deploy | Get releases path] ***************
 changed: [quepimquepam.com]
 
-TASK: [carlosbuenosvinos.ansistrano-deploy | Get shared path (in rsync case)] ***
+TASK: [ansistrano.deploy | Get shared path (in rsync case)] ***
 changed: [quepimquepam.com]
 
-TASK: [carlosbuenosvinos.ansistrano-deploy | Rsync application files to remote shared copy (in rsync case)] ***
+TASK: [ansistrano.deploy | Rsync application files to remote shared copy (in rsync case)] ***
 changed: [quepimquepam.com -> 127.0.0.1]
 
-TASK: [carlosbuenosvinos.ansistrano-deploy | Deploy existing code to servers] ***
+TASK: [ansistrano.deploy | Deploy existing code to servers] ***
 changed: [quepimquepam.com]
 
-TASK: [carlosbuenosvinos.ansistrano-deploy | Deploy existing code to remote servers] ***
+TASK: [ansistrano.deploy | Deploy existing code to remote servers] ***
 skipping: [quepimquepam.com]
 
-TASK: [carlosbuenosvinos.ansistrano-deploy | Update remote repository] ********
+TASK: [ansistrano.deploy | Update remote repository] ********
 skipping: [quepimquepam.com]
 
-TASK: [carlosbuenosvinos.ansistrano-deploy | Export a copy of the repo] *******
+TASK: [ansistrano.deploy | Export a copy of the repo] *******
 skipping: [quepimquepam.com]
 
-TASK: [carlosbuenosvinos.ansistrano-deploy | Deploy code from to servers] *****
+TASK: [ansistrano.deploy | Deploy code from to servers] *****
 skipping: [quepimquepam.com]
 
-TASK: [carlosbuenosvinos.ansistrano-deploy | Copy release version into REVISION file] ***
+TASK: [ansistrano.deploy | Copy release version into REVISION file] ***
 changed: [quepimquepam.com]
 
-TASK: [carlosbuenosvinos.ansistrano-deploy | Touches up the release code] *****
+TASK: [ansistrano.deploy | Touches up the release code] *****
 changed: [quepimquepam.com]
 
-TASK: [carlosbuenosvinos.ansistrano-deploy | Change softlink to new release] ***
+TASK: [ansistrano.deploy | Change softlink to new release] ***
 changed: [quepimquepam.com]
 
-TASK: [carlosbuenosvinos.ansistrano-deploy | Reload Apache] *******************
+TASK: [ansistrano.deploy | Reload Apache] *******************
 changed: [quepimquepam.com]
 
-TASK: [carlosbuenosvinos.ansistrano-deploy | Clean up releases] ***************
+TASK: [ansistrano.deploy | Clean up releases] ***************
 skipping: [quepimquepam.com]
 
 PLAY RECAP ********************************************************************
