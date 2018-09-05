@@ -19,7 +19,7 @@
   when: ansistrano_s3_archive_content
 
 - name: ANSISTRANO | Move archive content files
-  shell: "cp -r {{ mktemp.stdout }}/*/. {{ ansistrano_release_path.stdout }}"
+  shell: "mv {{ mktemp.stdout }}/*/* {{ mktemp.stdout }}/*/.* {{ ansistrano_release_path.stdout }}/ &> 1 || true"
   when: ansistrano_s3_archive_content
 
 - name: ANSISTRANO | Remove temporary archive directory
