@@ -25,6 +25,12 @@
     ssh_opts: "{{ ansistrano_git_ssh_opts | default(omit) }}"
     refspec: "{{ ansistrano_git_refspec | default(omit) }}"
     depth: "{{ ansistrano_git_depth | default(omit) }}"
+  # Add TMP directories to environment to work around
+  # https://github.com/ansible/ansible/issues/30064
+  environment:
+    TMPDIR: "{{ ansible_env.HOME }}/.ansible/tmp"
+    TMP: "{{ ansible_env.HOME }}/.ansible/tmp"
+    TEMP: "{{ ansible_env.HOME }}/.ansible/tmp"
   register: ansistrano_git_result_update
   when: ansistrano_git_identity_key_path|trim == '' and ansistrano_git_identity_key_remote_path|trim == ''
 
@@ -40,6 +46,12 @@
     refspec: "{{ ansistrano_git_refspec | default(omit) }}"
     depth: "{{ ansistrano_git_depth | default(omit) }}"
     key_file: "{{ ansistrano_deploy_to }}/git_identity_key"
+  # Add TMP directories to environment to work around
+  # https://github.com/ansible/ansible/issues/30064
+  environment:
+    TMPDIR: "{{ ansible_env.HOME }}/.ansible/tmp"
+    TMP: "{{ ansible_env.HOME }}/.ansible/tmp"
+    TEMP: "{{ ansible_env.HOME }}/.ansible/tmp"
   register: ansistrano_git_result_update_ssh
   when: ansistrano_git_identity_key_path|trim != "" or ansistrano_git_identity_key_remote_path|trim != ""
 
