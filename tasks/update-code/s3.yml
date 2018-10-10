@@ -5,7 +5,7 @@
     path: "{{ ansistrano_release_path.stdout }}"
 
 - name: ANSISTRANO | S3 | Get object from S3
-  s3:
+  aws_s3:
     bucket: "{{ ansistrano_s3_bucket }}"
     object: "{{ ansistrano_s3_object }}"
     dest: "{{ ansistrano_release_path.stdout }}/{{ ansistrano_s3_object | basename }}"
@@ -17,7 +17,7 @@
   when: not ansistrano_s3_rgw
 
 - name: ANSISTRANO | S3 | Get object from Ceph RGW
-  s3:
+  aws_s3:
     rgw: true
     s3_url: "{{ ansistrano_s3_url }}"
     encrypt: "{{ ansistrano_s3_encrypt | default(false) }}"
