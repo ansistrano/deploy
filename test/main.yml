@@ -1,7 +1,7 @@
 ---
-- include: setup.yml
-- include: rsync-test.yml
-- include: git-test.yml
-- include: download-test.yml
-- include: svn-test.yml
-- include: hg-test.yml
+- import_playbook: setup.yml
+- import_playbook: rsync-test.yml
+- import_playbook: git-test.yml
+- import_playbook: download-test.yml
+- import_playbook: svn-test.yml
+- import_playbook: hg-test.yml

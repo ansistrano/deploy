@@ -1,6 +1,6 @@
 ---
-
-- hosts: all
+- name: Basic setup for Ansible to run properly
+  hosts: all
   pre_tasks:
     - name: Update apt cache.
       command: apt -y update

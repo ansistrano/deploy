@@ -41,7 +41,7 @@ before_install:
 script:
   # Local Testing Commands
   - if [ "${ANSIBLE_VERSION}" != "docker" ]; then echo localhost > inventory ; fi
-  - if [ "${ANSIBLE_VERSION}" != "docker" ]; then ansible-playbook -i inventory --connection=local --sudo -v test/main.yml ; fi
+  - if [ "${ANSIBLE_VERSION}" != "docker" ]; then ansible-playbook -i inventory --connection=local --become -v test/main.yml ; fi
 
   # Docker Testing Commands
   - if [ "${ANSIBLE_VERSION}" == "docker" ]; then container_id=$(mktemp) ; fi
