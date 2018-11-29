@@ -83,6 +83,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Ofertix](http://www.ofertix.com)
 * [Òmnium Cultural](https://www.omnium.cat)
 * [OpsWay Software Factory](http://opsway.com)
+* [Parkimeter](https://parkimeter.com)
 * [Spotahome](https://www.spotahome.com)
 * [Suntransfers](http://www.suntransfers.com)
 * [TechPump](http://www.techpump.com/)
