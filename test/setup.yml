@@ -1,7 +1,12 @@
 ---
 - name: Basic setup for Ansible to run properly
   hosts: all
-      
+
+  pre_tasks:
+    - name: Update apt cache.
+      command: apt -y update
+      when: update_cache is defined and ansible_os_family == 'Debian'
+
   tasks:
 
     - name: Check Ansible Is Installed
