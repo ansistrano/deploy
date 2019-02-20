@@ -1,12 +1,18 @@
 ---
-- include_tasks: slack.yml state=start
+- include_tasks: slack.yml
+  vars:
+     state: start
   when: slack
 
-- supervisorctl: name={{ item }} state=stopped
+- supervisorctl: name={{ item }}
+  vars:
+     state: stopped
   when: ansistrano_supervisord_enabled and not ansistrano_supervisord_restart_only
   with_items: "{{ ansistrano_supervisord_programs }}"
 
-- include_tasks: sensu.yml stash=true
+- include_tasks: sensu.yml
+  vars:
+     stash: true
   when: ansistrano_sensu_enabled
 
 - include_tasks: ec2-deregister.yml
@@ -62,8 +68,12 @@
 - include_tasks: ec2-register.yml
   when: ansistrano_rolling_elb_enabled
 
-- include_tasks: sensu.yml stash=false
+- include_tasks: sensu.yml
+  vars:
+     stash: false
   when: ansistrano_sensu_enabled
 
-- include_tasks: slack.yml state=end
+- include_tasks: slack.yml
+  vars:
+     state: end
   when: slack
