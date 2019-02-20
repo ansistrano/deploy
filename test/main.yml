@@ -1,6 +1,6 @@
 ---
-- include: setup.yml
-- include: rsync.yml
-- include: git.yml
-- include: download.yml
-- include: svn.yml
+- include_tasks: setup.yml
+- include_tasks: rsync.yml
+- include_tasks: git.yml
+- include_tasks: download.yml
+- include_tasks: svn.yml

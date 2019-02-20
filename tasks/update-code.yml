@@ -13,7 +13,7 @@
   register: ansistrano_release_path
   check_mode: no
 
-- include: "update-code/{{ ansistrano_deploy_via | default('rsync') }}.yml"
+- include_tasks: "update-code/{{ ansistrano_deploy_via | default('rsync') }}.yml"
   become: yes
   become_user: '{{ ansistrano_user }}'
 
