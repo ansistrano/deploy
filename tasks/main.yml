@@ -4,8 +4,8 @@
      state: start
   when: slack
 
-- supervisorctl: name={{ item }}
-  vars:
+- supervisorctl:
+     name: "{{ item }}"
      state: stopped
   when: ansistrano_supervisord_enabled and not ansistrano_supervisord_restart_only
   with_items: "{{ ansistrano_supervisord_programs }}"
