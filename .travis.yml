@@ -4,9 +4,9 @@ services:
 
 env:
   - ANSIBLE_VERSION: "2.4.6"
-  - ANSIBLE_VERSION: "2.5.14"
-  - ANSIBLE_VERSION: "2.6.13"
-  - ANSIBLE_VERSION: "2.7.7"
+  - ANSIBLE_VERSION: "2.5.15"
+  - ANSIBLE_VERSION: "2.6.16"
+  - ANSIBLE_VERSION: "2.7.10"
   - distribution: Ubuntu
     distribution_version: xenial
     init: /lib/systemd/systemd
