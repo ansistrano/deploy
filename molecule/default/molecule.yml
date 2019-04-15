@@ -5,6 +5,8 @@ driver:
   name: docker
 lint:
   name: yamllint
+  options:
+      config-file: molecule/default/yaml-lint.yml
 platforms:
   - name: instance
     image: centos:7
