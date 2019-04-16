@@ -8,10 +8,23 @@ lint:
   options:
       config-file: molecule/default/yaml-lint.yml
 platforms:
-  - name: debian9
+  - name: debian
     image: debian:9
+    privileged: True
+    ccommand: "/bin/systemd"
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  - name: centos
+    image: centos
+    image_version: 7
+    privileged: True
+    command: "/lib/systemd/systemd"
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
 provisioner:
   name: ansible
+  playbooks:
+    prepare: prepare.yml
   lint:
     name: ansible-lint
 scenario:
