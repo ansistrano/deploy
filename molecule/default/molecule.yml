@@ -17,13 +17,18 @@ provisioner:
 scenario:
   name: default
   test_sequence:
+    # - lint
+    - cleanup
     - destroy
     - dependency
     - syntax
     - create
     - prepare
     - converge
+    # - idempotence
+    # - side_effect
     - verify
+    - cleanup
     - destroy
 verifier:
   name: testinfra
