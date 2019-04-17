@@ -31,7 +31,7 @@
     ansistrano_get_url: https://github.com/ansistrano/deploy/archive/1.4.1.zip
     ansistrano_deploy_to: "/tmp/download/my-app.com"
   roles:
-    - { role: ansible-deployment }
+    - { role: local-ansistrano }
 
 - name: Then a successful deploy with download strategy should be done
   hosts: all
@@ -59,4 +59,4 @@
     ansistrano_get_url: https://github.com/ansistrano/deploy/archive/1.4.1.zip
     ansistrano_deploy_to: "/tmp/download/my-app.com"
   roles:
-    - { role: ansible-deployment }
+    - { role: local-ansistrano }

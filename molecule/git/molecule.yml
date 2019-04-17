@@ -36,7 +36,7 @@ provisioner:
   lint:
     name: ansible-lint
 scenario:
-  name: default
+  name: git
   test_sequence:
     # - lint
     - cleanup
