@@ -11,7 +11,7 @@ platforms:
   - name: debian
     image: debian:9
     privileged: True
-    ccommand: "/bin/systemd"
+    command: "/bin/systemd"
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
   - name: centos
