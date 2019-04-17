@@ -80,7 +80,8 @@ def test_ansistrano_ensure_only_have_max_5_releases(host):
 
 
 def test_ansistrano_ensure_we_can_do_a_second_deploy(host):
-    cmd = host.run("ls -1dt /tmp/download/my-app.com/releases/* | wc -l")
+    releases_count = int(
+        host.check_output(
+            "ls -1dt /tmp/download/my-app.com/releases/* | wc -l").strip())
 
-    assert cmd.stdout == '2'
-    assert cmd.rc == 0
+    assert releases_count == 2
