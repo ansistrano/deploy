@@ -9,18 +9,21 @@ lint:
       config-file: molecule/default/yaml-lint.yml
 platforms:
   - name: debian
-    image: debian:9
-    privileged: True
-    command: "/bin/systemd"
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    image: debian:stretch
+    # privileged: True
+    # cap_add:
+    #   - SYS_ADMIN
+    # volumes:
+    #   - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    # command: "/bin/systemd"
   - name: centos
-    image: centos
-    image_version: 7
-    privileged: True
-    command: "/lib/systemd/systemd"
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    image: centos:7
+    # privileged: True
+    # cap_add:
+    #   - SYS_ADMIN
+    # volumes:
+    #   - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    # command: "/lib/systemd/systemd"
 provisioner:
   name: ansible
   playbooks:
