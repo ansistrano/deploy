@@ -6,7 +6,7 @@ driver:
 lint:
   name: yamllint
   options:
-      config-file: molecule/default/yaml-lint.yml
+      config-file: molecule/yaml-lint.yml
 platforms:
   - name: debian
     image: debian:stretch
