@@ -1,5 +1,29 @@
 ---
-- name: Converge
+- name: "Converge: When deploying using download strategy and custom shared paths and files"
   hosts: all
+  become: yes
+  become_user: admin
+
+  vars_files:
+    - "vars/deploy.yml"
+
+  vars:
+    deploy_app_name: my-app.com
+
   roles:
-    - role: ansible-deployment
+    - { role: local-ansistrano }
+
+- name: "Converge: When deploying using download strategy and custom shared paths and files. And I should be able
+        to do a second deploy"
+  hosts: all
+  become: yes
+  become_user: admin
+
+  vars_files:
+    - "vars/deploy.yml"
+
+  vars:
+    deploy_app_name: my-app.com
+
+  roles:
+    - { role: local-ansistrano }

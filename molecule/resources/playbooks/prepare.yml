@@ -24,3 +24,8 @@
       yum:
         name: ['rsync', 'tar', 'openssh-clients', 'git', 'unzip', 'subversion']
         state: present
+
+    - name: Add the user 'admin', is the default user used by the role.
+      user:
+        name: admin
+        comment: Admin user

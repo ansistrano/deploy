@@ -36,7 +36,7 @@ provisioner:
   lint:
     name: ansible-lint
 scenario:
-  name: default
+  name: download
   test_sequence:
     # - lint
     - cleanup
