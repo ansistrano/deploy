@@ -54,7 +54,7 @@ scenario:
 verifier:
   name: testinfra
   additional_files_or_dirs:
-    - ../resources/tests/
+    - ../../resources/tests/*
   env:
     # remove the DeprecationWarning messages of third-party libs,
     # see https://docs.pytest.org/en/latest/warnings.html#deprecationwarning-and-pendingdeprecationwarning
