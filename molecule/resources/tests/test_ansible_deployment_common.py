@@ -6,10 +6,9 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
 
 deploy_path = pytest.deploy_path
-# Make it available for all session (for all tests)
-releases_path = pytest.releases_path = deploy_path + "/releases"
-current_path = pytest.current_path = deploy_path + "/current"
-shared_path = pytest.shared_path = deploy_path + "/shared"
+releases_path = pytest.releases_path
+current_path = pytest.current_path
+shared_path = pytest.shared_path
 
 
 def test_ansistrano_deploy_to_path_exists(host):
