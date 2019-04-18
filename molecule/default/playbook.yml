@@ -1,5 +1,5 @@
 ---
-- name: "Coverage: When deploying using download strategy"
+- name: "Converge: When deploying using download strategy"
   hosts: all
   become: yes
   become_user: admin
@@ -12,7 +12,7 @@
   roles:
     - { role: local-ansistrano }
 
-- name: "Coverage: And I should be able to do a second deploy"
+- name: "Converge: And I should be able to do a second deploy"
   hosts: all
   become: yes
   become_user: admin
