@@ -54,3 +54,8 @@ crashlytics-build.properties
 # Molecule tests
 __pycache__
 
+# Vscode
+.vscode
+
+# OSX
+.DS_Store
