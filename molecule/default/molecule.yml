@@ -53,7 +53,12 @@ scenario:
     - destroy
 verifier:
   name: testinfra
-  directory: ../resources/tests
+  additional_files_or_dirs:
+    - ../../resources/tests/test_ansible_deployment_common.py
+  env:
+    # remove the DeprecationWarning messages of third-party libs,
+    # see https://docs.pytest.org/en/latest/warnings.html#deprecationwarning-and-pendingdeprecationwarning
+    PYTHONWARNINGS: "ignore:.*U.*mode is deprecated:DeprecationWarning"
   lint:
     name: flake8
     enabled: False
