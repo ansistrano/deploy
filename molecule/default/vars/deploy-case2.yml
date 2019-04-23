@@ -1,0 +1,26 @@
+---
+# Database
+mysql_host: localhost
+mysql_user: cycloid
+mysql_password: cycloid
+
+# Environment
+general_app_name: cycloid
+general_app_domain: cycloid.io
+
+# Ansistrano
+ansistrano_deploy_via: "download_unarchive"
+ansistrano_get_url: https://github.com/cycloidio/ansible-deployment/raw/cicd/artifact1.zip
+ansistrano_deploy_to: "/tmp/download/{{ deploy_app_name }}"
+ansistrano_after_setup_tasks_file: "{{ playbook_dir }}/tasks/create-shared-paths.yml"
+ansistrano_after_update_code_tasks_file: "{{ playbook_dir }}/tasks/create-internal-paths.yml"
+ansistrano_shared_paths:
+  - public/sitemaps
+ansistrano_shared_files:
+  - config/database.yml
+  - config/environment.yml
+ansistrano_parameters_templates:
+  - src: "database.yml.j2"
+    dest: "{{ansistrano_shared_path}}/config/database.yml"
+  - src: "environment.yml.j2"
+    dest: "{{ansistrano_shared_path}}/config/environment.yml"

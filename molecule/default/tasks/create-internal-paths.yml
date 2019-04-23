@@ -1,0 +1,11 @@
+---
+# We cannot create the symlinks unless these subfolders exist in the destination release folder
+- name: ANSISTRANO | Ensure internal path config exists
+  file:
+    state: directory
+    path: "{{ ansistrano_release_path.stdout }}/config"
+
+- name: ANSISTRANO | Ensure internal path public/sitemaps exists
+  file:
+    state: directory
+    path: "{{ ansistrano_release_path.stdout }}/public/sitemaps"
