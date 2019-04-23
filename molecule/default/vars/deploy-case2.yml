@@ -22,6 +22,7 @@ ansistrano_shared_paths:
 ansistrano_shared_files:
   - config/database.yml
   - config/environment.yml
+  - config/remote.yml
 ansistrano_parameters_templates:
   - src: "database.yml.j2"
     dest: "{{ansistrano_shared_path}}/config/database.yml"
