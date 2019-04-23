@@ -14,6 +14,9 @@ ansistrano_get_url: https://github.com/cycloidio/ansible-deployment/raw/cicd/art
 ansistrano_deploy_to: "/tmp/download/{{ deploy_app_name }}"
 ansistrano_after_setup_tasks_file: "{{ playbook_dir }}/tasks/create-shared-paths.yml"
 ansistrano_after_update_code_tasks_file: "{{ playbook_dir }}/tasks/create-internal-paths.yml"
+ansistrano_fetch_remote_templates:
+  - src: https://github.com/cycloidio/ansible-deployment/raw/cicd/templates/remote.yml
+    dest: "{{ansistrano_shared_path}}/config/remote.yml"
 ansistrano_shared_paths:
   - public/sitemaps
 ansistrano_shared_files:
