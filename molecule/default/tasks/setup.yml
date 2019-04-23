@@ -16,5 +16,5 @@
 
 - name: ANSISTRANO | Get remote template file
   get_url:
-    url: https://raw.githubusercontent.com/cycloidio/ansible-deployment/cicd/templates/remote.yml
-    dest: /tmp/download/aux/remote.yml
+    url: https://raw.githubusercontent.com/cycloidio/ansible-deployment/cicd/templates/remote.yml.j2
+    dest: /tmp/download/aux/remote.yml.j2
