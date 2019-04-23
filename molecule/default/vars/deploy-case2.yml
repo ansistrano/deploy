@@ -15,18 +15,18 @@ ansistrano_deploy_to: "/tmp/download/{{ deploy_app_name }}"
 ansistrano_after_setup_tasks_file: "{{ playbook_dir }}/tasks/setup.yml"
 ansistrano_after_update_code_tasks_file: "{{ playbook_dir }}/tasks/create-internal-paths.yml"
 ansistrano_fetch_remote_templates:
-  - src: /tmp/download/aux/remote.yml.j2
-    dest: "templates/remote.yml.j2"
+  - src: "{{ansistrano_release_path.stdout}}/artifact2/cycloid.yml.j2"
+    dest: "templates/cycloid.yml.j2"
 ansistrano_shared_paths:
   - public/sitemaps
 ansistrano_shared_files:
   - config/database.yml
   - config/environment.yml
-  - config/remote.yml
+  - config/cycloid.yml
 ansistrano_parameters_templates:
   - src: "database.yml.j2"
     dest: "{{ansistrano_shared_path}}/config/database.yml"
   - src: "environment.yml.j2"
     dest: "{{ansistrano_shared_path}}/config/environment.yml"
-  - src: "remote.yml.j2"
-    dest: "{{ansistrano_shared_path}}/config/remote.yml"
+  - src: "cycloid.yml.j2"
+    dest: "{{ansistrano_shared_path}}/config/cycloid.yml"
