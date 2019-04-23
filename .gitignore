@@ -53,6 +53,7 @@ crashlytics-build.properties
 
 # Molecule tests
 __pycache__
+remote.yml.j2
 
 # Vscode
 .vscode
