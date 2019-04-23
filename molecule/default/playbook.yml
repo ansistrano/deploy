@@ -1,25 +1,25 @@
 ---
-- name: "Converge: When deploying using download strategy"
-  hosts: all
-  become: yes
-  become_user: admin
+# - name: "Converge: When deploying using download strategy"
+#   hosts: all
+#   become: yes
+#   become_user: admin
 
-  vars_files:
-    - "vars/deploy-case1.yml"
+#   vars_files:
+#     - "vars/deploy-case1.yml"
 
-  roles:
-    - { role: local-ansistrano }
+#   roles:
+#     - { role: local-ansistrano }
 
-- name: "Converge: And I should be able to do a second deploy"
-  hosts: all
-  become: yes
-  become_user: admin
+# - name: "Converge: And I should be able to do a second deploy"
+#   hosts: all
+#   become: yes
+#   become_user: admin
 
-  vars_files:
-    - "vars/deploy-case1.yml"
+#   vars_files:
+#     - "vars/deploy-case1.yml"
 
-  roles:
-    - { role: local-ansistrano }
+#   roles:
+#     - { role: local-ansistrano }
 
 - name: "Converge: When deploying using download strategy and custom shared paths and files"
   hosts: all
@@ -35,17 +35,17 @@
   roles:
     - { role: local-ansistrano }
 
-- name: "Converge: When deploying using download strategy and custom shared paths and files. And I should be able
-        to do a second deploy"
-  hosts: all
-  become: yes
-  become_user: admin
+# - name: "Converge: When deploying using download strategy and custom shared paths and files. And I should be able
+#         to do a second deploy"
+#   hosts: all
+#   become: yes
+#   become_user: admin
 
-  vars_files:
-    - "vars/deploy-case2.yml"
+#   vars_files:
+#     - "vars/deploy-case2.yml"
 
-  vars:
-    deploy_app_name: my-app1.com
+#   vars:
+#     deploy_app_name: my-app1.com
 
-  roles:
-    - { role: local-ansistrano }
+#   roles:
+#     - { role: local-ansistrano }

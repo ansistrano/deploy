@@ -10,13 +10,13 @@ general_app_domain: cycloid.io
 
 # Ansistrano
 ansistrano_deploy_via: "download_unarchive"
-ansistrano_get_url: https://github.com/cycloidio/ansible-deployment/raw/cicd/artifact1.zip
+ansistrano_get_url: https://github.com/cycloidio/ansible-deployment/raw/cicd/artifact2.zip
 ansistrano_deploy_to: "/tmp/download/{{ deploy_app_name }}"
-ansistrano_after_setup_tasks_file: "{{ playbook_dir }}/tasks/create-shared-paths.yml"
+ansistrano_after_setup_tasks_file: "{{ playbook_dir }}/tasks/setup.yml"
 ansistrano_after_update_code_tasks_file: "{{ playbook_dir }}/tasks/create-internal-paths.yml"
 ansistrano_fetch_remote_templates:
-  - src: https://github.com/cycloidio/ansible-deployment/raw/cicd/templates/remote.yml
-    dest: "{{ansistrano_shared_path}}/config/remote.yml"
+  - src: /tmp/download/aux/remote.yml
+    dest: "templates/remote.yml"
 ansistrano_shared_paths:
   - public/sitemaps
 ansistrano_shared_files:
@@ -28,3 +28,5 @@ ansistrano_parameters_templates:
     dest: "{{ansistrano_shared_path}}/config/database.yml"
   - src: "environment.yml.j2"
     dest: "{{ansistrano_shared_path}}/config/environment.yml"
+  - src: "remote.yml"
+    dest: "{{ansistrano_shared_path}}/config/remote.yml"

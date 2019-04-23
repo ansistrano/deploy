@@ -1,0 +1,20 @@
+---
+- name: ANSISTRANO | Ensure shared path config exists
+  file:
+    state: directory
+    path: "{{ ansistrano_deploy_to }}/shared/config"
+
+- name: ANSISTRANO | Ensure shared path public/sitemaps exists
+  file:
+    state: directory
+    path: "{{ ansistrano_deploy_to }}/shared/public/sitemaps"
+
+- name: ANSISTRANO | Ensure aux path exists
+  file:
+    state: directory
+    path: "/tmp/download/aux"
+
+- name: ANSISTRANO | Get remote template file
+  get_url:
+    url: https://raw.githubusercontent.com/cycloidio/ansible-deployment/cicd/templates/remote.yml
+    dest: /tmp/download/aux/remote.yml
