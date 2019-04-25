@@ -17,9 +17,9 @@ platforms:
     # volumes:
     #   - /sys/fs/cgroup:/sys/fs/cgroup:ro
     # command: "/bin/systemd"
-  # - name: centos
-  #   image: centos:7
-  #   dockerfile: ../resources/playbooks/Dockerfile.j2
+  - name: centos
+    image: centos:7
+    dockerfile: ../resources/playbooks/Dockerfile.j2
   #   privileged: True
     # cap_add:
     #   - SYS_ADMIN
