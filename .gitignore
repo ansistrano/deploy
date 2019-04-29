@@ -51,3 +51,13 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 
+# Molecule tests
+__pycache__
+remote.yml.j2
+cycloid.yml.j2
+
+# Vscode
+.vscode
+
+# OSX
+.DS_Store

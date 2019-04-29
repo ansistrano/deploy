@@ -1,0 +1,5 @@
+---
+# Ansistrano
+ansistrano_deploy_via: "download_unarchive"
+ansistrano_get_url: https://github.com/cycloidio/ansible-deployment/raw/cicd/artifact1.zip
+ansistrano_deploy_to: "/tmp/download/my-app.com"

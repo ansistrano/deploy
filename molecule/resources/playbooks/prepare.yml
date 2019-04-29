@@ -1,0 +1,31 @@
+---
+
+- name: Prepare
+  hosts: all
+  gather_facts: true
+  become: true
+
+  pre_tasks:
+    - name: Update apt cache.
+      apt:
+        update_cache: yes
+      changed_when: False
+      when: ansible_os_family == 'Debian'
+
+  tasks:
+    - name: Install Required Packages For Debian
+      when: ansible_os_family == 'Debian'
+      apt:
+        name: ['rsync', 'tar', 'ssh', 'git', 'unzip', 'subversion']
+        state: present
+
+    - name: Install Required Packages For RedHat
+      when: ansible_os_family == 'RedHat'
+      yum:
+        name: ['rsync', 'tar', 'openssh-clients', 'git', 'unzip', 'subversion']
+        state: present
+
+    - name: Add the user 'admin', is the default user used by the role.
+      user:
+        name: admin
+        comment: Admin user
