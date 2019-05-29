@@ -86,6 +86,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [OpsWay Software Factory](http://opsway.com)
 * [Parkimeter](https://parkimeter.com)
 * [PHP Barcelona Conference](https://php.barcelona/)
+* [Scoutim](https://scoutim.com)
 * [Spotahome](https://www.spotahome.com)
 * [Suntransfers](http://www.suntransfers.com)
 * [TechPump](http://www.techpump.com/)
