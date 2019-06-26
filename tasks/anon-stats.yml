@@ -9,7 +9,7 @@
     body: "deploy_via={{ ansistrano_deploy_via | default('rsync') }}&version={{ ansible_version.string }}"
     headers:
       Content-Type: "application/x-www-form-urlencoded"
-  when: ansistrano_allow_anonymous_stats
+  when: ansistrano_allow_anonymous_stats|bool
   run_once: true
   ignore_errors: yes
   delegate_to: 127.0.0.1
