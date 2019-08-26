@@ -2,7 +2,6 @@
 - name: "Converge: When deploying using download strategy and custom shared paths and files"
   hosts: all
   become: yes
-  become_user: admin
 
   vars_files:
     - "vars/deploy.yml"
@@ -17,7 +16,6 @@
         to do a second deploy"
   hosts: all
   become: yes
-  become_user: admin
 
   vars_files:
     - "vars/deploy.yml"
