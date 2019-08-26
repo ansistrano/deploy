@@ -13,7 +13,7 @@
   register: ansistrano_release_path
   check_mode: no
 
-- include_tasks: "update-code/{{ ansistrano_deploy_via | default('rsync') }}.yml"
+- import_tasks: "update-code/{{ ansistrano_deploy_via | default('rsync') }}.yml"
   become: yes
   become_user: '{{ ansistrano_user }}'
 
@@ -31,3 +31,5 @@
   copy:
     content: "{{ ansistrano_release_version }}"
     dest: "{{ ansistrano_release_path.stdout }}/REVISION"
+    owner: "{{ ansistrano_user }}"
+    group: "{{ ansistrano_group }}"

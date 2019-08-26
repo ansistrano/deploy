@@ -15,6 +15,8 @@
 - name: ANSISTRANO | Ensure current folder is a directory
   file:
     state: directory
+    owner: "{{ ansistrano_user }}"
+    group: "{{ ansistrano_group }}"
     path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}"
 
 - name: ANSISTRANO | Sync release to new current path
@@ -33,4 +35,6 @@
     state: link
     path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}/{{ item }}"
     src: "{{ item | regex_replace('[^\\/]*', '..') }}/shared/{{ item }}"
+    owner: "{{ ansistrano_user }}"
+    group: "{{ ansistrano_group }}"
   with_items: "{{ ansistrano_shared_paths }}"
