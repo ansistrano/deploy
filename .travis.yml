@@ -8,6 +8,11 @@ env:
   - ANSIBLE_VERSION: "2.7.13"
   - ANSIBLE_VERSION: "2.8.4"
   - distribution: Ubuntu
+    distribution_version: bionic
+    init: /lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    ANSIBLE_VERSION: docker
+  - distribution: Ubuntu
     distribution_version: xenial
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
