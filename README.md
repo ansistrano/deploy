@@ -9,20 +9,27 @@ Ansistrano
 
 **ansistrano.deploy** and **ansistrano.rollback** are Ansible roles to easily manage the deployment process for scripting applications such as PHP, Python and Ruby. It's an Ansible port for Capistrano.
 
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Update](#update)
-- [Features](#features)
-- [Main workflow](#main-workflow)
-- [Role Variables](#role-variables)
-- [Deploying](#deploying)
-- [Rolling back](#rolling-back)
-- [Multistage environment (devel, preprod, prod, etc.)](#multistage-environment-devel-preprod-prod-etc)
-- [Hooks: Custom tasks](#hooks-custom-tasks)
-- [Variables in custom tasks](#variables-in-custom-tasks)
-- [Pruning old releases](#pruning-old-releases)
-- [Example Playbook](#example-playbook)
-- [Sample projects](#sample-projects)
+- [Ansistrano](#ansistrano)
+  - [History](#history)
+  - [Project name](#project-name)
+  - [Ansistrano anonymous usage stats](#ansistrano-anonymous-usage-stats)
+  - [Who is using Ansistrano?](#who-is-using-ansistrano)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+  - [Update](#update)
+  - [Features](#features)
+  - [Main workflow](#main-workflow)
+  - [Role Variables](#role-variables)
+  - [Deploying](#deploying)
+  - [Rolling back](#rolling-back)
+  - [Hooks: Custom tasks](#hooks-custom-tasks)
+  - [Variables in custom tasks](#variables-in-custom-tasks)
+  - [Pruning old releases](#pruning-old-releases)
+  - [Example Playbook](#example-playbook)
+  - [Sample projects](#sample-projects)
+  - [They're talking about us](#theyre-talking-about-us)
+  - [License](#license)
+  - [Other resources](#other-resources)
 
 History
 -------
@@ -186,7 +193,7 @@ vars:
   ansistrano_ensure_shared_paths_exist: yes
   ansistrano_ensure_basedirs_shared_files_exist: yes
 
-  ansistrano_deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync, git, svn, s3 or download. Copy, download and s3 have an optional step to unarchive the downloaded file which can be used by adding _unarchive. You can check all the options inside tasks/update-code folder!
+  ansistrano_deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync, rsync_direct (direct rsync without needing to copy from ansistrano_shared_rsync_copy_path to ansistrano_release_path), git, svn, s3 or download. Copy, download and s3 have an optional step to unarchive the downloaded file which can be used by adding _unarchive. You can check all the options inside tasks/update-code folder!
   ansistrano_allow_anonymous_stats: yes
 
   # Variables used in the rsync deployment strategy
