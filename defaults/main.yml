@@ -122,3 +122,6 @@ ansistrano_parameters_templates: []
 ansistrano_fetch_remote_templates: []
 # Run once fetch remote tempplates
 ansistrano_fetch_remote_templates_run_once: true
+
+# Do not display the templates information on the output (security reason)
+ansistrano_parameters_templates_no_log: True

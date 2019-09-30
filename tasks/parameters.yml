@@ -29,3 +29,4 @@
   become: yes
   become_user: "{{ ansistrano_user }}"
   with_items: "{{ ansistrano_parameters_templates }}"
+  no_log: "{{ ansistrano_parameters_templates_no_log | bool }}"
