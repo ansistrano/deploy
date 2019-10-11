@@ -56,6 +56,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Beroomers](https://www.beroomers.com)
 * [CMP Group](http://www.teamcmp.com)
 * [Cabissimo](https://www.cabissimo.com)
+* [Camel Secure](https://camelsecure.com)
 * [Claranet France](http://www.claranet.fr/)
 * [Clearpoint](http://www.clearpoint.co.nz)
 * [Clever Age](https://www.clever-age.com)
