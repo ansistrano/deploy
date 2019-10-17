@@ -80,6 +80,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [HackSoft](https://hacksoft.io/)
 * [HackConf](https://hackconf.bg/en/)
 * [Hexanet](https://www.hexanet.fr)
+* [HiringThing](https://www.hiringthing.com/)
 * [Holaluz](https://www.holaluz.com)
 * [Hosting4devs](https://hosting4devs.com)
 * [Jolicode](http://jolicode.com/)
@@ -119,7 +120,7 @@ Requirements
 In order to deploy your apps with Ansistrano, you will need:
 
 * Ansible in your deployer machine
-* `rsync` on the target machine if you are using either the `rsync` or `git` deployment strategy or if you are using `ansistrano_current_via = rsync`
+* `rsync` on the target machine if you are using either the `rsync`, `rsync_direct`, or `git` deployment strategy or if you are using `ansistrano_current_via = rsync`
 
 Installation
 ------------
@@ -192,11 +193,16 @@ vars:
   # By default the shared paths directories and base directories for shared files are created automatically if not exists. But in some scenarios those paths could be symlinks to another directories in the filesystem, and the deployment process would fails. With these variables you can disable the involved tasks. If you have two or three shared paths, and don't need creation only for some of them, you always could disable the automatic creation and add a custom task in a hook.
   ansistrano_ensure_shared_paths_exist: yes
   ansistrano_ensure_basedirs_shared_files_exist: yes
-
-  ansistrano_deploy_via: "rsync" # Method used to deliver the code to the server. Options are copy, rsync, rsync_direct (direct rsync without needing to copy from ansistrano_shared_rsync_copy_path to ansistrano_release_path), git, svn, s3 or download. Copy, download and s3 have an optional step to unarchive the downloaded file which can be used by adding _unarchive. You can check all the options inside tasks/update-code folder!
+  
+  # Deployment strategy - method used to deliver code. Options are copy, download, git, rsync, rsync_direct, svn, or s3. 
+  ansistrano_deploy_via: "rsync" 
+  # Copy, download and s3 have an optional step to unarchive the downloaded file which can be used by adding _unarchive. 
+  # The rsync_direct strategy omits a file copy on the target offering a slight speed increase if you are deploying to shared hosts, are experiancing bad file-performance, or serve static assets from the same host you deploy your app to and rsync many files.
+  # You can check all the options inside tasks/update-code folder!
+  
   ansistrano_allow_anonymous_stats: yes
 
-  # Variables used in the rsync deployment strategy
+  # Variables used in the rsync/rsync_direct deployment strategy
   ansistrano_rsync_extra_params: "" # Extra parameters to use when deploying with rsync in a single string. Although Ansible allows an array this can cause problems if we try to add multiple --include args as it was reported in https://github.com/ansistrano/deploy/commit/e98942dc969d4e620313f00f003a7ea2eab67e86
   ansistrano_rsync_set_remote_user: yes # See [ansible synchronize module](http://docs.ansible.com/ansible/synchronize_module.html). Options are yes, no.
   ansistrano_rsync_path: "" # See [ansible synchronize module](http://docs.ansible.com/ansible/synchronize_module.html). By default is "sudo rsync", it can be overwriten with (example): "sudo -u user rsync".
