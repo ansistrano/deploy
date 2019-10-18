@@ -1,6 +1,7 @@
 ---
 - import_playbook: setup.yml
 - import_playbook: rsync-test.yml
+- import_playbook: rsync_direct-test.yml
 - import_playbook: git-test.yml
 - import_playbook: download-test.yml
 - import_playbook: svn-test.yml

@@ -1,0 +1,13 @@
+---
+- name: ANSISTRANO | RSYNC DIRECT | Rsync application files directly to remote release path
+  synchronize:
+    src: "{{ ansistrano_deploy_from }}"
+    dest: "{{ ansistrano_release_path.stdout }}"
+    set_remote_user: "{{ ansistrano_rsync_set_remote_user }}"
+    recursive: yes
+    delete: yes
+    archive: yes
+    compress: yes
+    use_ssh_args: "{{ ansistrano_rsync_use_ssh_args | default(omit) }}"
+    rsync_opts: "{{ ansistrano_rsync_extra_params | default(omit) }}"
+    rsync_path: "{{ ansistrano_rsync_path | default(omit) }}"
