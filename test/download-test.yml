@@ -43,3 +43,41 @@
     ansistrano_deploy_to: "/tmp/download/my-app.com"
   roles:
     - { role: local-ansistrano }
+
+- name: When deploying using download strategy and setting owner and group user
+  hosts: all
+  vars:
+    ansistrano_deploy_via: "download_unarchive"
+    ansistrano_get_url: https://github.com/ansistrano/deploy/archive/master.zip
+    ansistrano_deploy_to: "/tmp/download/nobody"
+    ansistrano_unarchive_owner: "nobody"
+    ansistrano_unarchive_group: "nobody"
+  roles:
+    - { role: local-ansistrano }
+  post_tasks:
+    - name: Assert ansistrano_release_path.stdout/deploy-master is owned by nobody
+      stat:
+        path: "{{ ansistrano_release_path.stdout }}/deploy-master"
+      register: st
+    - debug:
+        msg: "ansistrano_release_path.stdout/deploy-master is owned by nobody"
+      when: st.stat.gr_name == "nobody" and st.stat.pw_name == "nobody"
+
+- name: When deploying using download strategy and setting owner (expect fail)
+  hosts: all
+  vars:
+    ansistrano_deploy_via: "download_unarchive"
+    ansistrano_get_url: https://github.com/ansistrano/deploy/archive/master.zip
+    ansistrano_deploy_to: "/tmp/download/fail"
+    ansistrano_unarchive_owner: "nobody"
+  ignore_errors: yes
+  roles:
+    - { role: local-ansistrano }
+  post_tasks:
+    - name: Assert ansistrano_release_path.stdout/deploy-master does not exist
+      stat:
+        path: "{{ ansistrano_release_path.stdout }}/deploy-master"
+      register: st
+    - debug:
+        msg: "ansistrano_release_path.stdout/deploy-master does not exist"
+      when: st.stat.exists is sameas false

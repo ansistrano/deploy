@@ -4,6 +4,21 @@
     copy: no
     src: "{{ ansistrano_archived_file }}"
     dest: "{{ ansistrano_release_path.stdout }}"
+  when: ansistrano_unarchive_owner == "default" and ansistrano_unarchive_group == "default"
+
+- name: ANSISTRANO | Unarchive | Unarchive source
+  fail:
+    msg: "must set ansistrano_unarchive_group and ansistrano_unarchive_owner"
+  when: (ansistrano_unarchive_owner == "default" and ansistrano_unarchive_group != "default") or (ansistrano_unarchive_owner != "default" and ansistrano_unarchive_group == "default")
+
+- name: ANSISTRANO | Unarchive | Unarchive source with owner and group
+  unarchive:
+    copy: no
+    src: "{{ ansistrano_archived_file }}"
+    dest: "{{ ansistrano_release_path.stdout }}"
+    owner: "{{ ansistrano_unarchive_owner }}"
+    group: "{{ ansistrano_unarchive_group }}"
+  when: ansistrano_unarchive_owner != "default" and ansistrano_unarchive_group != "default"
 
 - name: ANSISTRANO | Unarchive | Delete archived file
   file:
