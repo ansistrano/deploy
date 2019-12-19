@@ -3,7 +3,6 @@ services:
   - docker
 
 env:
-  - ANSIBLE_VERSION: "2.5.15"
   - ANSIBLE_VERSION: "2.6.20"
   - ANSIBLE_VERSION: "2.7.15"
   - ANSIBLE_VERSION: "2.8.7"
