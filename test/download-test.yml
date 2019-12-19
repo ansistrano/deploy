@@ -50,18 +50,30 @@
     ansistrano_deploy_via: "download_unarchive"
     ansistrano_get_url: https://github.com/ansistrano/deploy/archive/master.zip
     ansistrano_deploy_to: "/tmp/download/nobody"
-    ansistrano_unarchive_owner: "nobody"
-    ansistrano_unarchive_group: "nobody"
+    ansistrano_unarchive_owner: "unarchive_user"
+    ansistrano_unarchive_group: "unarchive_group"
   roles:
     - { role: local-ansistrano }
+  pre_tasks:
+    - name: Create group to use in the test
+      group:
+        name: unarchive_group
+        state: present
+
+    - name: Create user to use in the test
+      user:
+        name: unarchive_user
+        uid: 6666
+        groups: unarchive_group
+
   post_tasks:
-    - name: Assert ansistrano_release_path.stdout/deploy-master is owned by nobody
+    - name: Assert ansistrano_release_path.stdout/deploy-master is owned by unarchive_user
       stat:
         path: "{{ ansistrano_release_path.stdout }}/deploy-master"
       register: st
     - debug:
-        msg: "ansistrano_release_path.stdout/deploy-master is owned by nobody"
-      when: st.stat.gr_name == "nobody" and st.stat.pw_name == "nobody"
+        msg: "ansistrano_release_path.stdout/deploy-master is owned by unarchive_user"
+      when: st.stat.gr_name == "unarchive_group" and st.stat.pw_name == "unarchive_user"
 
 - name: When deploying using download strategy and setting owner (expect fail)
   hosts: all
@@ -69,7 +81,7 @@
     ansistrano_deploy_via: "download_unarchive"
     ansistrano_get_url: https://github.com/ansistrano/deploy/archive/master.zip
     ansistrano_deploy_to: "/tmp/download/fail"
-    ansistrano_unarchive_owner: "nobody"
+    ansistrano_unarchive_owner: "unarchive_user"
   ignore_errors: yes
   roles:
     - { role: local-ansistrano }
