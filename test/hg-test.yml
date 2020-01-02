@@ -39,10 +39,10 @@
       stat:
         path: "{{ ansistrano_deploy_to }}/current/hello.c"
       register: st
-    - fail:
+    - name: Trigger error due to ansistrano_deploy_to/current/hello.c file not existing
+      fail:
         msg: "File hello.c does not exist"
       when: st.stat.exists is not defined or not st.stat.exists or st.stat.isdir
-
 
 - name: And I should be able to do a second deploy
   hosts: all
