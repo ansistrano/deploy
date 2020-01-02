@@ -1,7 +1,8 @@
 ---
 
 # Migration check from rsync deployment
-- stat:
+- name: ANSISTRANO | Get current folder
+  stat:
     path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}"
   register: stat_current_dir
 
