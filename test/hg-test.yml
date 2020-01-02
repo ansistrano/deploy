@@ -41,7 +41,7 @@
       register: st
     - fail:
         msg: "File hello.c does not exist"
-      when: st.stat.exists is not defined or st.stat.exists == False or st.stat.isdir == True
+      when: st.stat.exists is not defined or not st.stat.exists or st.stat.isdir
 
 
 - name: And I should be able to do a second deploy
