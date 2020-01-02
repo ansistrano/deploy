@@ -154,7 +154,8 @@
       stat:
         path: "{{ ansistrano_deploy_to }}/current/barsubmodules.html"
       register: st
-    - fail:
+    - name: Trigger error due to ansistrano_deploy_to/current/barsubmodules.html file not existing
+      fail:
         msg: "File barsubmodules.html does not exist"
       when: st.stat.exists is not defined or not st.stat.exists or st.stat.isdir
 
