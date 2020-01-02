@@ -68,7 +68,7 @@
       register: st
     - fail:
         msg: "File bar.html does not exist"
-      when: st.stat.exists is not defined or st.stat.exists == False or st.stat.isdir == True
+      when: st.stat.exists is not defined or not st.stat.exists or st.stat.isdir
 
 - name: When deploying using Git (repo_tree with Multi-Layer folder)
   hosts: all
@@ -92,7 +92,7 @@
       register: st
     - fail:
         msg: "File sub.html does not exist"
-      when: st.stat.exists is not defined or st.stat.exists == False or st.stat.isdir == True
+      when: st.stat.exists is not defined or not st.stat.exists or st.stat.isdir
 
 - name: When deploying using Git (submodules)
   hosts: all
@@ -154,7 +154,7 @@
       register: st
     - fail:
         msg: "File barsubmodules.html does not exist"
-      when: st.stat.exists is not defined or st.stat.exists == False or st.stat.isdir == True
+      when: st.stat.exists is not defined or not st.stat.exists or st.stat.isdir
 
 - name: When deploying using Git (repo_tree within the submodule)
   hosts: all
@@ -178,7 +178,7 @@
       register: st
     - fail:
         msg: "File bar.html does not exist"
-      when: st.stat.exists is not defined or st.stat.exists == False or st.stat.isdir == True
+      when: st.stat.exists is not defined or not st.stat.exists or st.stat.isdir
 
 - name: When deploying using Git (remote path for identity key)
   hosts: all
@@ -205,4 +205,4 @@
       register: st
     - fail:
         msg: "File bar.html does not exist"
-      when: st.stat.exists is not defined or st.stat.exists == False or st.stat.isdir == True
+      when: st.stat.exists is not defined or not st.stat.exists or st.stat.isdir
