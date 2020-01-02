@@ -46,6 +46,7 @@
       stat:
         path: "{{ ansistrano_deploy_to }}/current"
       register: st
+    - name: Trigger error due to path is not a symlink
     - fail:
         msg: "Path is not a symlink"
       when: st.stat.exists is defined and st.stat.exists and not st.stat.islnk
