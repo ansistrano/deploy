@@ -70,6 +70,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Clever Age](https://www.clever-age.com)
 * [CridaDemocracia](https://cridademocracia.org)
 * [Cycloid](http://www.cycloid.io)
+* [Daemonit](https://daemonit.com)
 * [Deliverea](https://www.deliverea.com/)
 * [DevOps Barcelona Conference](https://devops.barcelona/)
 * [EnAlquiler](http://www.enalquiler.com/)
