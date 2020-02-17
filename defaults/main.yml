@@ -1,6 +1,6 @@
 ---
 # Path where the code to deploy is
-ansistrano_deploy_from: "{{ playbook_dir }}"
+ansistrano_deploy_from: "{{ playbook_dir }}/"
 
 # Path where the code must be deployed to
 ansistrano_deploy_to: "/var/www/my-app"
