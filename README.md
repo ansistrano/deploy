@@ -59,6 +59,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 
 * [ABA English](http://www.abaenglish.com/)
 * [Another Place Productions](http://www.anotherplaceproductions.com)
+* [ARTACK WebLab](https://www.artack.ch)
 * [Atrápalo](http://www.atrapalo.com)
 * [Beroomers](https://www.beroomers.com)
 * [CMP Group](http://www.teamcmp.com)
@@ -89,6 +90,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Jolicode](http://jolicode.com/)
 * [Kidfund](http://link.kidfund.us/github "Kidfund")
 * [Lumao SAS](https://lumao.eu)
+* [mailXpert](https://www.mailxpert.ch)
 * [MEDIA.figaro](http://media.figaro.fr)
 * [Moss](https://moss.sh)
 * [Nice&Crazy](http://www.niceandcrazy.com)
