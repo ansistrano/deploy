@@ -391,7 +391,7 @@ For example, in order to restart apache after `Symlink` step, we'll add in the `
 * **Q: Where would you add sending email notification after a deployment?**
 * **Q: (for PHP and Symfony developers) Where would you clean the cache?**
 
-You can specify a custom tasks file for before and after every step using `ansistrano_before_*_tasks_file` and `ansistrano_after_*_tasks_file` role variables. See "Role Variables" for more information.
+You can specify a custom tasks file for before and after every step using `ansistrano_before_*_tasks_file` and `ansistrano_after_*_tasks_file` role variables. See "Role Variables" for more information. To ease the process of deploying a Symfony application there is a [dedicated playbook](https://github.com/cbrunnkvist/ansistrano-symfony-deploy) building on ansistrano.
 
 Variables in custom tasks
 -------------------------
