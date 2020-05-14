@@ -34,3 +34,5 @@
 - include_tasks: "{{ ansistrano_after_cleanup_tasks_file | default('empty.yml') }}"
 
 - include_tasks: anon-stats.yml
+
+- include_tasks: funding.yml
