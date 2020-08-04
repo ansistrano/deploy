@@ -4,6 +4,7 @@
     copy: no
     src: "{{ ansistrano_archived_file }}"
     dest: "{{ ansistrano_release_path.stdout }}"
+    exclude: "{{ ansistrano_unarchive_exclude }}"
   when: ansistrano_unarchive_owner == "default" and ansistrano_unarchive_group == "default"
 
 - name: ANSISTRANO | Unarchive | Unarchive source
@@ -20,6 +21,7 @@
     dest: "{{ ansistrano_release_path.stdout }}"
     owner: "{{ ansistrano_unarchive_owner }}"
     group: "{{ ansistrano_unarchive_group }}"
+    exclude: "{{ ansistrano_unarchive_exclude }}"
   when: >
     ansistrano_unarchive_owner != "default" and
     ansistrano_unarchive_group != "default"
