@@ -1,7 +1,7 @@
 ---
 - name: Thanks to all our generous sponsors!
   debug:
-    msg: "Ansistrano is funded by: Rigor Guild, Holaluz"
+    msg: "Ansistrano is funded by: Oliver Davies, Rigor Guild, Holaluz"
 
 - name: Please consider sponsoring Ansistrano
   debug:
