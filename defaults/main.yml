@@ -84,3 +84,6 @@ ansistrano_allow_anonymous_stats: yes
 
 ansistrano_unarchive_owner: "default"
 ansistrano_unarchive_group: "default"
+## Exclude some files or directory
+## * is allowed (ex: *.pdf, *.docx)
+ansistrano_unarchive_exclude: []
