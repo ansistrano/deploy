@@ -16,16 +16,15 @@
     - name: Install Required Packages For Debian
       when: ansible_os_family == 'Debian'
       apt:
-        name: "{{ item }}"
+        name:
+          - rsync
+          - tar
+          - ssh
+          - git
+          - unzip
+          - subversion
+          - mercurial
         state: present
-      with_items:
-        - rsync
-        - tar
-        - ssh
-        - git
-        - unzip
-        - subversion
-        - mercurial
 
     - name: Install Required Packages For Redhat
       when: ansible_os_family == 'RedHat'
