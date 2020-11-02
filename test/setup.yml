@@ -29,14 +29,13 @@
     - name: Install Required Packages For Redhat
       when: ansible_os_family == 'RedHat'
       yum:
-        name: "{{ item }}"
+        name:
+          - rsync
+          - tar
+          - openssh-clients
+          - git
+          - unzip
+          - subversion
+          - mercurial
+          - findutils
         state: present
-      with_items:
-        - rsync
-        - tar
-        - openssh-clients
-        - git
-        - unzip
-        - subversion
-        - mercurial
-        - findutils
