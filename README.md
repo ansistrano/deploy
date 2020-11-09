@@ -225,6 +225,7 @@ vars:
   ansistrano_git_refspec: ADDITIONAL_GIT_REFSPEC # Additional refspec to be used by the 'git' module. Uses the same syntax as the 'git fetch' command.
   ansistrano_git_ssh_opts: "-o StrictHostKeyChecking=no" # Additional ssh options to be used in Git
   ansistrano_git_depth: 1 # Additional history truncated to the specified number or revisions
+  ansistrano_git_executable: "" # Path to git executable to use. If not supplied, the normal mechanism for resolving binary paths will be used.
 
   # Variables used in the SVN deployment strategy
   # Please note there was a bug in the subversion module in Ansible 1.8.x series (https://github.com/ansible/ansible-modules-core/issues/370) so it is only supported from Ansible 1.9
