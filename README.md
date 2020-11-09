@@ -202,7 +202,7 @@ vars:
   ansistrano_ensure_basedirs_shared_files_exist: yes
   
   # Deployment strategy - method used to deliver code. Options are copy, download, git, rsync, rsync_direct, svn, or s3. 
-  ansistrano_deploy_via: "rsync" 
+  ansistrano_deploy_via: rsync 
   # Copy, download and s3 have an optional step to unarchive the downloaded file which can be used by adding _unarchive. 
   # The rsync_direct strategy omits a file copy on the target offering a slight speed increase if you are deploying to shared hosts, are experiancing bad file-performance, or serve static assets from the same host you deploy your app to and rsync many files.
   # You can check all the options inside tasks/update-code folder!
@@ -225,20 +225,20 @@ vars:
   ansistrano_git_refspec: ADDITIONAL_GIT_REFSPEC # Additional refspec to be used by the 'git' module. Uses the same syntax as the 'git fetch' command.
   ansistrano_git_ssh_opts: "-o StrictHostKeyChecking=no" # Additional ssh options to be used in Git
   ansistrano_git_depth: 1 # Additional history truncated to the specified number or revisions
-  ansistrano_git_executable: "" # Path to git executable to use. If not supplied, the normal mechanism for resolving binary paths will be used.
+  ansistrano_git_executable: /opt/local/bin/git # Path to git executable to use. If not supplied, the normal mechanism for resolving binary paths will be used.
 
   # Variables used in the SVN deployment strategy
   # Please note there was a bug in the subversion module in Ansible 1.8.x series (https://github.com/ansible/ansible-modules-core/issues/370) so it is only supported from Ansible 1.9
-  ansistrano_svn_repo: "https://svn.company.com/project" # Location of the svn repository
-  ansistrano_svn_branch: "trunk" # What branch from the repository to check out.
-  ansistrano_svn_revision: "HEAD" # What revision from the repository to check out.
-  ansistrano_svn_username: "user" # SVN authentication username
-  ansistrano_svn_password: "Pa$$word" # SVN authentication password
+  ansistrano_svn_repo: https://svn.company.com/project # Location of the svn repository
+  ansistrano_svn_branch: trunk # What branch from the repository to check out.
+  ansistrano_svn_revision: HEAD # What revision from the repository to check out.
+  ansistrano_svn_username: user # SVN authentication username
+  ansistrano_svn_password: Pa$$word # SVN authentication password
   ansistrano_svn_environment: {} # Dict with environment variables for svn tasks (https://docs.ansible.com/ansible/playbooks_environment.html)
 
   # Variables used in the HG deployment strategy
-  ansistrano_hg_repo: "https://USERNAME@bitbucket.org/USERNAME/REPO" # Location of the hg repo
-  ansistrano_hg_branch: "default" # Any branch identifier that works with hg -r, so named branch, bookmark, commit hash...
+  ansistrano_hg_repo: https://USERNAME@bitbucket.org/USERNAME/REPO # Location of the hg repo
+  ansistrano_hg_branch: default # Any branch identifier that works with hg -r, so named branch, bookmark, commit hash...
 
   # Variables used in the download deployment strategy
   ansistrano_get_url: https://github.com/someproject/somearchive.tar.gz
