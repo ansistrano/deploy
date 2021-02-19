@@ -4,9 +4,9 @@ services:
 
 env:
   - ANSIBLE_VERSION: "2.7.18"
-  - ANSIBLE_VERSION: "2.8.15"
-  - ANSIBLE_VERSION: "2.9.14"
-  - ANSIBLE_VERSION: "2.10.1"
+  - ANSIBLE_VERSION: "2.8.19"
+  - ANSIBLE_VERSION: "2.9.18"
+  - ANSIBLE_VERSION: "2.10.6"
   - distribution: Ubuntu
     distribution_version: bionic
     init: /lib/systemd/systemd
