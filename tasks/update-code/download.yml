@@ -8,6 +8,6 @@
 - name: ANSISTRANO | download | Download artifact
   get_url:
     url: "{{ ansistrano_get_url }}"
-    dest: "{{ ansistrano_release_path.stdout }}/{{ ansistrano_get_url | basename }}"
+    dest: "{{ ansistrano_release_path.stdout }}/{{ ansistrano_get_url | urlsplit('path') | basename }}"
     force_basic_auth: "{{ ansistrano_download_force_basic_auth | default(omit) }}"
     headers: "{{ ansistrano_download_headers | default(omit) }}"

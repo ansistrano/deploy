@@ -93,3 +93,22 @@
     - debug:
         msg: "ansistrano_release_path.stdout/deploy-master does not exist"
       when: st.stat.exists is sameas false
+
+- name: When deploying using download strategy and a very long url + querystring
+  hosts: all
+  vars:
+    ansistrano_deploy_via: "download_unarchive"
+    ansistrano_get_url: https://github.com/ansistrano/deploy/archive/master.zip?Content-Disposition=attachment-filename-frontend-v0.2.2.tar.gz&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=admin%2F20210314%2F%2Fs3%2Faws4_request&X-Amz-Date=20210314T094726Z&X-Amz-Expires=432000&X-Amz-SignedHeaders=host&X-Amz-Signature=edca67e9117c6e984a15b61fcac0f7617900e32f33a38d23eb71d795872572f8
+    ansistrano_deploy_to: "/tmp/download/fail"
+    ansistrano_unarchive_owner: "unarchive_user"
+  ignore_errors: yes
+  roles:
+    - { role: local-ansistrano }
+  post_tasks:
+    - name: Assert ansistrano_release_path.stdout/deploy-master does not exist
+      stat:
+        path: "{{ ansistrano_release_path.stdout }}/deploy-master"
+      register: st
+    - debug:
+        msg: "ansistrano_release_path.stdout/deploy-master does not exist"
+      when: st.stat.exists is sameas false
