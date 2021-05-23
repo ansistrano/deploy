@@ -50,7 +50,7 @@ Ansistrano anonymous usage stats
 
 We have recently added an extra optional step in Ansistrano so that we can know how many people are deploying their applications with our project. Unfortunately, Ansible Galaxy does not provide any numbers on usage or downloads so this is one of the only ways we have to measure how many users we really have.
 
-You can check the code we use to store your anonymous stats at [the ansistrano.com repo](https://github.com/ansistrano/ansistrano.com) and anyway, if you are not comfortable with this, you will always be able to disable this extra step by setting `ansistrano_allow_anonymous_stats` to false in your playbooks.
+You can check the code we use to store your anonymous stats at [ansistrano/deploy repo](https://github.com/ansistrano/deploy) and anyway, if you are not comfortable with this, you will always be able to disable this extra step by setting `ansistrano_allow_anonymous_stats` to false in your playbooks.
 
 Who is using Ansistrano?
 ------------------------
