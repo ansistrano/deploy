@@ -249,7 +249,7 @@ vars:
   ansistrano_s3_bucket: s3bucket
   ansistrano_s3_object: s3object.tgz # Add the _unarchive suffix to the ansistrano_deploy_via if your object is a package (ie: s3_unarchive)
   ansistrano_s3_region: eu-west-1
-  ansistrano_s3_rgw: false # must be Ansible >= 2.2. use Ceph RGW (when set true, ignore ansistrano_s3_region)
+  ansistrano_s3_rgw: false # must be Ansible >= 2.2. use Ceph RGW for S3 compatible cloud providers
   ansistrano_s3_url: http://rgw.example.com # when use Ceph RGW, set url
   # Optional variables, omitted by default
   ansistrano_s3_aws_access_key: YOUR_AWS_ACCESS_KEY
