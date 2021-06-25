@@ -20,6 +20,9 @@ ansistrano_current_dir: "current"
 # Current directory deployment strategy
 ansistrano_current_via: "symlink"
 
+# Which link type should be used (link = symlink, hard = hardlink)
+ansistrano_link_type: "link"
+
 # Shared paths to symlink to release dir
 ansistrano_shared_paths: []
 
