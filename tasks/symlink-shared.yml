@@ -13,7 +13,7 @@
 # Symlinks shared paths and files
 - name: ANSISTRANO | Create softlinks for shared paths and files
   file:
-    state: link
+    state: {{ ansistrano_link_type }}
     path: "{{ ansistrano_release_path.stdout }}/{{ item }}"
     src: "{{ item | regex_replace('[^\\/]+', '..') }}/../shared/{{ item }}"
   with_flattened:
