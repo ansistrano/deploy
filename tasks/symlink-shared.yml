@@ -6,8 +6,7 @@
   file:
     state: absent
     path: "{{ ansistrano_release_path.stdout }}/{{ item }}"
-  loop:
-    - "{{ (ansistrano_shared_paths | flatten ) + (ansistrano_shared_files | flatten) }}"
+  loop: "{{ (ansistrano_shared_paths | flatten ) + (ansistrano_shared_files | flatten) }}"
 
 # Symlinks shared paths and files
 - name: ANSISTRANO | Create softlinks for shared paths and files
@@ -15,8 +14,7 @@
     state: link
     path: "{{ ansistrano_release_path.stdout }}/{{ item }}"
     src: "{{ item | regex_replace('[^\\/]+', '..') }}/../shared/{{ item }}"
-  loop:
-    - "{{ (ansistrano_shared_paths | flatten ) + (ansistrano_shared_files | flatten) }}"
+  loop: "{{ (ansistrano_shared_paths | flatten ) + (ansistrano_shared_files | flatten) }}"
 
 # Remove previous .rsync-filter file (rsync current deployment)
 - name: ANSISTRANO | Ensure .rsync-filter is absent
@@ -31,6 +29,5 @@
     dest: "{{ ansistrano_release_path.stdout }}/.rsync-filter"
     line: "- /{{ item }}"
     create: yes
-  loop:
-    - "{{ (ansistrano_shared_paths | flatten ) + (ansistrano_shared_files | flatten) }}"
+  loop: "{{ (ansistrano_shared_paths | flatten ) + (ansistrano_shared_files | flatten) }}"
   when: ansistrano_current_via == "rsync"
