@@ -7,7 +7,6 @@ env:
   - ANSIBLE_VERSION: "2.10.7"
   - ANSIBLE_VERSION: "3.4.0"
   - ANSIBLE_VERSION: "4.10.0"
-  - ANSIBLE_VERSION: "5.1.0"
   - distribution: Ubuntu
     distribution_version: bionic
     init: /lib/systemd/systemd
@@ -16,11 +15,6 @@ env:
   - distribution: Ubuntu
     distribution_version: xenial
     init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    ANSIBLE_VERSION: docker
-  - distribution: EL
-    distribution_version: "7"
-    init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     ANSIBLE_VERSION: docker
   - distribution: Debian
