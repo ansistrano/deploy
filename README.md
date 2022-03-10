@@ -221,6 +221,7 @@ vars:
   ansistrano_git_repo_tree: "" # If specified the subtree of the repository to deploy
   ansistrano_git_identity_key_path: "" # If specified this file is copied over and used as the identity key for the git commands, path is relative to the playbook in which it is used
   ansistrano_git_identity_key_remote_path: "" # If specified this file on the remote server is used as the identity key for the git commands, remote path is absolute
+  ansistrano_git_identity_key_shred: true # Shred identity key by default but can be overloaded to false if you encounter the following issue (https://github.com/ansistrano/deploy/issues/357)
   # Optional variables, omitted by default
   ansistrano_git_refspec: ADDITIONAL_GIT_REFSPEC # Additional refspec to be used by the 'git' module. Uses the same syntax as the 'git fetch' command.
   ansistrano_git_ssh_opts: "-o StrictHostKeyChecking=no" # Additional ssh options to be used in Git

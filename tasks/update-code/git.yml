@@ -50,7 +50,7 @@
 
 - name: ANSISTRANO | GIT | Shred GIT deployment key
   command: shred -f "{{ ansistrano_deploy_to }}/git_identity_key"
-  when: ansistrano_git_identity_key_path|trim or ansistrano_git_identity_key_remote_path|trim
+  when: (ansistrano_git_identity_key_path|trim or ansistrano_git_identity_key_remote_path|trim) and ansistrano_git_identity_key_shred|bool == true
 
 - name: ANSISTRANO | GIT | Set git_real_repo_tree
   set_fact:
