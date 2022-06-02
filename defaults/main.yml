@@ -16,6 +16,7 @@ ansistrano_shared_path: "{{ ansistrano_deploy_to }}/shared"
 
 # Softlink name for the current release
 ansistrano_current_dir: "current"
+ansistrano_current_path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}"
 
 # Current directory deployment strategy
 ansistrano_current_via: "symlink"

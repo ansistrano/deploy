@@ -3,29 +3,29 @@
 # Migration check from symlink deployment
 - name: ANSISTRANO | Get current folder
   stat:
-    path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}"
+    path: "{{ ansistrano_current_path }}"
   register: stat_current_dir
 
 - name: ANSISTRANO | Remove current folder if it's a symlink
   file:
     state: absent
-    path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}"
+    path: "{{ ansistrano_current_path }}"
   when: stat_current_dir.stat.islnk is defined and stat_current_dir.stat.islnk
 
 # Perform rsync deployment
 - name: ANSISTRANO | Ensure current folder is a directory
   file:
     state: directory
-    path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}"
+    path: "{{ ansistrano_current_path }}"
 
 - name: ANSISTRANO | Sync release to new current path
-  command: rsync -a -F --no-times --delete-after "{{ ansistrano_release_path.stdout }}/" "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}/"
+  command: rsync -a -F --no-times --delete-after "{{ ansistrano_release_path.stdout }}/" "{{ ansistrano_current_path }}/"
 
 # Ensure symlinks target paths is absent
 - name: ANSISTRANO | Ensure shared paths targets are absent
   file:
     state: absent
-    path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}/{{ item }}"
+    path: "{{ ansistrano_current_path }}/{{ item }}"
   with_flattened:
     - "{{ ansistrano_shared_paths }}"
     - "{{ ansistrano_shared_files }}"
@@ -34,8 +34,8 @@
 - name: ANSISTRANO | Create softlinks for shared paths
   file:
     state: link
-    path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}/{{ item }}"
-    src: "{{ (ansistrano_shared_path ~ '/' ~ item) | relpath((ansistrano_deploy_to ~ '/' ~ ansistrano_current_dir ~ '/' ~ item) | dirname) }}"
+    path: "{{ ansistrano_current_path }}/{{ item }}"
+    src: "{{ (ansistrano_shared_path ~ '/' ~ item) | relpath((ansistrano_current_path ~ '/' ~ item) | dirname) }}"
   with_flattened:
     - "{{ ansistrano_shared_paths }}"
     - "{{ ansistrano_shared_files }}"

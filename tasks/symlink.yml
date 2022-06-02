@@ -3,18 +3,18 @@
 # Migration check from rsync deployment
 - name: ANSISTRANO | Get current folder
   stat:
-    path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}"
+    path: "{{ ansistrano_current_path }}"
   register: stat_current_dir
 
 - name: ANSISTRANO | Remove current folder if it's a directory
   file:
     state: absent
-    path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}"
+    path: "{{ ansistrano_current_path }}"
   when: stat_current_dir.stat.isdir is defined and stat_current_dir.stat.isdir
 
 # Performs symlink exchange
 - name: ANSISTRANO | Change softlink to new release
   file:
     state: link
-    path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}"
-    src: "{{ (ansistrano_deploy_to ~ '/' ~ ansistrano_version_dir ~ '/' ~ ansistrano_release_version) | relpath((ansistrano_deploy_to ~ '/' ~ ansistrano_current_dir) | dirname) }}"
+    path: "{{ ansistrano_current_path }}"
+    src: "{{ (ansistrano_deploy_to ~ '/' ~ ansistrano_version_dir ~ '/' ~ ansistrano_release_version) | relpath(ansistrano_current_path | dirname) }}"
