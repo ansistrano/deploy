@@ -17,7 +17,7 @@
 - name: ANSISTRANO | GIT | Update remote repository
   git:
     repo: "{{ ansistrano_git_repo }}"
-    dest: "{{ ansistrano_deploy_to }}/{{ ansistrano_repo_dir }}"
+    dest: "{{ ansistrano_repo_path }}"
     version: "{{ ansistrano_git_branch }}"
     accept_hostkey: true
     update: yes
@@ -32,7 +32,7 @@
 - name: ANSISTRANO | GIT | Update remote repository using SSH key
   git:
     repo: "{{ ansistrano_git_repo }}"
-    dest: "{{ ansistrano_deploy_to }}/{{ ansistrano_repo_dir }}"
+    dest: "{{ ansistrano_repo_path }}"
     version: "{{ ansistrano_git_branch }}"
     accept_hostkey: true
     update: yes
@@ -71,6 +71,6 @@
            | sed "s#^$prefix/##"
            | rsync -a --files-from=- "./$prefix/" {{ ansistrano_release_path.stdout }}/
   args:
-    chdir: "{{ ansistrano_deploy_to }}/{{ ansistrano_repo_dir }}/"
+    chdir: "{{ ansistrano_repo_path }}/"
   environment:
     prefix: "{{ ansistrano_git_real_repo_tree }}"

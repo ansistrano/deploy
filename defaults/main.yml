@@ -42,6 +42,7 @@ ansistrano_keep_releases: 0
 
 # Directory name for the checked out repository
 ansistrano_repo_dir: "repo"
+ansistrano_repo_path: "{{ ansistrano_deploy_to }}/{{ ansistrano_repo_dir }}"
 
 ## GIT pull strategy
 ansistrano_git_repo: git@github.com:USERNAME/REPO.git

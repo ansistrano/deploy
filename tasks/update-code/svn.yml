@@ -2,7 +2,7 @@
 - name: ANSISTRANO | SVN | Update remote repository
   subversion:
     repo: "{{ ansistrano_svn_repo }}/{{ ansistrano_svn_branch }}"
-    dest: "{{ ansistrano_deploy_to }}/{{ ansistrano_repo_dir }}"
+    dest: "{{ ansistrano_repo_path }}"
     revision: "{{ ansistrano_svn_revision }}"
     username: "{{ ansistrano_svn_username }}"
     password: "{{ ansistrano_svn_password }}"
@@ -20,7 +20,7 @@
 
 - name: ANSISTRANO | SVN | Copy repo to release path
   subversion:
-    repo: "{{ ansistrano_deploy_to }}/{{ ansistrano_repo_dir }}"
+    repo: "{{ ansistrano_repo_path }}"
     dest: "{{ ansistrano_release_path.stdout }}"
     revision: "{{ ansistrano_svn_revision }}"
     username: "{{ ansistrano_svn_username }}"
