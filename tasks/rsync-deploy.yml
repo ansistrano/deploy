@@ -35,7 +35,7 @@
   file:
     state: link
     path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}/{{ item }}"
-    src: "{{ item | regex_replace('[^\\/]+', '..') }}/shared/{{ item }}"
+    src: "{{ (ansistrano_shared_path ~ '/' ~ item) | relpath((ansistrano_deploy_to ~ '/' ~ ansistrano_current_dir ~ '/' ~ item) | dirname) }}"
   with_flattened:
     - "{{ ansistrano_shared_paths }}"
     - "{{ ansistrano_shared_files }}"
