@@ -17,4 +17,4 @@
   file:
     state: link
     path: "{{ ansistrano_current_path }}"
-    src: "{{ (ansistrano_deploy_to ~ '/' ~ ansistrano_version_dir ~ '/' ~ ansistrano_release_version) | relpath(ansistrano_current_path | dirname) }}"
+    src: "{{ (ansistrano_releases_path ~ '/' ~ ansistrano_release_version) | relpath(ansistrano_current_path | dirname) }}"
