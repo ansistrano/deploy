@@ -88,4 +88,4 @@ ansistrano_unarchive_group: "default"
 ## Exclude some files or directory
 ## * is allowed (ex: *.pdf, *.docx)
 ansistrano_unarchive_exclude: []
-ansistrano_unarchive_extra_opts: ""
+ansistrano_unarchive_extra_opts: []
