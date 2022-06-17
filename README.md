@@ -88,6 +88,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [HiringThing](https://www.hiringthing.com/)
 * [Holaluz](https://www.holaluz.com)
 * [Hosting4devs](https://hosting4devs.com)
+* [Jobbsy](https://jobbsy.dev)
 * [Jolicode](http://jolicode.com/)
 * [Kidfund](http://link.kidfund.us/github "Kidfund")
 * [Lumao SAS](https://lumao.eu)
