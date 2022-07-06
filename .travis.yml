@@ -3,10 +3,11 @@ services:
   - docker
 
 env:
-  - ANSIBLE_VERSION: "2.9.27"
   - ANSIBLE_VERSION: "2.10.7"
   - ANSIBLE_VERSION: "3.4.0"
   - ANSIBLE_VERSION: "4.10.0"
+  - ANSIBLE_VERSION: "5.10.0"
+  - ANSIBLE_VERSION: "6.0.0"
   - distribution: Ubuntu
     distribution_version: bionic
     init: /lib/systemd/systemd
