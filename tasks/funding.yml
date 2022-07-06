@@ -2,7 +2,9 @@
 - name: Thanks to all our generous sponsors!
   debug:
     msg: "Ansistrano is funded by: Rigor Guild, Holaluz"
+  run_once: true
 
 - name: Please consider sponsoring Ansistrano
   debug:
     msg: If Ansistrano is saving money for your company, please visit https://github.com/sponsors/ansistrano and consider a small donation!
+  run_once: true
