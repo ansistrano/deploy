@@ -30,7 +30,7 @@ before_install:
   # Standard Local Testing Commands
   - if [ "${ANSIBLE_VERSION}" != "docker" ]; then sudo apt-get -y install software-properties-common ; fi
   - if [ "${ANSIBLE_VERSION}" != "docker" ]; then sudo apt-get -y install python3-pip python3-setuptools ; fi
-  - if [ "${ANSIBLE_VERSION}" != "docker" ]; then sudo pip3 install --no-cache-dir ansible==$ANSIBLE_VERSION ; fi
+  - if [ "${ANSIBLE_VERSION}" != "docker" ]; then sudo pip3 install ansible==$ANSIBLE_VERSION ; fi
   - if [ "${ANSIBLE_VERSION}" != "docker" ]; then ansible --version ; fi
   # Docker Testing pull container.
   - if [ "${ANSIBLE_VERSION}" == "docker" ]; then docker pull ansiblecheck/ansiblecheck:${distribution,,}-${distribution_version} ; fi
