@@ -13,7 +13,7 @@
   file:
     state: link
     path: "{{ ansistrano_release_path.stdout }}/{{ item }}"
-    src: "{{ item | regex_replace('[^\\/]+', '..') }}/../shared/{{ item }}"
+    src: "{{ item | regex_replace('[^\\/]+', '..') }}/../{{ ansistrano_shared_dir }}/{{ item }}"
   loop: "{{ (ansistrano_shared_paths | flatten ) + (ansistrano_shared_files | flatten) }}"
 
 # Remove previous .rsync-filter file (rsync current deployment)

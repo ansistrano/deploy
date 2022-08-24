@@ -11,8 +11,11 @@ ansistrano_version_dir: "releases"
 # Full path to the releases
 ansistrano_releases_path: "{{ ansistrano_deploy_to }}/{{ ansistrano_version_dir }}"
 
+# Folder name for shared directories and files
+ansistrano_shared_dir: "shared"
+
 # Full path to the shared path folder
-ansistrano_shared_path: "{{ ansistrano_deploy_to }}/shared"
+ansistrano_shared_path: "{{ ansistrano_deploy_to }}/{{ ansistrano_shared_dir }}"
 
 # Softlink name for the current release
 ansistrano_current_dir: "current"
