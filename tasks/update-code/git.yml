@@ -65,7 +65,7 @@
   shell: >-
            {
              git ls-files -z --with-tree="{{ ansistrano_git_branch }}" | tr '\0' '\n';
-             git submodule foreach --recursive | sed -n -e "s/^Entering '\(.*\)'$/\1/p" | while read -r line; do (cd "$line"; git ls-files -z | tr "\0" "\n" | sed "s#^#$line/#"; cd $OLDPWD); done
+             git submodule foreach --recursive | sed -n -e "s/^[a-zA-Z]* '\(.*\)'$/\1/p" | while read -r line; do (cd "$line"; git ls-files -z | tr "\0" "\n" | sed "s#^#$line/#"; cd $OLDPWD); done
            }
            | grep "^$prefix"
            | sed "s#^$prefix##"
