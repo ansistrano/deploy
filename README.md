@@ -177,6 +177,7 @@ vars:
   ansistrano_deploy_from: "{{ playbook_dir }}/" # Where my local project is (relative or absolute path)
   ansistrano_deploy_to: "/var/www/my-app" # Base path to deploy to.
   ansistrano_version_dir: "releases" # Releases folder name
+  ansistrano_shared_dir: "shared" # Shared folder name
   ansistrano_current_dir: "current" # Softlink name. You should rarely changed it.
   ansistrano_current_via: "symlink" # Deployment strategy who code should be deployed to current path. Options are symlink or rsync
   ansistrano_keep_releases: 0 # Releases to keep after a new deployment. See "Pruning old releases".
@@ -184,7 +185,7 @@ vars:
   # Arrays of directories and files to be shared.
   # The following arrays of directories and files will be symlinked to the current release directory after the 'update-code' step and its callbacks
   # Notes:
-  # * Paths are relative to the /shared directory (no starting /)
+  # * Paths are relative to the shared directory (no starting /)
   # * If your items are in a subdirectory, write the entire path to each shared directory
   #
   # Example:
