@@ -75,6 +75,7 @@ Is Ansistrano ready to be used? Here are some companies currently using it:
 * [Daemonit](https://daemonit.com)
 * [Deliverea](https://www.deliverea.com/)
 * [DevOps Barcelona Conference](https://devops.barcelona/)
+* [Durable Programming](https://durableprogramming.com/)
 * [EnAlquiler](http://www.enalquiler.com/)
 * [Euromillions.com](http://euromillions.com/)
 * [Finizens](https://finizens.com/)
