@@ -18,10 +18,10 @@
   copy:
     content: "{{ ansistrano_release_version }}"
     dest: "{{ ansistrano_release_path.stdout }}/REVISION"
-  when: ansistrano_git_result is not defined
+  when: ansistrano_git_result is not defined or ansistrano_git_result is none
 
 - name: ANSISTRANO | Copy git released version into REVISION file
   copy:
-    content: "{{ ansistrano_git_result.after }}"
+    content: "{{ ansistrano_git_result.after | default(ansistrano_release_version) }}"
     dest: "{{ ansistrano_release_path.stdout }}/REVISION"
-  when: ansistrano_git_result is defined
+  when: ansistrano_git_result is defined and ansistrano_git_result is not none
