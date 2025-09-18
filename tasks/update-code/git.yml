@@ -27,9 +27,7 @@
     depth: "{{ ansistrano_git_depth | default(omit) }}"
     executable: "{{ ansistrano_git_executable | default(omit) }}"
   register: ansistrano_git_result_update
-  when:
-    - ansistrano_git_identity_key_path | default('') | trim | length == 0
-    - ansistrano_git_identity_key_remote_path | default('') | trim | length == 0
+  when: ansistrano_git_identity_key_path | default('') | trim | length == 0 or ansistrano_git_identity_key_remote_path | default('') | trim | length == 0
 
 - name: ANSISTRANO | GIT | Update remote repository using SSH key
   git:
