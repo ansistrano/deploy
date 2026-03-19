@@ -11,7 +11,7 @@
 
     - name: Check Ansible Is Installed
       changed_when: False
-      command: /usr/bin/env ansible --version
+      command: /usr/bin/env ansible-playbook --version
 
     - name: Install required packages
       apt:
