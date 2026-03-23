@@ -69,6 +69,39 @@
   roles:
     - { role: local-ansistrano }
 
+- name: When deploying fails before symlink
+  hosts: all
+  vars:
+    ansistrano_release_version: "99999999999999Z"
+    ansistrano_deploy_to: "/tmp/my-app.com"
+    ansistrano_after_setup_tasks_file: "{{ playbook_dir }}/tasks/create-shared-paths.yml"
+    ansistrano_after_update_code_tasks_file: "{{ playbook_dir }}/tasks/create-internal-paths.yml"
+    ansistrano_before_symlink_tasks_file: "{{ playbook_dir }}/tasks/fail-before-symlink.yml"
+    ansistrano_shared_paths:
+      - blah
+      - foo/bar
+      - xxx/yyy/zzz
+    ansistrano_shared_files:
+      - test.txt
+      - files/test.txt
+  ignore_errors: yes
+  roles:
+    - { role: local-ansistrano }
+
+- name: Then the failed release should be cleaned up
+  hosts: all
+  vars:
+    ansistrano_deploy_to: "/tmp/my-app.com"
+    ansistrano_release_version: "99999999999999Z"
+  tasks:
+    - name: Assert failed release path does not exist
+      stat:
+        path: "{{ ansistrano_deploy_to }}/releases/{{ ansistrano_release_version }}"
+      register: st
+    - debug:
+        msg: "Failed release path was cleaned up"
+      when: st.stat.exists is defined and not st.stat.exists
+
 # Tests for rsync strategy with "current" via rsync (instead of the default symlink)
 - name: When deploying with rsync current strategy
   hosts: all

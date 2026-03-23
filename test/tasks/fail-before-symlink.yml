@@ -1,0 +1,4 @@
+---
+- name: Fail before symlink step
+  fail:
+    msg: "Intentional test failure before symlink"
