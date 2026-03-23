@@ -1,38 +1,62 @@
 ---
-- include_tasks: "{{ ansistrano_before_setup_tasks_file | default('empty.yml') }}"
+- name: ANSISTRANO | Mark release as not activated
+  set_fact:
+    ansistrano_release_activated: false
 
-- include_tasks: setup.yml
+- block:
+    - include_tasks: "{{ ansistrano_before_setup_tasks_file | default('empty.yml') }}"
 
-- include_tasks: "{{ ansistrano_after_setup_tasks_file | default('empty.yml') }}"
+    - include_tasks: setup.yml
 
-- include_tasks: "{{ ansistrano_before_update_code_tasks_file | default('empty.yml') }}"
+    - include_tasks: "{{ ansistrano_after_setup_tasks_file | default('empty.yml') }}"
 
-- include_tasks: update-code.yml
+    - include_tasks: "{{ ansistrano_before_update_code_tasks_file | default('empty.yml') }}"
 
-- include_tasks: "{{ ansistrano_after_update_code_tasks_file | default('empty.yml') }}"
+    - include_tasks: update-code.yml
 
-- include_tasks: "{{ ansistrano_before_symlink_shared_tasks_file | default('empty.yml') }}"
+    - include_tasks: "{{ ansistrano_after_update_code_tasks_file | default('empty.yml') }}"
 
-- include_tasks: symlink-shared.yml
+    - include_tasks: "{{ ansistrano_before_symlink_shared_tasks_file | default('empty.yml') }}"
 
-- include_tasks: "{{ ansistrano_after_symlink_shared_tasks_file | default('empty.yml') }}"
+    - include_tasks: symlink-shared.yml
 
-- include_tasks: "{{ ansistrano_before_symlink_tasks_file | default('empty.yml') }}"
+    - include_tasks: "{{ ansistrano_after_symlink_shared_tasks_file | default('empty.yml') }}"
 
-- include_tasks: symlink.yml
-  when: ansistrano_current_via == "symlink"
+    - include_tasks: "{{ ansistrano_before_symlink_tasks_file | default('empty.yml') }}"
 
-- include_tasks: rsync-deploy.yml
-  when: ansistrano_current_via == "rsync"
+    - include_tasks: symlink.yml
+      when: ansistrano_current_via == "symlink"
 
-- include_tasks: "{{ ansistrano_after_symlink_tasks_file | default('empty.yml') }}"
+    - include_tasks: rsync-deploy.yml
+      when: ansistrano_current_via == "rsync"
 
-- include_tasks: "{{ ansistrano_before_cleanup_tasks_file | default('empty.yml') }}"
+    - name: ANSISTRANO | Mark release as activated
+      set_fact:
+        ansistrano_release_activated: true
 
-- include_tasks: cleanup.yml
+    - include_tasks: "{{ ansistrano_after_symlink_tasks_file | default('empty.yml') }}"
 
-- include_tasks: "{{ ansistrano_after_cleanup_tasks_file | default('empty.yml') }}"
+    - include_tasks: "{{ ansistrano_before_cleanup_tasks_file | default('empty.yml') }}"
 
-- include_tasks: anon-stats.yml
+    - include_tasks: cleanup.yml
 
-- include_tasks: funding.yml
+    - include_tasks: "{{ ansistrano_after_cleanup_tasks_file | default('empty.yml') }}"
+
+    - include_tasks: anon-stats.yml
+
+    - include_tasks: funding.yml
+  rescue:
+    - name: ANSISTRANO | Remove failed release
+      file:
+        path: "{{ ansistrano_release_path.stdout }}"
+        state: absent
+      when:
+        - ansistrano_release_path is defined
+        - ansistrano_release_path.stdout is defined
+        - not ansistrano_release_activated
+
+    - fail:
+        msg: >-
+          Deployment failed in task
+          {{ ansible_failed_task.name | default('unknown task') }}:
+          {{ ansible_failed_result.msg | default(ansible_failed_result | string) }}
