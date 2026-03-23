@@ -1,7 +1,7 @@
 Ansistrano
 ==========
 
-[![Build Status](https://travis-ci.com/ansistrano/deploy.svg?branch=master)](https://travis-ci.com/ansistrano/deploy)
+[![CI](https://github.com/ansistrano/deploy/actions/workflows/ci.yml/badge.svg)](https://github.com/ansistrano/deploy/actions/workflows/ci.yml)
 [![Total Deployments](https://img.shields.io/badge/dynamic/json.svg?label=overall&uri=https%3A%2F%2Fansistrano.com%2Finfo&query=deployments.total&colorB=green&suffix=%20deployments)](https://ansistrano.com)
 [![Year Deployments](https://img.shields.io/badge/dynamic/json.svg?label=year&uri=https%3A%2F%2Fansistrano.com%2Finfo&query=deployments.year&colorB=green&suffix=%20deployments)](https://ansistrano.com)
 [![Month Deployments](https://img.shields.io/badge/dynamic/json.svg?label=month&uri=https%3A%2F%2Fansistrano.com%2Finfo&query=deployments.month&colorB=green&suffix=%20deployments)](https://ansistrano.com)
@@ -242,6 +242,10 @@ vars:
   ansistrano_svn_password: Pa$$word # SVN authentication password
   ansistrano_svn_environment: {} # Dict with environment variables for svn tasks (https://docs.ansible.com/ansible/playbooks_environment.html)
 
+  # Note for maintainers: GitHub.com no longer serves repositories over the SVN
+  # protocol. The integration suite uses a temporary local `file://` SVN
+  # repository fixture instead of GitHub for this strategy.
+
   # Variables used in the HG deployment strategy
   ansistrano_hg_repo: https://USERNAME@bitbucket.org/USERNAME/REPO # Location of the hg repo
   ansistrano_hg_branch: default # Any branch identifier that works with hg -r, so named branch, bookmark, commit hash...
@@ -472,7 +476,7 @@ In order to test the rollback playbook, you will need to run deploy.yml at least
 $ ansible-playbook -i hosts rollback.yml
 ```
 
-You can check more advanced examples inside the test folder which are run against Travis-CI
+You can check more advanced examples inside the test folder which are run against GitHub Actions
 
 Sample projects
 ---------------

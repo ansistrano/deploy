@@ -4,11 +4,46 @@
   hosts: all
   vars:
     ansistrano_deploy_to: "/tmp/svn/my-app.com"
+    ansistrano_test_svn_repo_root: "/tmp/ansistrano-svn-repo"
+    ansistrano_test_svn_import_dir: "/tmp/ansistrano-svn-import"
   tasks:
+    - name: Remove previous SVN fixture repository
+      file:
+        path: "{{ ansistrano_test_svn_repo_root }}"
+        state: absent
+
+    - name: Remove previous SVN fixture import directory
+      file:
+        path: "{{ ansistrano_test_svn_import_dir }}"
+        state: absent
+
     - name: Assert ansistrano_deploy_to path does not exist
       stat:
         path: "{{ ansistrano_deploy_to }}"
       register: st
+
+    - name: Create SVN fixture repository
+      command: svnadmin create {{ ansistrano_test_svn_repo_root }}
+
+    - name: Create SVN fixture import directory
+      file:
+        path: "{{ ansistrano_test_svn_import_dir }}/trunk"
+        state: directory
+
+    - name: Create SVN fixture content
+      copy:
+        dest: "{{ ansistrano_test_svn_import_dir }}/trunk/README.md"
+        content: |
+          # Ansistrano SVN fixture
+
+          This repository is created locally for integration tests.
+
+    - name: Import SVN fixture content
+      command: >-
+        svn import {{ ansistrano_test_svn_import_dir }}
+        file://{{ ansistrano_test_svn_repo_root }}
+        -m "Create integration test fixture"
+
     - debug:
         msg: "Path does not exist and is a directory"
       when: st.stat.exists is defined and not st.stat.exists
@@ -17,7 +52,7 @@
   hosts: all
   vars:
     ansistrano_deploy_via: "svn"
-    ansistrano_svn_repo: https://github.com/ansistrano/deploy.git
+    ansistrano_svn_repo: file:///tmp/ansistrano-svn-repo
     ansistrano_deploy_to: "/tmp/svn/my-app.com"
   roles:
     - { role: local-ansistrano }
@@ -39,7 +74,7 @@
   hosts: all
   vars:
     ansistrano_deploy_via: "svn"
-    ansistrano_svn_repo: https://github.com/ansistrano/deploy.git
+    ansistrano_svn_repo: file:///tmp/ansistrano-svn-repo
     ansistrano_deploy_to: "/tmp/svn/my-app.com"
   roles:
     - { role: local-ansistrano }
