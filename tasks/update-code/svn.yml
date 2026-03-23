@@ -11,7 +11,8 @@
   register: ansistrano_svn_result_update
 
 - name: ANSISTRANO | SVN | Register ansistrano_svn_result variable
-  set_fact: ansistrano_svn_result={{ ansistrano_svn_result_update }}
+  set_fact:
+    ansistrano_svn_result: "{{ ansistrano_svn_result_update }}"
 
 - name: ANSISTRANO | SVN | Create release folder
   file:
