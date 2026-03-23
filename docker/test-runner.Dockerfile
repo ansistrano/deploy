@@ -16,15 +16,11 @@ RUN apt-get update \
         sudo \
         tar \
         unzip \
+    && python -m pip install --upgrade pip \
+    && python -m pip install --no-cache-dir ansible-core \
+    && ansible-galaxy collection install ansible.posix community.general \
     && rm -rf /var/lib/apt/lists/*
-
-RUN python -m pip install --upgrade pip \
-    && python -m pip install ansible-core
-
-RUN ansible-galaxy collection install ansible.posix community.general
-
-COPY docker/run-tests.sh /usr/local/bin/run-ansistrano-tests
-RUN chmod +x /usr/local/bin/run-ansistrano-tests
+COPY --chmod=755 docker/run-tests.sh /usr/local/bin/run-ansistrano-tests
 
 WORKDIR /workspace/deploy
 
