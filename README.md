@@ -11,6 +11,8 @@ Ansistrano
 
 Ansistrano supports `rsync`, `rsync_direct`, `git`, `svn`, `hg`, `download`, `download_unarchive`, `s3`, `s3_unarchive`, `gcs`, and `gcs_unarchive`, plus rollback hooks and release pruning.
 
+![Ansistrano Flow](docs/ansistrano-flow.png)
+
 Quick Start
 -----------
 
