@@ -1,0 +1,30 @@
+name: Refresh Ansible Galaxy
+
+on:
+  push:
+    tags:
+      - "*"
+  workflow_dispatch:
+
+jobs:
+  import:
+    name: Import role on tag
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Ansible
+        run: python -m pip install --upgrade pip ansible-core
+
+      - name: Trigger Ansible Galaxy import
+        env:
+          GALAXY_API_KEY: ${{ secrets.GALAXY_API_KEY }}
+        run: >
+          ansible-galaxy role import
+          --api-key "$GALAXY_API_KEY"
+          ansistrano
+          deploy
