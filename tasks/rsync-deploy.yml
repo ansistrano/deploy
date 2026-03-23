@@ -19,16 +19,22 @@
     path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}"
 
 - name: ANSISTRANO | Sync release to new current path
-  command: rsync -a -F --no-times --delete-after "{{ ansistrano_release_path.stdout }}/" "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}/"
+  command:
+    argv:
+      - rsync
+      - -a
+      - -F
+      - --no-times
+      - --delete-after
+      - "{{ ansistrano_release_path.stdout }}/"
+      - "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}/"
 
 # Ensure symlinks target paths is absent
 - name: ANSISTRANO | Ensure shared paths targets are absent
   file:
     state: absent
     path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}/{{ item }}"
-  with_flattened:
-    - "{{ ansistrano_shared_paths }}"
-    - "{{ ansistrano_shared_files }}"
+  loop: "{{ ansistrano_shared_paths + ansistrano_shared_files }}"
 
 # Symlinks shared paths
 - name: ANSISTRANO | Create softlinks for shared paths
@@ -36,6 +42,4 @@
     state: link
     path: "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}/{{ item }}"
     src: "{{ item | regex_replace('[^\\/]+', '..') }}/{{ ansistrano_shared_dir }}/{{ item }}"
-  with_flattened:
-    - "{{ ansistrano_shared_paths }}"
-    - "{{ ansistrano_shared_files }}"
+  loop: "{{ ansistrano_shared_paths + ansistrano_shared_files }}"

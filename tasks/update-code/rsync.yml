@@ -18,4 +18,9 @@
     rsync_path: "{{ ansistrano_rsync_path | default(omit) }}"
 
 - name: ANSISTRANO | RSYNC | Deploy existing code to servers
-  command: cp -a {{ ansistrano_shared_rsync_copy_path.stdout }} {{ ansistrano_release_path.stdout }}
+  command:
+    argv:
+      - cp
+      - -a
+      - "{{ ansistrano_shared_rsync_copy_path.stdout }}"
+      - "{{ ansistrano_release_path.stdout }}"
