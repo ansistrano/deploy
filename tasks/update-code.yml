@@ -8,23 +8,22 @@
   delegate_to: 127.0.0.1
 
 - name: ANSISTRANO | Get release path
-  command: echo "{{ ansistrano_releases_path }}/{{ ansistrano_release_version }}"
-  check_mode: no
-  register: ansistrano_release_path
+  set_fact:
+    ansistrano_release_path: "{{ ansistrano_releases_path }}/{{ ansistrano_release_version }}"
 
 - include_tasks: "update-code/{{ ansistrano_deploy_via | default('rsync') }}.yml"
 
 - name: ANSISTRANO | Copy release version into REVISION file
   copy:
     content: "{{ ansistrano_release_version }}"
-    dest: "{{ ansistrano_release_path.stdout }}/REVISION"
+    dest: "{{ ansistrano_release_path }}/REVISION"
   when:
     - ansistrano_git_result is not defined or ansistrano_git_result is none
 
 - name: ANSISTRANO | Copy git released version into REVISION file
   copy:
     content: "{{ ansistrano_git_result.after | default(ansistrano_release_version) }}"
-    dest: "{{ ansistrano_release_path.stdout }}/REVISION"
+    dest: "{{ ansistrano_release_path }}/REVISION"
   when:
     - ansistrano_git_result is defined
     - ansistrano_git_result is not none

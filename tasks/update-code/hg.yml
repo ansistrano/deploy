@@ -10,7 +10,7 @@
 - name: ANSISTRANO | HG | Create release folder
   file:
     state: directory
-    path: "{{ ansistrano_release_path.stdout }}"
+    path: "{{ ansistrano_release_path }}"
 
 - name: ANSISTRANO | HG | Sync repo to release path
   command:
@@ -19,6 +19,6 @@
       - archive
       - -r
       - "{{ ansistrano_hg_branch }}"
-      - "{{ ansistrano_release_path.stdout }}"
+      - "{{ ansistrano_release_path }}"
   args:
     chdir: "{{ ansistrano_deploy_to }}/{{ ansistrano_repo_dir }}/"

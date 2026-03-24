@@ -12,7 +12,7 @@
   unarchive:
     copy: no
     src: "{{ ansistrano_archived_file }}"
-    dest: "{{ ansistrano_release_path.stdout }}"
+    dest: "{{ ansistrano_release_path }}"
     owner: "{{ ansistrano_unarchive_owner if ansistrano_unarchive_owner != 'default' else omit }}"
     group: "{{ ansistrano_unarchive_group if ansistrano_unarchive_group != 'default' else omit }}"
     exclude: "{{ ansistrano_unarchive_exclude }}"

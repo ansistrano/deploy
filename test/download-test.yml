@@ -67,12 +67,12 @@
         groups: unarchive_group
 
   post_tasks:
-    - name: Assert ansistrano_release_path.stdout/deploy-master is owned by unarchive_user
+    - name: Assert ansistrano_release_path/deploy-master is owned by unarchive_user
       stat:
-        path: "{{ ansistrano_release_path.stdout }}/deploy-master"
+        path: "{{ ansistrano_release_path }}/deploy-master"
       register: st
     - debug:
-        msg: "ansistrano_release_path.stdout/deploy-master is owned by unarchive_user"
+        msg: "ansistrano_release_path/deploy-master is owned by unarchive_user"
       when: st.stat.gr_name == "unarchive_group" and st.stat.pw_name == "unarchive_user"
 
 - name: When deploying using download strategy and setting owner (expect fail)
@@ -86,12 +86,12 @@
   roles:
     - { role: local-ansistrano }
   post_tasks:
-    - name: Assert ansistrano_release_path.stdout/deploy-master does not exist
+    - name: Assert ansistrano_release_path/deploy-master does not exist
       stat:
-        path: "{{ ansistrano_release_path.stdout }}/deploy-master"
+        path: "{{ ansistrano_release_path }}/deploy-master"
       register: st
     - debug:
-        msg: "ansistrano_release_path.stdout/deploy-master does not exist"
+        msg: "ansistrano_release_path/deploy-master does not exist"
       when: st.stat.exists is sameas false
 
 - name: When deploying using download strategy and a very long url + querystring
@@ -105,12 +105,12 @@
   roles:
     - { role: local-ansistrano }
   post_tasks:
-    - name: Assert ansistrano_release_path.stdout/deploy-master does not exist
+    - name: Assert ansistrano_release_path/deploy-master does not exist
       stat:
-        path: "{{ ansistrano_release_path.stdout }}/deploy-master"
+        path: "{{ ansistrano_release_path }}/deploy-master"
       register: st
     - debug:
-        msg: "ansistrano_release_path.stdout/deploy-master does not exist"
+        msg: "ansistrano_release_path/deploy-master does not exist"
       when: st.stat.exists is sameas false
 
 - name: Given a local artifact endpoint with filename only in Content-Disposition

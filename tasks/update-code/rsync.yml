@@ -1,13 +1,12 @@
 ---
 - name: ANSISTRANO | RSYNC | Get shared path (in rsync case)
-  command: echo "{{ ansistrano_shared_path }}/.shared-copy"
-  check_mode: no
-  register: ansistrano_shared_rsync_copy_path
+  set_fact:
+    ansistrano_shared_rsync_copy_path: "{{ ansistrano_shared_path }}/.shared-copy"
 
 - name: ANSISTRANO | RSYNC | Rsync application files to remote shared copy
   synchronize:
     src: "{{ ansistrano_deploy_from }}"
-    dest: "{{ ansistrano_shared_rsync_copy_path.stdout }}"
+    dest: "{{ ansistrano_shared_rsync_copy_path }}"
     set_remote_user: "{{ ansistrano_rsync_set_remote_user }}"
     recursive: yes
     delete: yes
@@ -22,5 +21,5 @@
     argv:
       - cp
       - -a
-      - "{{ ansistrano_shared_rsync_copy_path.stdout }}"
-      - "{{ ansistrano_release_path.stdout }}"
+      - "{{ ansistrano_shared_rsync_copy_path }}"
+      - "{{ ansistrano_release_path }}"

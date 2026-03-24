@@ -3,14 +3,14 @@
 - name: ANSISTRANO | Ensure internal path foo exists
   file:
     state: directory
-    path: "{{ ansistrano_release_path.stdout }}/foo"
+    path: "{{ ansistrano_release_path }}/foo"
 
 - name: ANSISTRANO | Ensure internal path xxx/yyy exists
   file:
     state: directory
-    path: "{{ ansistrano_release_path.stdout }}/xxx/yyy"
+    path: "{{ ansistrano_release_path }}/xxx/yyy"
 
 - name: ANSISTRANO | Ensure internal path files exists
   file:
     state: directory
-    path: "{{ ansistrano_release_path.stdout }}/files"
+    path: "{{ ansistrano_release_path }}/files"

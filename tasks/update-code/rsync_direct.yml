@@ -2,7 +2,7 @@
 - name: ANSISTRANO | RSYNC DIRECT | Rsync application files directly to remote release path
   synchronize:
     src: "{{ ansistrano_deploy_from }}"
-    dest: "{{ ansistrano_release_path.stdout }}"
+    dest: "{{ ansistrano_release_path }}"
     set_remote_user: "{{ ansistrano_rsync_set_remote_user }}"
     recursive: yes
     delete: yes

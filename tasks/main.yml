@@ -48,11 +48,10 @@
   rescue:
     - name: ANSISTRANO | Remove failed release
       file:
-        path: "{{ ansistrano_release_path.stdout }}"
+        path: "{{ ansistrano_release_path }}"
         state: absent
       when:
         - ansistrano_release_path is defined
-        - ansistrano_release_path.stdout is defined
         - not ansistrano_release_activated
 
     - fail:
