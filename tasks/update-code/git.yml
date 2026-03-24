@@ -63,7 +63,7 @@
 - name: ANSISTRANO | GIT | Create release folder
   file:
     state: directory
-    path: "{{ ansistrano_release_path.stdout }}"
+    path: "{{ ansistrano_release_path }}"
 
 - name: ANSISTRANO | GIT | Sync repo subtree["{{ ansistrano_git_real_repo_tree }}"] to release path
   shell: >-
@@ -73,7 +73,7 @@
            }
            | grep "^$prefix"
            | sed "s#^$prefix##"
-           | rsync -a --files-from=- "./$prefix" {{ ansistrano_release_path.stdout }}/
+           | rsync -a --files-from=- "./$prefix" {{ ansistrano_release_path }}/
   args:
     chdir: "{{ ansistrano_deploy_to }}/{{ ansistrano_repo_dir }}/"
   environment:

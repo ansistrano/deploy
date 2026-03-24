@@ -26,7 +26,7 @@
       - -F
       - --no-times
       - --delete-after
-      - "{{ ansistrano_release_path.stdout }}/"
+      - "{{ ansistrano_release_path }}/"
       - "{{ ansistrano_deploy_to }}/{{ ansistrano_current_dir }}/"
 
 # Ensure symlinks target paths is absent
