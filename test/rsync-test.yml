@@ -69,6 +69,58 @@
   roles:
     - { role: local-ansistrano }
 
+- name: When deploying with release cleanup enabled
+  hosts: all
+  vars:
+    ansistrano_deploy_to: "/tmp/cleanup-my-app.com"
+  pre_tasks:
+    - name: Set the first fixed release version
+      set_fact:
+        ansistrano_release_version: "20000101000000Z"
+        ansistrano_keep_releases: 1
+  roles:
+    - { role: local-ansistrano }
+
+- name: And deploying a newer release with release cleanup enabled
+  hosts: all
+  vars:
+    ansistrano_deploy_to: "/tmp/cleanup-my-app.com"
+  pre_tasks:
+    - name: Set the second fixed release version
+      set_fact:
+        ansistrano_release_version: "20000101000001Z"
+        ansistrano_keep_releases: 1
+  roles:
+    - { role: local-ansistrano }
+
+- name: Then only the newest release should remain
+  hosts: all
+  vars:
+    ansistrano_deploy_to: "/tmp/cleanup-my-app.com"
+  tasks:
+    - name: Assert the oldest release was removed
+      stat:
+        path: "{{ ansistrano_deploy_to }}/releases/20000101000000Z"
+      register: old_release
+
+    - name: Assert the newest release still exists
+      stat:
+        path: "{{ ansistrano_deploy_to }}/releases/20000101000001Z"
+      register: new_release
+
+    - name: Assert current points to the newest release
+      stat:
+        path: "{{ ansistrano_deploy_to }}/current"
+      register: current_release
+
+    - name: Assert old release was removed and newest release kept
+      assert:
+        that:
+          - old_release.stat.exists is defined and not old_release.stat.exists
+          - new_release.stat.exists is defined and new_release.stat.exists
+          - current_release.stat.islnk is defined and current_release.stat.islnk
+          - current_release.stat.lnk_target == "./releases/20000101000001Z"
+
 - name: When deploying fails before symlink
   hosts: all
   vars:

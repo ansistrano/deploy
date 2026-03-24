@@ -1,5 +1,15 @@
 ---
-# Clean up releases
+- name: ANSISTRANO | Gather releases
+  find:
+    paths: "{{ ansistrano_releases_path }}"
+    file_type: directory
+    recurse: false
+  register: ansistrano_releases
+  when: ansistrano_keep_releases | int > 0
+
 - name: ANSISTRANO | Clean up releases
-  shell: ls -1dt {{ ansistrano_releases_path }}/* | tail -n +{{ ansistrano_keep_releases | int + 1 }} | xargs rm -rf
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  loop: "{{ (ansistrano_releases.files | sort(attribute='mtime', reverse=true))[ansistrano_keep_releases | int:] }}"
   when: ansistrano_keep_releases | int > 0
