@@ -53,6 +53,7 @@
       when:
         - ansistrano_release_path is defined
         - not ansistrano_release_activated
+        - not (ansistrano_keep_failed_release | default(false) | bool)
 
     - fail:
         msg: >-

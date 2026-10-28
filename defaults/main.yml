@@ -36,6 +36,9 @@ ansistrano_ensure_basedirs_shared_files_exist: yes
 # Number of releases to keep in your hosts, if 0, unlimited releases will be kept
 ansistrano_keep_releases: 0
 
+# Keep the failed release folder for debugging instead of removing it when a deployment fails
+ansistrano_keep_failed_release: false
+
 # Deployment strategies variables
 
 # Due to runtime variable evaluation, the ansistrano_deploy_via default is actually

@@ -10,6 +10,7 @@ vars:
   ansistrano_current_dir: "current" # Softlink name. You should rarely changed it.
   ansistrano_current_via: "symlink" # Deployment strategy who code should be deployed to current path. Options are symlink or rsync
   ansistrano_keep_releases: 0 # Releases to keep after a new deployment. See "Pruning old releases".
+  ansistrano_keep_failed_release: false # Keep the failed release folder for debugging instead of removing it when a deployment fails.
 
   # Arrays of directories and files to be shared.
   # The following arrays of directories and files will be symlinked to the current release directory after the 'update-code' step and its callbacks
